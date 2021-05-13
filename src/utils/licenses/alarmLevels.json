@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "commercialUse": 2,
+    "distribution": 2,
+    "modifications": 2,
+    "privateUse": 2,
+    "patentUse": 0
+  },
+  "conditions": {
+    "discloseSource": 1,
+    "includeCopyright": 0,
+    "includeCopyrightVSource": 0,
+    "networkUseDisclosure": 1,
+    "sameLicense": 1,
+    "sameLicenseVLibrary": 1,
+    "sameLicenseVFile": 1,
+    "documentChanges": 0
+  },
+  "limitations": {
+    "liability": 0,
+    "warranty": 0,
+    "trademarkUse": 0,
+    "patentUse": 1
+  }
+}

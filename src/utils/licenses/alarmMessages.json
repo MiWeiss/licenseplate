@@ -1,0 +1,36 @@
+{
+    "permissions": {
+      "commercialUse": "No permission for commercial use of licensed material.",
+      "distribution": "No permission to distribute licensed material.",
+      "modifications": "No permission to modify licensed material.",
+      "patentUse": "Patent rights from contributors not explicitely granted.",
+      "privateUse": "No permission to use and modify in private."
+    },
+    "conditions": {
+      "discloseSource":
+        "Source code must be made available when the licensed material is distributed.",
+      "includeCopyright":
+        "A copy of the license and copyright notice must be included with the licensed material.",
+      "includeCopyrightVSource":
+        "A copy of the license and copyright notice must be included with the licensed material in source form, but is not required for binaries.",
+      "networkUseDisclosure":
+        "Users who interact with the licensed material via network are given the right to receive a copy of the source code.",
+      "sameLicense":
+        "Modifications must be released under the same license when distributing the licensed material. In some cases a similar or related license may be used.",
+      "sameLicenseVLibrary":
+        "Modifications must be released under the same license when distributing the licensed material. In some cases a similar or related license may be used, or this condition may not apply to works that use the licensed material as a library.",
+      "sameLicenseVFile":
+        "Modifications of existing files must be released under the same license when distributing the licensed material. In some cases a similar or related license may be used.",
+      "documentChanges":
+        "Changes made to the licensed material must be documented."
+    },
+    "limitations": {
+      "liability": "This license includes a limitation of liability.",
+      "warranty":
+        "This license explicitly states that it does NOT provide any warranty.",
+      "trademarkUse":
+        "This license explicitly states that it does NOT grant trademark rights, even though licenses without such a statement probably do not grant any implicit trademark rights.",
+      "patentUse":
+        "This license explicitly states that it does NOT grant any rights in the patents of contributors."
+    }
+  }

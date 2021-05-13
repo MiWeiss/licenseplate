@@ -1,6 +1,4 @@
-function polling() {
-  console.log("polling");
-  setTimeout(polling, 1000 * 30);
-}
+// clear expired cache on browser start
+import {removeExpiredFromCache} from "./utils/cacheUtils";
 
-polling();
+removeExpiredFromCache().then(() => console.log("Cleared expired elements from cache"));

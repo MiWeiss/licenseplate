@@ -1,31 +1,29 @@
 {
-  "name": "chrome-extension-typescript-starter",
-  "version": "1.0.0",
-  "description": "chrome-extension-typescript-starter",
+  "name": "licenseplate",
+  "version": "0.1.0",
+  "description": "Browser extension to get early warnings when facing insufficiently licensed code.",
   "main": "index.js",
   "scripts": {
     "watch": "webpack --config webpack/webpack.dev.js --watch",
     "build": "webpack --config webpack/webpack.prod.js",
     "clean": "rimraf dist",
     "test": "npx jest",
-    "style": "prettier --write \"src/**/*.{ts,tsx}\""
+    "build-test": "npm build & npm test",
+    "style": "prettier --write \"src/**/*.{ts}\"",
+    "gen-licenses": "rimraf .temp && tsc --outDir .temp/codegen-js ./src/__codegen__/genLicenses.ts && node .temp/codegen-js/__codegen__/genLicenses.js && rimraf .temp"
   },
-  "author": "",
+  "author": "Michael Weiss",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/chibat/chrome-extension-typescript-starter.git"
+    "url": "https://github.com/miweiss/licenseplate.git"
   },
-  "dependencies": {
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "@types/chrome": "0.0.100",
+    "@types/node": "~15.3.0",
+    "@types/chrome": "~0.0.100",
     "@types/jest": "^25.1.4",
-    "@types/jquery": "^3.3.33",
-    "@types/react": "^17.0.0",
-    "@types/react-dom": "^17.0.0",
+    "front-matter": "4.0.2",
     "copy-webpack-plugin": "^6.1.0",
     "glob": "^7.1.6",
     "jest": "^26.6.3",
@@ -33,7 +31,7 @@
     "rimraf": "^3.0.2 ",
     "ts-jest": "^25.2.1 ",
     "ts-loader": "^6.2.1",
-    "typescript": "~3.8.3 ",
+    "typescript": "~4.3.2 ",
     "webpack": "^4.44.1",
     "webpack-cli": "~3.3.11",
     "webpack-merge": "~4.2.2"

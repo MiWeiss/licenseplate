@@ -5,13 +5,14 @@ const srcDir = path.join(__dirname, "..", "src");
 
 module.exports = {
     entry: {
-      popup: path.join(srcDir, 'popup.tsx'),
-      options: path.join(srcDir, 'options.tsx'),
-      background: path.join(srcDir, 'background.ts'),
-      content_script: path.join(srcDir, 'content_script.tsx'),
+        popup: path.join(srcDir, 'popup.ts'),
+        options: path.join(srcDir, 'options.ts'),
+        background: path.join(srcDir, 'background.ts'),
+        repoView: path.join(srcDir, 'github', 'repoView.ts'),
+        searchView: path.join(srcDir, 'github', 'searchView.ts'),
     },
     output: {
-        path: path.join(__dirname, "../dist/js"),
+        path: path.join(__dirname, "../dist"),
         filename: "[name].js",
     },
     optimization: {
@@ -23,18 +24,21 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.tsx?$/,
+                test: /\.ts?$/,
                 use: "ts-loader",
                 exclude: /node_modules/,
             },
         ],
     },
     resolve: {
-        extensions: [".ts", ".tsx", ".js"],
+        extensions: [".ts", ".js"],
     },
     plugins: [
         new CopyPlugin({
-            patterns: [{ from: ".", to: "../", context: "public" }],
+            patterns: [
+                {from: ".", to: "../dist", context: "public"},
+                {from: "./src/background-wrapper.js", to: "../dist"}
+            ],
             options: {},
         }),
     ],

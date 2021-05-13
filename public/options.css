@@ -1,0 +1,23 @@
+
+.classlist-trash-icon{
+    width: 10px;
+    height: 10px;
+    position: relative;
+    top: 15px;
+    margin-right: 10px;
+    fill: #fff;
+}
+
+.ignored-repo-entry{
+    display: flex;
+    flex-direction: row;
+}
+
+.deleted{
+    text-decoration: line-through
+}
+
+.no-ignored-repos-message{
+    margin-top: 10px;
+    font-style: italic;
+}

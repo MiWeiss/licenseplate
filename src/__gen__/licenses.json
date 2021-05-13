@@ -1,0 +1,1150 @@
+[
+  {
+    "title": "BSD Zero Clause License",
+    "spdxId": "0BSD",
+    "permissions": {
+      "commercialUse": true,
+      "distribution": true,
+      "modifications": true,
+      "privateUse": true,
+      "patentUse": false
+    },
+    "conditions": {
+      "discloseSource": false,
+      "includeCopyright": false,
+      "includeCopyrightVSource": false,
+      "networkUseDisclosure": false,
+      "sameLicense": false,
+      "sameLicenseVLibrary": false,
+      "sameLicenseVFile": false,
+      "documentChanges": false
+    },
+    "limitations": {
+      "liability": true,
+      "warranty": true,
+      "trademarkUse": false,
+      "patentUse": false
+    },
+    "url": "https://choosealicense.com/licenses/0bsd"
+  },
+  {
+    "title": "Academic Free License v3.0",
+    "spdxId": "AFL-3.0",
+    "permissions": {
+      "commercialUse": true,
+      "distribution": true,
+      "modifications": true,
+      "privateUse": true,
+      "patentUse": true
+    },
+    "conditions": {
+      "discloseSource": false,
+      "includeCopyright": true,
+      "includeCopyrightVSource": false,
+      "networkUseDisclosure": false,
+      "sameLicense": false,
+      "sameLicenseVLibrary": false,
+      "sameLicenseVFile": false,
+      "documentChanges": true
+    },
+    "limitations": {
+      "liability": true,
+      "warranty": true,
+      "trademarkUse": true,
+      "patentUse": false
+    },
+    "url": "https://choosealicense.com/licenses/afl-3.0"
+  },
+  {
+    "title": "GNU Affero General Public License v3.0",
+    "spdxId": "AGPL-3.0",
+    "permissions": {
+      "commercialUse": true,
+      "distribution": true,
+      "modifications": true,
+      "privateUse": true,
+      "patentUse": true
+    },
+    "conditions": {
+      "discloseSource": true,
+      "includeCopyright": true,
+      "includeCopyrightVSource": false,
+      "networkUseDisclosure": true,
+      "sameLicense": true,
+      "sameLicenseVLibrary": false,
+      "sameLicenseVFile": false,
+      "documentChanges": true
+    },
+    "limitations": {
+      "liability": true,
+      "warranty": true,
+      "trademarkUse": false,
+      "patentUse": false
+    },
+    "url": "https://choosealicense.com/licenses/agpl-3.0"
+  },
+  {
+    "title": "Apache License 2.0",
+    "spdxId": "Apache-2.0",
+    "permissions": {
+      "commercialUse": true,
+      "distribution": true,
+      "modifications": true,
+      "privateUse": true,
+      "patentUse": true
+    },
+    "conditions": {
+      "discloseSource": false,
+      "includeCopyright": true,
+      "includeCopyrightVSource": false,
+      "networkUseDisclosure": false,
+      "sameLicense": false,
+      "sameLicenseVLibrary": false,
+      "sameLicenseVFile": false,
+      "documentChanges": true
+    },
+    "limitations": {
+      "liability": true,
+      "warranty": true,
+      "trademarkUse": true,
+      "patentUse": false
+    },
+    "url": "https://choosealicense.com/licenses/apache-2.0"
+  },
+  {
+    "title": "Artistic License 2.0",
+    "spdxId": "Artistic-2.0",
+    "permissions": {
+      "commercialUse": true,
+      "distribution": true,
+      "modifications": true,
+      "privateUse": true,
+      "patentUse": true
+    },
+    "conditions": {
+      "discloseSource": false,
+      "includeCopyright": true,
+      "includeCopyrightVSource": false,
+      "networkUseDisclosure": false,
+      "sameLicense": false,
+      "sameLicenseVLibrary": false,
+      "sameLicenseVFile": false,
+      "documentChanges": true
+    },
+    "limitations": {
+      "liability": true,
+      "warranty": true,
+      "trademarkUse": true,
+      "patentUse": false
+    },
+    "url": "https://choosealicense.com/licenses/artistic-2.0"
+  },
+  {
+    "title": "BSD 2-Clause \"Simplified\" License",
+    "spdxId": "BSD-2-Clause",
+    "permissions": {
+      "commercialUse": true,
+      "distribution": true,
+      "modifications": true,
+      "privateUse": true,
+      "patentUse": false
+    },
+    "conditions": {
+      "discloseSource": false,
+      "includeCopyright": true,
+      "includeCopyrightVSource": false,
+      "networkUseDisclosure": false,
+      "sameLicense": false,
+      "sameLicenseVLibrary": false,
+      "sameLicenseVFile": false,
+      "documentChanges": false
+    },
+    "limitations": {
+      "liability": true,
+      "warranty": true,
+      "trademarkUse": false,
+      "patentUse": false
+    },
+    "url": "https://choosealicense.com/licenses/bsd-2-clause"
+  },
+  {
+    "title": "BSD 3-Clause Clear License",
+    "spdxId": "BSD-3-Clause-Clear",
+    "permissions": {
+      "commercialUse": true,
+      "distribution": true,
+      "modifications": true,
+      "privateUse": true,
+      "patentUse": false
+    },
+    "conditions": {
+      "discloseSource": false,
+      "includeCopyright": true,
+      "includeCopyrightVSource": false,
+      "networkUseDisclosure": false,
+      "sameLicense": false,
+      "sameLicenseVLibrary": false,
+      "sameLicenseVFile": false,
+      "documentChanges": false
+    },
+    "limitations": {
+      "liability": true,
+      "warranty": true,
+      "trademarkUse": false,
+      "patentUse": true
+    },
+    "url": "https://choosealicense.com/licenses/bsd-3-clause-clear"
+  },
+  {
+    "title": "BSD 3-Clause \"New\" or \"Revised\" License",
+    "spdxId": "BSD-3-Clause",
+    "permissions": {
+      "commercialUse": true,
+      "distribution": true,
+      "modifications": true,
+      "privateUse": true,
+      "patentUse": false
+    },
+    "conditions": {
+      "discloseSource": false,
+      "includeCopyright": true,
+      "includeCopyrightVSource": false,
+      "networkUseDisclosure": false,
+      "sameLicense": false,
+      "sameLicenseVLibrary": false,
+      "sameLicenseVFile": false,
+      "documentChanges": false
+    },
+    "limitations": {
+      "liability": true,
+      "warranty": true,
+      "trademarkUse": false,
+      "patentUse": false
+    },
+    "url": "https://choosealicense.com/licenses/bsd-3-clause"
+  },
+  {
+    "title": "BSD 4-Clause \"Original\" or \"Old\" License",
+    "spdxId": "BSD-4-Clause",
+    "permissions": {
+      "commercialUse": true,
+      "distribution": true,
+      "modifications": true,
+      "privateUse": true,
+      "patentUse": false
+    },
+    "conditions": {
+      "discloseSource": false,
+      "includeCopyright": true,
+      "includeCopyrightVSource": false,
+      "networkUseDisclosure": false,
+      "sameLicense": false,
+      "sameLicenseVLibrary": false,
+      "sameLicenseVFile": false,
+      "documentChanges": false
+    },
+    "limitations": {
+      "liability": true,
+      "warranty": true,
+      "trademarkUse": false,
+      "patentUse": false
+    },
+    "url": "https://choosealicense.com/licenses/bsd-4-clause"
+  },
+  {
+    "title": "Boost Software License 1.0",
+    "spdxId": "BSL-1.0",
+    "permissions": {
+      "commercialUse": true,
+      "distribution": true,
+      "modifications": true,
+      "privateUse": true,
+      "patentUse": false
+    },
+    "conditions": {
+      "discloseSource": false,
+      "includeCopyright": false,
+      "includeCopyrightVSource": true,
+      "networkUseDisclosure": false,
+      "sameLicense": false,
+      "sameLicenseVLibrary": false,
+      "sameLicenseVFile": false,
+      "documentChanges": false
+    },
+    "limitations": {
+      "liability": true,
+      "warranty": true,
+      "trademarkUse": false,
+      "patentUse": false
+    },
+    "url": "https://choosealicense.com/licenses/bsl-1.0"
+  },
+  {
+    "title": "Creative Commons Attribution 4.0 International",
+    "spdxId": "CC-BY-4.0",
+    "permissions": {
+      "commercialUse": true,
+      "distribution": true,
+      "modifications": true,
+      "privateUse": true,
+      "patentUse": false
+    },
+    "conditions": {
+      "discloseSource": false,
+      "includeCopyright": true,
+      "includeCopyrightVSource": false,
+      "networkUseDisclosure": false,
+      "sameLicense": false,
+      "sameLicenseVLibrary": false,
+      "sameLicenseVFile": false,
+      "documentChanges": true
+    },
+    "limitations": {
+      "liability": true,
+      "warranty": true,
+      "trademarkUse": true,
+      "patentUse": true
+    },
+    "url": "https://choosealicense.com/licenses/cc-by-4.0"
+  },
+  {
+    "title": "Creative Commons Attribution Share Alike 4.0 International",
+    "spdxId": "CC-BY-SA-4.0",
+    "permissions": {
+      "commercialUse": true,
+      "distribution": true,
+      "modifications": true,
+      "privateUse": true,
+      "patentUse": false
+    },
+    "conditions": {
+      "discloseSource": false,
+      "includeCopyright": true,
+      "includeCopyrightVSource": false,
+      "networkUseDisclosure": false,
+      "sameLicense": true,
+      "sameLicenseVLibrary": false,
+      "sameLicenseVFile": false,
+      "documentChanges": true
+    },
+    "limitations": {
+      "liability": true,
+      "warranty": true,
+      "trademarkUse": true,
+      "patentUse": true
+    },
+    "url": "https://choosealicense.com/licenses/cc-by-sa-4.0"
+  },
+  {
+    "title": "Creative Commons Zero v1.0 Universal",
+    "spdxId": "CC0-1.0",
+    "permissions": {
+      "commercialUse": true,
+      "distribution": true,
+      "modifications": true,
+      "privateUse": true,
+      "patentUse": false
+    },
+    "conditions": {
+      "discloseSource": false,
+      "includeCopyright": false,
+      "includeCopyrightVSource": false,
+      "networkUseDisclosure": false,
+      "sameLicense": false,
+      "sameLicenseVLibrary": false,
+      "sameLicenseVFile": false,
+      "documentChanges": false
+    },
+    "limitations": {
+      "liability": true,
+      "warranty": true,
+      "trademarkUse": true,
+      "patentUse": true
+    },
+    "url": "https://choosealicense.com/licenses/cc0-1.0"
+  },
+  {
+    "title": "CeCILL Free Software License Agreement v2.1",
+    "spdxId": "CECILL-2.1",
+    "permissions": {
+      "commercialUse": true,
+      "distribution": true,
+      "modifications": true,
+      "privateUse": true,
+      "patentUse": true
+    },
+    "conditions": {
+      "discloseSource": true,
+      "includeCopyright": true,
+      "includeCopyrightVSource": false,
+      "networkUseDisclosure": false,
+      "sameLicense": true,
+      "sameLicenseVLibrary": false,
+      "sameLicenseVFile": false,
+      "documentChanges": false
+    },
+    "limitations": {
+      "liability": true,
+      "warranty": true,
+      "trademarkUse": false,
+      "patentUse": false
+    },
+    "url": "https://choosealicense.com/licenses/cecill-2.1"
+  },
+  {
+    "title": "Educational Community License v2.0",
+    "spdxId": "ECL-2.0",
+    "permissions": {
+      "commercialUse": true,
+      "distribution": true,
+      "modifications": true,
+      "privateUse": true,
+      "patentUse": true
+    },
+    "conditions": {
+      "discloseSource": false,
+      "includeCopyright": true,
+      "includeCopyrightVSource": false,
+      "networkUseDisclosure": false,
+      "sameLicense": false,
+      "sameLicenseVLibrary": false,
+      "sameLicenseVFile": false,
+      "documentChanges": true
+    },
+    "limitations": {
+      "liability": true,
+      "warranty": true,
+      "trademarkUse": true,
+      "patentUse": false
+    },
+    "url": "https://choosealicense.com/licenses/ecl-2.0"
+  },
+  {
+    "title": "Eclipse Public License 1.0",
+    "spdxId": "EPL-1.0",
+    "permissions": {
+      "commercialUse": true,
+      "distribution": true,
+      "modifications": true,
+      "privateUse": true,
+      "patentUse": true
+    },
+    "conditions": {
+      "discloseSource": true,
+      "includeCopyright": true,
+      "includeCopyrightVSource": false,
+      "networkUseDisclosure": false,
+      "sameLicense": true,
+      "sameLicenseVLibrary": false,
+      "sameLicenseVFile": false,
+      "documentChanges": false
+    },
+    "limitations": {
+      "liability": true,
+      "warranty": true,
+      "trademarkUse": false,
+      "patentUse": false
+    },
+    "url": "https://choosealicense.com/licenses/epl-1.0"
+  },
+  {
+    "title": "Eclipse Public License 2.0",
+    "spdxId": "EPL-2.0",
+    "permissions": {
+      "commercialUse": true,
+      "distribution": true,
+      "modifications": true,
+      "privateUse": true,
+      "patentUse": true
+    },
+    "conditions": {
+      "discloseSource": true,
+      "includeCopyright": true,
+      "includeCopyrightVSource": false,
+      "networkUseDisclosure": false,
+      "sameLicense": true,
+      "sameLicenseVLibrary": false,
+      "sameLicenseVFile": false,
+      "documentChanges": false
+    },
+    "limitations": {
+      "liability": true,
+      "warranty": true,
+      "trademarkUse": false,
+      "patentUse": false
+    },
+    "url": "https://choosealicense.com/licenses/epl-2.0"
+  },
+  {
+    "title": "European Union Public License 1.1",
+    "spdxId": "EUPL-1.1",
+    "permissions": {
+      "commercialUse": true,
+      "distribution": true,
+      "modifications": true,
+      "privateUse": true,
+      "patentUse": true
+    },
+    "conditions": {
+      "discloseSource": true,
+      "includeCopyright": true,
+      "includeCopyrightVSource": false,
+      "networkUseDisclosure": true,
+      "sameLicense": true,
+      "sameLicenseVLibrary": false,
+      "sameLicenseVFile": false,
+      "documentChanges": true
+    },
+    "limitations": {
+      "liability": true,
+      "warranty": true,
+      "trademarkUse": true,
+      "patentUse": false
+    },
+    "url": "https://choosealicense.com/licenses/eupl-1.1"
+  },
+  {
+    "title": "European Union Public License 1.2",
+    "spdxId": "EUPL-1.2",
+    "permissions": {
+      "commercialUse": true,
+      "distribution": true,
+      "modifications": true,
+      "privateUse": true,
+      "patentUse": true
+    },
+    "conditions": {
+      "discloseSource": true,
+      "includeCopyright": true,
+      "includeCopyrightVSource": false,
+      "networkUseDisclosure": true,
+      "sameLicense": true,
+      "sameLicenseVLibrary": false,
+      "sameLicenseVFile": false,
+      "documentChanges": true
+    },
+    "limitations": {
+      "liability": true,
+      "warranty": true,
+      "trademarkUse": true,
+      "patentUse": false
+    },
+    "url": "https://choosealicense.com/licenses/eupl-1.2"
+  },
+  {
+    "title": "GNU General Public License v2.0",
+    "spdxId": "GPL-2.0",
+    "permissions": {
+      "commercialUse": true,
+      "distribution": true,
+      "modifications": true,
+      "privateUse": true,
+      "patentUse": false
+    },
+    "conditions": {
+      "discloseSource": true,
+      "includeCopyright": true,
+      "includeCopyrightVSource": false,
+      "networkUseDisclosure": false,
+      "sameLicense": true,
+      "sameLicenseVLibrary": false,
+      "sameLicenseVFile": false,
+      "documentChanges": true
+    },
+    "limitations": {
+      "liability": true,
+      "warranty": true,
+      "trademarkUse": false,
+      "patentUse": false
+    },
+    "url": "https://choosealicense.com/licenses/gpl-2.0"
+  },
+  {
+    "title": "GNU General Public License v3.0",
+    "spdxId": "GPL-3.0",
+    "permissions": {
+      "commercialUse": true,
+      "distribution": true,
+      "modifications": true,
+      "privateUse": true,
+      "patentUse": true
+    },
+    "conditions": {
+      "discloseSource": true,
+      "includeCopyright": true,
+      "includeCopyrightVSource": false,
+      "networkUseDisclosure": false,
+      "sameLicense": true,
+      "sameLicenseVLibrary": false,
+      "sameLicenseVFile": false,
+      "documentChanges": true
+    },
+    "limitations": {
+      "liability": true,
+      "warranty": true,
+      "trademarkUse": false,
+      "patentUse": false
+    },
+    "url": "https://choosealicense.com/licenses/gpl-3.0"
+  },
+  {
+    "title": "ISC License",
+    "spdxId": "ISC",
+    "permissions": {
+      "commercialUse": true,
+      "distribution": true,
+      "modifications": true,
+      "privateUse": true,
+      "patentUse": false
+    },
+    "conditions": {
+      "discloseSource": false,
+      "includeCopyright": true,
+      "includeCopyrightVSource": false,
+      "networkUseDisclosure": false,
+      "sameLicense": false,
+      "sameLicenseVLibrary": false,
+      "sameLicenseVFile": false,
+      "documentChanges": false
+    },
+    "limitations": {
+      "liability": true,
+      "warranty": true,
+      "trademarkUse": false,
+      "patentUse": false
+    },
+    "url": "https://choosealicense.com/licenses/isc"
+  },
+  {
+    "title": "GNU Lesser General Public License v2.1",
+    "spdxId": "LGPL-2.1",
+    "permissions": {
+      "commercialUse": true,
+      "distribution": true,
+      "modifications": true,
+      "privateUse": true,
+      "patentUse": false
+    },
+    "conditions": {
+      "discloseSource": true,
+      "includeCopyright": true,
+      "includeCopyrightVSource": false,
+      "networkUseDisclosure": false,
+      "sameLicense": false,
+      "sameLicenseVLibrary": true,
+      "sameLicenseVFile": false,
+      "documentChanges": true
+    },
+    "limitations": {
+      "liability": true,
+      "warranty": true,
+      "trademarkUse": false,
+      "patentUse": false
+    },
+    "url": "https://choosealicense.com/licenses/lgpl-2.1"
+  },
+  {
+    "title": "GNU Lesser General Public License v3.0",
+    "spdxId": "LGPL-3.0",
+    "permissions": {
+      "commercialUse": true,
+      "distribution": true,
+      "modifications": true,
+      "privateUse": true,
+      "patentUse": true
+    },
+    "conditions": {
+      "discloseSource": true,
+      "includeCopyright": true,
+      "includeCopyrightVSource": false,
+      "networkUseDisclosure": false,
+      "sameLicense": false,
+      "sameLicenseVLibrary": true,
+      "sameLicenseVFile": false,
+      "documentChanges": true
+    },
+    "limitations": {
+      "liability": true,
+      "warranty": true,
+      "trademarkUse": false,
+      "patentUse": false
+    },
+    "url": "https://choosealicense.com/licenses/lgpl-3.0"
+  },
+  {
+    "title": "LaTeX Project Public License v1.3c",
+    "spdxId": "LPPL-1.3c",
+    "permissions": {
+      "commercialUse": true,
+      "distribution": true,
+      "modifications": true,
+      "privateUse": true,
+      "patentUse": false
+    },
+    "conditions": {
+      "discloseSource": true,
+      "includeCopyright": true,
+      "includeCopyrightVSource": false,
+      "networkUseDisclosure": false,
+      "sameLicense": false,
+      "sameLicenseVLibrary": false,
+      "sameLicenseVFile": false,
+      "documentChanges": true
+    },
+    "limitations": {
+      "liability": true,
+      "warranty": true,
+      "trademarkUse": false,
+      "patentUse": false
+    },
+    "url": "https://choosealicense.com/licenses/lppl-1.3c"
+  },
+  {
+    "title": "MIT No Attribution",
+    "spdxId": "MIT-0",
+    "permissions": {
+      "commercialUse": true,
+      "distribution": true,
+      "modifications": true,
+      "privateUse": true,
+      "patentUse": false
+    },
+    "conditions": {
+      "discloseSource": false,
+      "includeCopyright": false,
+      "includeCopyrightVSource": false,
+      "networkUseDisclosure": false,
+      "sameLicense": false,
+      "sameLicenseVLibrary": false,
+      "sameLicenseVFile": false,
+      "documentChanges": false
+    },
+    "limitations": {
+      "liability": true,
+      "warranty": true,
+      "trademarkUse": false,
+      "patentUse": false
+    },
+    "url": "https://choosealicense.com/licenses/mit-0"
+  },
+  {
+    "title": "MIT License",
+    "spdxId": "MIT",
+    "permissions": {
+      "commercialUse": true,
+      "distribution": true,
+      "modifications": true,
+      "privateUse": true,
+      "patentUse": false
+    },
+    "conditions": {
+      "discloseSource": false,
+      "includeCopyright": true,
+      "includeCopyrightVSource": false,
+      "networkUseDisclosure": false,
+      "sameLicense": false,
+      "sameLicenseVLibrary": false,
+      "sameLicenseVFile": false,
+      "documentChanges": false
+    },
+    "limitations": {
+      "liability": true,
+      "warranty": true,
+      "trademarkUse": false,
+      "patentUse": false
+    },
+    "url": "https://choosealicense.com/licenses/mit"
+  },
+  {
+    "title": "Mozilla Public License 2.0",
+    "spdxId": "MPL-2.0",
+    "permissions": {
+      "commercialUse": true,
+      "distribution": true,
+      "modifications": true,
+      "privateUse": true,
+      "patentUse": true
+    },
+    "conditions": {
+      "discloseSource": true,
+      "includeCopyright": true,
+      "includeCopyrightVSource": false,
+      "networkUseDisclosure": false,
+      "sameLicense": false,
+      "sameLicenseVLibrary": false,
+      "sameLicenseVFile": true,
+      "documentChanges": false
+    },
+    "limitations": {
+      "liability": true,
+      "warranty": true,
+      "trademarkUse": true,
+      "patentUse": false
+    },
+    "url": "https://choosealicense.com/licenses/mpl-2.0"
+  },
+  {
+    "title": "Microsoft Public License",
+    "spdxId": "MS-PL",
+    "permissions": {
+      "commercialUse": true,
+      "distribution": true,
+      "modifications": true,
+      "privateUse": true,
+      "patentUse": true
+    },
+    "conditions": {
+      "discloseSource": false,
+      "includeCopyright": true,
+      "includeCopyrightVSource": false,
+      "networkUseDisclosure": false,
+      "sameLicense": false,
+      "sameLicenseVLibrary": false,
+      "sameLicenseVFile": false,
+      "documentChanges": false
+    },
+    "limitations": {
+      "liability": false,
+      "warranty": true,
+      "trademarkUse": true,
+      "patentUse": false
+    },
+    "url": "https://choosealicense.com/licenses/ms-pl"
+  },
+  {
+    "title": "Microsoft Reciprocal License",
+    "spdxId": "MS-RL",
+    "permissions": {
+      "commercialUse": true,
+      "distribution": true,
+      "modifications": true,
+      "privateUse": true,
+      "patentUse": true
+    },
+    "conditions": {
+      "discloseSource": true,
+      "includeCopyright": true,
+      "includeCopyrightVSource": false,
+      "networkUseDisclosure": false,
+      "sameLicense": false,
+      "sameLicenseVLibrary": false,
+      "sameLicenseVFile": true,
+      "documentChanges": false
+    },
+    "limitations": {
+      "liability": false,
+      "warranty": true,
+      "trademarkUse": true,
+      "patentUse": false
+    },
+    "url": "https://choosealicense.com/licenses/ms-rl"
+  },
+  {
+    "title": "Mulan Permissive Software License, Version 2",
+    "spdxId": "MulanPSL-2.0",
+    "permissions": {
+      "commercialUse": true,
+      "distribution": true,
+      "modifications": true,
+      "privateUse": true,
+      "patentUse": true
+    },
+    "conditions": {
+      "discloseSource": false,
+      "includeCopyright": true,
+      "includeCopyrightVSource": false,
+      "networkUseDisclosure": false,
+      "sameLicense": false,
+      "sameLicenseVLibrary": false,
+      "sameLicenseVFile": false,
+      "documentChanges": false
+    },
+    "limitations": {
+      "liability": true,
+      "warranty": true,
+      "trademarkUse": true,
+      "patentUse": false
+    },
+    "url": "https://choosealicense.com/licenses/mulanpsl-2.0"
+  },
+  {
+    "title": "University of Illinois/NCSA Open Source License",
+    "spdxId": "NCSA",
+    "permissions": {
+      "commercialUse": true,
+      "distribution": true,
+      "modifications": true,
+      "privateUse": true,
+      "patentUse": false
+    },
+    "conditions": {
+      "discloseSource": false,
+      "includeCopyright": true,
+      "includeCopyrightVSource": false,
+      "networkUseDisclosure": false,
+      "sameLicense": false,
+      "sameLicenseVLibrary": false,
+      "sameLicenseVFile": false,
+      "documentChanges": false
+    },
+    "limitations": {
+      "liability": true,
+      "warranty": true,
+      "trademarkUse": false,
+      "patentUse": false
+    },
+    "url": "https://choosealicense.com/licenses/ncsa"
+  },
+  {
+    "title": "Open Data Commons Open Database License v1.0",
+    "spdxId": "ODbL-1.0",
+    "permissions": {
+      "commercialUse": true,
+      "distribution": true,
+      "modifications": true,
+      "privateUse": true,
+      "patentUse": false
+    },
+    "conditions": {
+      "discloseSource": true,
+      "includeCopyright": true,
+      "includeCopyrightVSource": false,
+      "networkUseDisclosure": false,
+      "sameLicense": true,
+      "sameLicenseVLibrary": false,
+      "sameLicenseVFile": false,
+      "documentChanges": false
+    },
+    "limitations": {
+      "liability": true,
+      "warranty": true,
+      "trademarkUse": true,
+      "patentUse": true
+    },
+    "url": "https://choosealicense.com/licenses/odbl-1.0"
+  },
+  {
+    "title": "SIL Open Font License 1.1",
+    "spdxId": "OFL-1.1",
+    "permissions": {
+      "commercialUse": true,
+      "distribution": true,
+      "modifications": true,
+      "privateUse": true,
+      "patentUse": false
+    },
+    "conditions": {
+      "discloseSource": false,
+      "includeCopyright": true,
+      "includeCopyrightVSource": false,
+      "networkUseDisclosure": false,
+      "sameLicense": true,
+      "sameLicenseVLibrary": false,
+      "sameLicenseVFile": false,
+      "documentChanges": false
+    },
+    "limitations": {
+      "liability": true,
+      "warranty": true,
+      "trademarkUse": false,
+      "patentUse": false
+    },
+    "url": "https://choosealicense.com/licenses/ofl-1.1"
+  },
+  {
+    "title": "Open Software License 3.0",
+    "spdxId": "OSL-3.0",
+    "permissions": {
+      "commercialUse": true,
+      "distribution": true,
+      "modifications": true,
+      "privateUse": true,
+      "patentUse": true
+    },
+    "conditions": {
+      "discloseSource": true,
+      "includeCopyright": true,
+      "includeCopyrightVSource": false,
+      "networkUseDisclosure": true,
+      "sameLicense": true,
+      "sameLicenseVLibrary": false,
+      "sameLicenseVFile": false,
+      "documentChanges": true
+    },
+    "limitations": {
+      "liability": true,
+      "warranty": true,
+      "trademarkUse": true,
+      "patentUse": false
+    },
+    "url": "https://choosealicense.com/licenses/osl-3.0"
+  },
+  {
+    "title": "PostgreSQL License",
+    "spdxId": "PostgreSQL",
+    "permissions": {
+      "commercialUse": true,
+      "distribution": true,
+      "modifications": true,
+      "privateUse": true,
+      "patentUse": false
+    },
+    "conditions": {
+      "discloseSource": false,
+      "includeCopyright": true,
+      "includeCopyrightVSource": false,
+      "networkUseDisclosure": false,
+      "sameLicense": false,
+      "sameLicenseVLibrary": false,
+      "sameLicenseVFile": false,
+      "documentChanges": false
+    },
+    "limitations": {
+      "liability": true,
+      "warranty": true,
+      "trademarkUse": false,
+      "patentUse": false
+    },
+    "url": "https://choosealicense.com/licenses/postgresql"
+  },
+  {
+    "title": "The Unlicense",
+    "spdxId": "Unlicense",
+    "permissions": {
+      "commercialUse": true,
+      "distribution": true,
+      "modifications": true,
+      "privateUse": true,
+      "patentUse": false
+    },
+    "conditions": {
+      "discloseSource": false,
+      "includeCopyright": false,
+      "includeCopyrightVSource": false,
+      "networkUseDisclosure": false,
+      "sameLicense": false,
+      "sameLicenseVLibrary": false,
+      "sameLicenseVFile": false,
+      "documentChanges": false
+    },
+    "limitations": {
+      "liability": true,
+      "warranty": true,
+      "trademarkUse": false,
+      "patentUse": false
+    },
+    "url": "https://choosealicense.com/licenses/unlicense"
+  },
+  {
+    "title": "Universal Permissive License v1.0",
+    "spdxId": "UPL-1.0",
+    "permissions": {
+      "commercialUse": true,
+      "distribution": true,
+      "modifications": true,
+      "privateUse": true,
+      "patentUse": true
+    },
+    "conditions": {
+      "discloseSource": false,
+      "includeCopyright": true,
+      "includeCopyrightVSource": false,
+      "networkUseDisclosure": false,
+      "sameLicense": false,
+      "sameLicenseVLibrary": false,
+      "sameLicenseVFile": false,
+      "documentChanges": false
+    },
+    "limitations": {
+      "liability": true,
+      "warranty": true,
+      "trademarkUse": false,
+      "patentUse": false
+    },
+    "url": "https://choosealicense.com/licenses/upl-1.0"
+  },
+  {
+    "title": "Vim License",
+    "spdxId": "Vim",
+    "permissions": {
+      "commercialUse": true,
+      "distribution": true,
+      "modifications": true,
+      "privateUse": true,
+      "patentUse": false
+    },
+    "conditions": {
+      "discloseSource": true,
+      "includeCopyright": true,
+      "includeCopyrightVSource": false,
+      "networkUseDisclosure": false,
+      "sameLicense": true,
+      "sameLicenseVLibrary": false,
+      "sameLicenseVFile": false,
+      "documentChanges": true
+    },
+    "limitations": {
+      "liability": false,
+      "warranty": false,
+      "trademarkUse": false,
+      "patentUse": false
+    },
+    "url": "https://choosealicense.com/licenses/vim"
+  },
+  {
+    "title": "Do What The F*ck You Want To Public License",
+    "spdxId": "WTFPL",
+    "permissions": {
+      "commercialUse": true,
+      "distribution": true,
+      "modifications": true,
+      "privateUse": true,
+      "patentUse": false
+    },
+    "conditions": {
+      "discloseSource": false,
+      "includeCopyright": false,
+      "includeCopyrightVSource": false,
+      "networkUseDisclosure": false,
+      "sameLicense": false,
+      "sameLicenseVLibrary": false,
+      "sameLicenseVFile": false,
+      "documentChanges": false
+    },
+    "limitations": {
+      "liability": false,
+      "warranty": false,
+      "trademarkUse": false,
+      "patentUse": false
+    },
+    "url": "https://choosealicense.com/licenses/wtfpl"
+  },
+  {
+    "title": "zlib License",
+    "spdxId": "Zlib",
+    "permissions": {
+      "commercialUse": true,
+      "distribution": true,
+      "modifications": true,
+      "privateUse": true,
+      "patentUse": false
+    },
+    "conditions": {
+      "discloseSource": false,
+      "includeCopyright": false,
+      "includeCopyrightVSource": true,
+      "networkUseDisclosure": false,
+      "sameLicense": false,
+      "sameLicenseVLibrary": false,
+      "sameLicenseVFile": false,
+      "documentChanges": true
+    },
+    "limitations": {
+      "liability": true,
+      "warranty": true,
+      "trademarkUse": false,
+      "patentUse": false
+    },
+    "url": "https://choosealicense.com/licenses/zlib"
+  }
+]

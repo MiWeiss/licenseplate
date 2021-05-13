@@ -1,0 +1,47 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: selenium
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    - cron: 0 0 * * * # At the end of every day
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '15.x'
+      - name: Set up Python 3.7
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.7
+      - name: Install Chrome (required for crx packaging)
+        run: |
+          wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+          echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' | sudo tee /etc/apt/sources.list.d/google-chrome.list
+          sudo apt-get -y update
+          sudo apt-get -y install google-chrome-stable
+      - name: Install Python Dependencies
+        run: |
+          cd selenium
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+#      - name: npm install
+#        run: npm
+      - name: Build CRX (using headless chrome)
+        run: |
+          cd selenium
+          sudo apt-get install xvfb
+          xvfb-run --auto-servernum python prepare.py
+      - name: Run Selenium tests
+        run: |
+          cd selenium
+          xvfb-run --auto-servernum pytest .
