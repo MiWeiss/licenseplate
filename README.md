@@ -3,7 +3,7 @@ A browser extension to help you detect unpermissive licenses.
 </p>
 
 <p align="center">
-<img width="60%" alt="licenseplate" src="https://github.com/MiWeiss/licenseplate/raw/master/docs/licenseplate.png">
+<img width="60%" alt="licenseplate" src="https://github.com/MiWeiss/licenseplate/raw/main/docs/licenseplate.png">
 </p>
 
 
