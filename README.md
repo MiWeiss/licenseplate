@@ -32,6 +32,7 @@ Short Term
 - :ballot_box_with_check: Customizable alert levels, based on user-defined per-permission, per-limitation and per-condition configurations.
 - :mag: Preview license info and alert level on github search (e.g. [here](https://github.com/search?q=licenseplate)).
 - :rotating_light: Emphasize license info and alert level on github user and organization pages.
+- :blue_book: Docs!
 
 Long Term
 - :books: Also show licenseplate alerts on popular package indexes (e.g. [pypi.org](https://pypi.org)) and search engines (e.g. [google.com](https://google.com)).
