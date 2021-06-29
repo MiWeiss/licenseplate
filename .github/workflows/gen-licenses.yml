@@ -32,7 +32,7 @@ jobs:
         id: cpr
         uses: peter-evans/create-pull-request@v3
         with:
-          token: ${{ GITHUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: Update report
           committer: License Bot <bot@mweiss.com>
           branch: bot/gen-licenses
