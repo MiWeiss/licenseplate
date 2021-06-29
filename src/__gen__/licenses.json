@@ -1,5 +1,33 @@
 [
   {
+    "title": "BSD Zero Clause License",
+    "spdxId": "0BSD",
+    "permissions": {
+      "commercialUse": true,
+      "distribution": true,
+      "modifications": true,
+      "privateUse": true,
+      "patentUse": false
+    },
+    "conditions": {
+      "discloseSource": false,
+      "includeCopyright": false,
+      "includeCopyrightVSource": false,
+      "networkUseDisclosure": false,
+      "sameLicense": false,
+      "sameLicenseVLibrary": false,
+      "sameLicenseVFile": false,
+      "documentChanges": false
+    },
+    "limitations": {
+      "liability": true,
+      "warranty": true,
+      "trademarkUse": false,
+      "patentUse": false
+    },
+    "url": "https://choosealicense.com/licenses/0bsd"
+  },
+  {
     "title": "Academic Free License v3.0",
     "spdxId": "AFL-3.0",
     "permissions": {
