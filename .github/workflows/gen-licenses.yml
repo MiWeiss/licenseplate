@@ -28,17 +28,14 @@ jobs:
       id: cpr
       uses: peter-evans/create-pull-request@v3
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ GITHUB_TOKEN }}
         commit-message: Update report
         committer: License Bot <bot@mweiss.com>
-        author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
-        signoff: false
-        branch: gen-license-action
-        delete-branch: true
+        branch: bot/gen-licenses
         title: '[Bot] Update Licenses from choosealicense.com'
         body: |
           Update licenses
-          - Updated with *today's* date
+          - Ran `npm run gen-licenses`
           - Pull request created by [create-pull-request][1]
 
           [1]: https://github.com/peter-evans/create-pull-request
