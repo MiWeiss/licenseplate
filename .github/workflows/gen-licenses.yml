@@ -1,0 +1,46 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: build
+
+on:
+  schedule:
+    - cron: 0 0 * * 0 # At 00:00 on Sunday.
+# ENABLE THIS TO TEST THIS ACTION ON BRANCH gen-license-action
+#  push:
+#    branches: [ gen-license-action ] # TODO delete after fixing
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 15.x
+      - name: npm ci
+        run: npm ci
+      - name: Run codegen
+        run: npm run gen-licenses
+      - name: Create Pull Request
+        id: cpr
+        uses: peter-evans/create-pull-request@28fa4848947e0faa7fa50647691d01477589d5e9
+        with:
+          token: ${{ secrets.MACHINE_USER_PAT }}
+          push-to-fork: MachineDoingStuffByItself/licenseplate
+          commit-message: Update report
+          committer: MachineDoingStuffByItself <machineaccount@mweiss.com>
+          title: '[Bot] Update Licenses from choosealicense.com'
+          body: |
+            Update licenses
+            - Ran `npm run gen-licenses`
+            - Pull request created by [create-pull-request][1]
+
+            [1]: https://github.com/peter-evans/create-pull-request
