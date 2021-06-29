@@ -9,37 +9,41 @@ on:
   schedule:
     - cron: 0 0 * * 0 # At 00:00 on Sunday.
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   build:
 
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js
-      uses: actions/setup-node@v1
-      with:
-        node-version: 15.x
-    - name: npm ci
-      run: npm ci
-    - name: Run codegen
-      run: npm run gen-licenses
-    - name: Create Pull Request
-      id: cpr
-      uses: peter-evans/create-pull-request@v3
-      with:
-        token: ${{ GITHUB_TOKEN }}
-        commit-message: Update report
-        committer: License Bot <bot@mweiss.com>
-        branch: bot/gen-licenses
-        title: '[Bot] Update Licenses from choosealicense.com'
-        body: |
-          Update licenses
-          - Ran `npm run gen-licenses`
-          - Pull request created by [create-pull-request][1]
+      - uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 15.x
+      - name: npm ci
+        run: npm ci
+      - name: Run codegen
+        run: npm run gen-licenses
+      - name: Create Pull Request
+        id: cpr
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ GITHUB_TOKEN }}
+          commit-message: Update report
+          committer: License Bot <bot@mweiss.com>
+          branch: bot/gen-licenses
+          title: '[Bot] Update Licenses from choosealicense.com'
+          body: |
+            Update licenses
+            - Ran `npm run gen-licenses`
+            - Pull request created by [create-pull-request][1]
 
-          [1]: https://github.com/peter-evans/create-pull-request
-        labels: automated pr
-        assignees: miweiss
-        reviewers: miweiss
-        draft: false
+            [1]: https://github.com/peter-evans/create-pull-request
+          labels: automated pr
+          assignees: miweiss
+          reviewers: miweiss
+          draft: false
