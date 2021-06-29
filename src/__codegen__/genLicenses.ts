@@ -62,7 +62,7 @@ export async function generateLicenses() {
   } else {
     // TODO use `git sparse-checkout`
     await exec(
-      `git clone git@github.com:github/choosealicense.com.git ${choosealicenseRepo}`
+      `git clone https://github.com/github/choosealicense.com.git ${choosealicenseRepo}`
     );
   }
   await extractLicenses();
