@@ -4,10 +4,11 @@
 name: build
 
 on:
-  push:
-    branches: [ gen-license-action ] # TODO delete after fixing
   schedule:
     - cron: 0 0 * * 0 # At 00:00 on Sunday.
+# ENABLE THIS TO TEST THIS ACTION ON BRANCH gen-license-action
+#  push:
+#    branches: [ gen-license-action ] # TODO delete after fixing
 
 permissions:
   contents: write
@@ -35,7 +36,7 @@ jobs:
           token: ${{ secrets.MACHINE_USER_PAT }}
           push-to-fork: MachineDoingStuffByItself/licenseplate
           commit-message: Update report
-          committer: License Bot <bot@mweiss.com>
+          committer: MachineDoingStuffByItself <machineaccount@mweiss.com>
           title: '[Bot] Update Licenses from choosealicense.com'
           body: |
             Update licenses
