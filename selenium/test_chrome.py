@@ -2,6 +2,7 @@ from time import sleep
 from typing import Optional
 
 import pytest
+from selenium import webdriver
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
@@ -10,8 +11,6 @@ from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
-
-from selenium import webdriver
 
 CACHE = dict()
 WEBDRIVER_INSTALL_PATH = ChromeDriverManager().install()
@@ -51,6 +50,19 @@ def clear_ignore_config(wd: WebDriver):
     assert wd.find_elements_by_class_name("no-ignored-repos-message") is not None
 
 
+class CacheChecker:
+    def __init__(self, cache_size_overall: int, cache_size_expired: int):
+        self.overall: int = cache_size_overall
+        self.expired: int = cache_size_expired
+
+    def __call__(self, d: WebDriver) -> bool:
+        return (
+                d.find_element_by_id("cache-size").get_attribute('innerHTML') == str(self.overall)
+                and
+                d.find_element_by_id("expired-cache-size").get_attribute('innerHTML') == str(self.expired)
+        )
+
+
 class TestChromeExtensionOnGithub:
     """E2E tests of the extension on chrome."""
 
@@ -71,6 +83,11 @@ class TestChromeExtensionOnGithub:
     def setup_method(self, test_method):
         """Cleans up before every test method"""
         clear_ignore_config(self.driver)
+
+    def _find_alert_bar(self) -> Optional[WebElement]:
+        return WebDriverWait(self.driver, 2).until(
+            expected_conditions.presence_of_element_located((By.ID, "licenseplate-alertbar"))
+        )
 
     @pytest.mark.parametrize("repo_id, exp_level",
                              [
@@ -113,23 +130,36 @@ class TestChromeExtensionOnGithub:
                              )
     def test_ignore_repo(self, repo_1, repo_2, btn_id):
         """Tests ignoring of repositories and owners."""
+        # Setup
         self.driver.get(f"https://github.com/{repo_1}")
         alert_bar = self._find_alert_bar()
         alert_bar.click()
+
+        # Click ignore button
         ignore_repo_button = WebDriverWait(self.driver, 1).until(
             expected_conditions.presence_of_element_located((By.ID, btn_id))
         )
         ignore_repo_button.click()
-        # TODO once click reaction is improved to show 'revert', write corresponding test and
-        sleep(0.5)
+
+        # Make sure revert button is present and works
+        revert_button = WebDriverWait(self.driver, 1).until(
+            expected_conditions.presence_of_element_located((By.ID, "licenseplate-ignore-revert-btn"))
+        )
+        revert_button.click()
+        ignore_repo_button = WebDriverWait(self.driver, 1).until(
+            expected_conditions.presence_of_element_located((By.ID, btn_id))
+        )
+
+        # Make sure ignoring actually works
+        ignore_repo_button.click()
+        #   (waiting for revert button as this means that ignore action has completed)
+        WebDriverWait(self.driver, 1).until(
+            expected_conditions.presence_of_element_located((By.ID, "licenseplate-ignore-revert-btn"))
+        )
         self.driver.get(f"https://github.com/{repo_2}")
         with pytest.raises(TimeoutException):
             self._find_alert_bar()
 
-    def _find_alert_bar(self) -> Optional[WebElement]:
-        return WebDriverWait(self.driver, 2).until(
-            expected_conditions.presence_of_element_located((By.ID, "licenseplate-alertbar"))
-        )
 
     @pytest.mark.parametrize("repo_id, exp_btn",
                              [
@@ -167,3 +197,19 @@ class TestChromeExtensionOnGithub:
             with pytest.raises(TimeoutException):
                 get_btn()
         # Note, as these tests still run unauthenticated, we cannot test the issue filling atm.
+
+    def test_cache(self):
+        # Clear existing cache
+        navigate_to_options(self.driver)
+        self.driver.find_element_by_id("clear-cache-btn").click()
+        WebDriverWait(self.driver, 1).until(CacheChecker(0, 0))
+        # Visit to repos, then check that cache size is two
+        self.driver.get("https://github.com/miweiss/licenseplate")
+        self._find_alert_bar()
+        self.driver.get("https://github.com/testingautomated-usi/uncertainty-wizard")
+        self._find_alert_bar()
+        navigate_to_options(self.driver)
+        WebDriverWait(self.driver, 1).until(CacheChecker(2, 0))
+        # Clear cache
+        self.driver.find_element_by_id("clear-cache-btn").click()
+        WebDriverWait(self.driver, 1).until(CacheChecker(0, 0))

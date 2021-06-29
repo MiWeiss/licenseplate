@@ -1,6 +1,7 @@
 import os
 import platform
 
+
 def npm_build():
     os.system('npm install')
     os.system('npm run build')
@@ -12,7 +13,6 @@ def zip_extension():
     if os.path.exists("../dist.pem"):
         os.remove("../dist.pem")
 
-    os.system('npm run build')
     path = os.path.abspath('../dist/')
     print("Building extension")
     if platform.system() == "Windows":
