@@ -60,7 +60,6 @@ export async function generateLicenses() {
   if (fs.existsSync(choosealicenseRepo)) {
     await exec(`git -C ${choosealicenseRepo} pull`, () => extractLicenses());
   } else {
-    // TODO use `git sparse-checkout`
     await exec(
       `git clone https://github.com/github/choosealicense.com.git ${choosealicenseRepo}`
     );
