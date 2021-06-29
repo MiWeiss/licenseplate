@@ -33,7 +33,7 @@ jobs:
         uses: peter-evans/create-pull-request@28fa4848947e0faa7fa50647691d01477589d5e9
         with:
           token: ${{ secrets.MACHINE_USER_PAT }}
-          push-to-fork: machine-user/fork-of-repository
+          push-to-fork: MachineDoingStuffByItself/licenseplate
           commit-message: Update report
           committer: License Bot <bot@mweiss.com>
           title: '[Bot] Update Licenses from choosealicense.com'
