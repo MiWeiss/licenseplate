@@ -70,14 +70,15 @@ function setAlertLevel(alertInfo: AlarmReport, alertbar: HTMLDivElement) {
 
 function setAlertBarContent(alertInfo: AlarmReport,
                             alertbar: HTMLDivElement) {
-    const rightNode = document.createElement("div");
-    rightNode.classList.add("alertbar-head-element", "alertbar-head-right");
-    alertbar.appendChild(rightNode);
-    rightNode.innerHTML = "[Licenseplate-Extension. This is not legal advice]";
 
     const leftNode = document.createElement("div");
     alertbar.appendChild(leftNode);
     leftNode.classList.add("alertbar-head-element", "alertbar-head-left");
+
+    const rightNode = document.createElement("div");
+    rightNode.classList.add("alertbar-head-element", "alertbar-head-right");
+    alertbar.appendChild(rightNode);
+    rightNode.innerHTML = "[Licenseplate-Extension. This is not legal advice]";
 
     if (alertInfo.licenseKey === FOUND_NO_LICENSE) {
         leftNode.innerHTML = `Found no license! 
