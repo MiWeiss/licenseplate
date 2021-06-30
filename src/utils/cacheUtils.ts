@@ -29,7 +29,7 @@ export const getCacheFromStorage = async function (): Promise<Array<CacheEntry>>
     });
 };
 
-const upsertCache = async function (cacheEntries: Array<CacheEntry>) {
+export const upsertCache = async function (cacheEntries: Array<CacheEntry>) {
     return new Promise((resolve, reject) => {
         try {
             chrome.storage.local.set({"gh-repo-cache": cacheEntries}, function () {
@@ -41,7 +41,7 @@ const upsertCache = async function (cacheEntries: Array<CacheEntry>) {
     });
 };
 
-const isStillValid = (ce: CacheEntry) => ce.expires > Date.now();
+export const isStillValid = (ce: CacheEntry) => ce.expires > Date.now();
 
 function repoMatcher(owner: string, repo: string) {
     return (ce: CacheEntry) => ce.repo === repo && ce.owner === owner
@@ -94,3 +94,12 @@ export async function removeExpiredFromCache() {
     // Thus adding 0 new repos, only removes the expired ones
     return cacheGithubRepos()
 }
+
+export async function removeGithubRepoFromCache(owner: string, repo: string) {
+    const cache = await getCacheFromStorage();
+    const newCache = cache.filter((c: CacheEntry) => {
+        return c.repo !== repo || c.owner != owner
+    });
+    return upsertCache(newCache)
+}
+

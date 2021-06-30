@@ -9,10 +9,33 @@
 <body>
   <h1>Licenseplate Extension Options</h1>
   <div id="root"></div>
+
+  <h3>Cached Licenses</h3>
+  <div>
+
+    <p>
+      To keep API usage and workload low, licenseplate caches identified licenses and uses them for one hour.
+    At the moment, you have <span id="cache-size">(loading)</span> licenses cached
+    (<span id="expired-cache-size">(loading)</span> of which are expired).
+    </p>
+
+    <p>
+      Expired licenses are automatically removed next time the cache is updated - this thus happens
+      regularly while you are browsing github on non-ignored repositories.
+    </p>
+
+    <button id="clear-cache-btn">
+      Clear Cache
+    </button>
+
+  </div>
+
   <h3>Ignored Repositories</h3>
-  <div>Go to any github repository and click on the licenseplate bar to ignore the repository.
-    Licenseplate will not run on ignored repositories. 
-    Below shows the list of already ignored repositories. 
+  <div>
+    Go to any github repository and click on the licenseplate bar to ignore the repository.
+    Licenseplate will not show any alerts on ignored repositories.
+    Below shows the list of already ignored repositories.
+    Note that ignored repositories are automatically synced amongst all your devices.
   </div>
   <div id="ignored-repos"></div>
   <script src="options.js"></script>
