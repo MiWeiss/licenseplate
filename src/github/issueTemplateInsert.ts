@@ -44,14 +44,15 @@ function createInsertTemplateButton() {
   }
 }
 
-// TODO Add link to licenseplate extension, once available
-const LICENSE_REQUEST_TEMPLATE = `It appears that this repository does not have a license, which may disallow anyone to use its content:  This is described [here](https://choosealicense.com/no-permission/) quite nicely.
+const LICENSE_REQUEST_TEMPLATE =
+    `It appears that this repository does not have a license, which may disallow anyone to use its content (read about this [here](https://choosealicense.com/no-permission/)). Thus, would you mind adding a 'LICENSE' file to your repository?
 
-If you have trouble deciding which license to use, [choosealicense.com](https://choosealicense.com/) is a great place to start looking.
+By the way: To choose a license, [choosealicense.com](https://choosealicense.com/) and [the opensource guide](https://opensource.guide/legal/#which-open-source-license-is-appropriate-for-my-project) are great places to start looking. 
+Adding the license to the repo can then easily be done using one of githubs template, as shown [here](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/adding-a-license-to-a-repository).
 
 Thanks in advance!
 
-<sub>Issue created using the licenseplate browser extension, which relies on the GitHub API to identify licenses. This is not legal advice.</sub>
+<sub>Issue created using the [licenseplate browser extension](https://github.com/MiWeiss/licenseplate), which relies on the GitHub API to identify licenses. This is not legal advice.</sub>
   `;
 
 function fillInTemplate() {

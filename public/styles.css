@@ -67,11 +67,16 @@
     flex-direction: row;
     justify-content: space-around;
     margin-bottom: 15px;
+    flex-wrap: wrap;
 }
 
-.licensplate-action-button{
+.licenseplate-action-button{
     flex: 1 1 0;
     font-size: small;
+    width: 150px;
+    height: 35px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 .licensplate-lic-template-button {
