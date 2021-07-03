@@ -3,7 +3,7 @@ A browser extension to help you detect unpermissive licenses.
 </p>
 
 <p align="center">
-<img width="60%" alt="licenseplate" src="https://github.com/MiWeiss/licenseplate/raw/main/docs/licenseplate.png">
+<img width="60%" alt="licenseplate" src="docs/licenseplate.png">
 </p>
 
 
@@ -30,7 +30,6 @@ Short Term
 - :fire: Strengthen test suite.
 - :nail_care: Improve style and appearance of alert bar. **HELP NEEDED :sos:**
 - :ballot_box_with_check: Customizable alert levels, based on user-defined per-permission, per-limitation and per-condition configurations.
-- :mag: Preview license info and alert level on github search (e.g. [here](https://github.com/search?q=licenseplate)).
 - :rotating_light: Emphasize license info and alert level on github user and organization pages.
 - :blue_book: Docs!
 
