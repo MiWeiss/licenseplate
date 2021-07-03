@@ -2,6 +2,10 @@
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    border-radius: 6px;
+    border-style: solid;
+    border-width: 1px;
+    position: relative;
 }
 
 .alertbar-head-element{
@@ -25,7 +29,6 @@
     background-color: var(--color-bg-danger)!important;
     border-color: var(--color-border-danger)!important;
     padding: 10px !important;
-    border: 1px solid !important;
     color: white !important;
 }
 
@@ -34,15 +37,13 @@
     border-color: var(--color-alert-warn-border) !important;
     color: var(--color-alert-warn-text) !important;
     padding: 10px !important;
-    border: 1px solid !important;
 }
 
 .licpl-chill{
     background-image: linear-gradient(var(--color-alert-info-bg),var(--color-alert-info-bg)) !important;
-    border-color: var(--color-alert-info-border) !important;
-    padding: 3px !important;
-    border: 0.5px solid !important;
+    border-color: var(--color-alert-info-border)!important;
     color: var(--color-alert-info-text) !important;
+    padding: 4px 10px;
 }
 
 .details{
