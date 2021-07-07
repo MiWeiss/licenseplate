@@ -6,7 +6,7 @@ export const FOUND_NO_LICENSE = "NO-LICENSE";
 export const FOUND_UNKNOWN_LICENSE = "other"; // Value from github api
 export const FOUND_IGNORED_REPO = "licenseplate-ignored";
 
-export async function findLicense(owner: string, repo: string): Promise<any> {
+export async function findLicense(owner: string, repo: string): Promise<string> {
     const ignored = checkIsIgnored("github", `${owner}/${repo}`);
     const cached = getCachedKeyForGithubRepo(owner, repo);
     if (await ignored) {
@@ -51,20 +51,6 @@ async function findKey(owner: string, repo: string): Promise<string> {
     // Key is `other` if a license file was found, but license not recognized
     return repoInfo.license.key
 }
-
-//
-// async function getLicenseProperties(key: string): Promise<any> {
-//     if (key === FOUND_NO_REPO || key === FOUND_NO_LICENSE || key === FOUND_UNKNOWN_LICENSE){
-//         return key
-//     }
-//     // TODO Caching
-//     const url = `https://api.github.com/licenses/${key}`;
-//     let licenseResponse: Response = await fetch(url);
-//     if (!licenseResponse.ok){
-//         throw Error(`Get request to "${url}" failed with status code ${licenseResponse.status}`)
-//     }
-//     return await licenseResponse.json()
-// }
 
 
 // Example of repo without license: "https://github.com/noameshed/first-android-app"

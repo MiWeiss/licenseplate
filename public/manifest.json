@@ -1,7 +1,7 @@
 {
   "name": "Licenseplate",
   "description": "License Hints for Github",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "manifest_version": 3,
 
   "options_ui": {
@@ -23,6 +23,11 @@
       {
           "matches": ["https://github.com/search?*"],
           "js": ["searchView.js"]
+      },
+      {
+          "matches": ["https://github.com/*"],
+          "css": ["styles.css"],
+          "js": ["profileView.js"]
       }
   ],
 
@@ -31,11 +36,12 @@
   },
 
   "permissions": [
-    "storage", 
-    "activeTab", 
+    "storage",
+    "activeTab",
     "scripting"
   ],
   "host_permissions": [
-    "https://www.github.com/"
+    "https://www.github.com/",
+    "https://github.com/"
   ]
 }
