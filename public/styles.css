@@ -85,3 +85,10 @@
     margin-right: 5px;
 }
 
+.feather{
+    display: inline-block;
+    overflow: visible!important;
+    vertical-align: text-bottom;
+    padding-right: 2px;
+}
+

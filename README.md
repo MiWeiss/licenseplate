@@ -30,7 +30,6 @@ Short Term
 - :fire: Strengthen test suite.
 - :nail_care: Improve style and appearance of alert bar. **HELP NEEDED :sos:**
 - :ballot_box_with_check: Customizable alert levels, based on user-defined per-permission, per-limitation and per-condition configurations.
-- :rotating_light: Emphasize license info and alert level on github user and organization pages.
 - :blue_book: Docs!
 
 Long Term
