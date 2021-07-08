@@ -34,14 +34,8 @@ jobs:
           cd selenium
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-#      - name: npm install
-#        run: npm
-      - name: Build CRX (using headless chrome)
-        run: |
-          cd selenium
-          sudo apt-get install xvfb
-          xvfb-run --auto-servernum python prepare.py
       - name: Run Selenium tests
         run: |
           cd selenium
+          sudo apt-get install xvfb
           xvfb-run --auto-servernum pytest .

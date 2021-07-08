@@ -23,7 +23,7 @@ Before you make a major contribution, it's probably best to first discuss it in 
 ⚠️ When implementing a change, please keep the number of API requests to a minimum, and don't include **any** external packages.
 
 Develop using `npm run watch`, build using `npm run build`, test using `npm run test` and get the latest license versions from choosealicense using `npm run gen-licenses`.
-Python E2E selenium tests are in the folder `selenium`: Create a `venv`, `pip install -r requirements.txt` install chrome-webdriver and run `python prepare.py` will allow you to execute `pytest .` 
+Python E2E selenium tests are in the folder `selenium`: Create a `venv` and run `pip install -r requirements.txt`, which will allow you to execute `pytest .` 
 
 ### Next Steps and Roadmap
 Short Term

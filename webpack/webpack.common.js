@@ -13,12 +13,13 @@ module.exports = {
         searchView: path.join(srcDir, 'github', 'searchView.ts'),
     },
     output: {
+        globalObject: "this",
         path: path.join(__dirname, "../dist"),
         filename: "[name].js",
     },
     optimization: {
         splitChunks: {
-            name: "vendor",
+            name: "licenseplate",
             chunks: "initial",
         },
     },
