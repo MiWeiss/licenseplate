@@ -29,7 +29,7 @@
     background-color: var(--color-bg-danger)!important;
     border-color: var(--color-border-danger)!important;
     padding: 10px !important;
-    color: white !important;
+    color: var(--color-alert-error-text) !important;
 }
 
 .licpl-warning{!important;
