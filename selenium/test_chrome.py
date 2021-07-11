@@ -253,8 +253,9 @@ class TestChromeExtensionOnGithub:
         # Sanity check to make sure correct element is selected
         #   and that the class (on which logic relies) is set
         assert "pinned-item-list-item-content" in pin.get_attribute("class").replace(" ", "").split(",")
-        badge = pin.find_element_by_class_name("licenseplate-badge")
-        assert badge is not None, "No licenseplate badge added"
+        badge = WebDriverWait(pin, 3).until(
+            expected_conditions.presence_of_element_located((By.CLASS_NAME, "licenseplate-badge"))
+        )
         assert badge.find_element(By.CSS_SELECTOR, f"svg[stroke='{icon_color}']"), \
             f"No icon with stroke color {icon_color} found"
         assert badge.find_element_by_tag_name("span").get_attribute('innerHTML') == text, \
