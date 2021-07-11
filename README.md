@@ -87,6 +87,6 @@ which excludes any liability from the contributors of this repository
 ## Thanks / Credits 
 This repositories relies on the contributions of many other projects, amongst which:
 * [choosealicense.com](https://choosealicense.com) (Information about licenses)
-* [feathericons.com](https://feathericons.com) (![trash icon](public/trash-2.svg))
+* [feathericons.com](https://feathericons.com) (multiple icons)
 * [chibat/chrome-extension-typescript-starter](https://github.com/chibat/chrome-extension-typescript-starter) (repository template)
 
