@@ -18,16 +18,13 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Your awesome title
-email: your-email@example.com
+title: licenseplate
+email: code@mweiss.ch
 description: >- # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+  A browser extension aiming to help you to detect insufficiently
+  licensed code on github.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: jekyllrb
-github_username:  jekyll
 
 # Build settings
 # theme: minima
@@ -54,3 +51,15 @@ plugins:
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
+
+# Aux links for the upper right navigation
+aux_links:
+  "Sources On GitHub":
+    - "//github.com/miweiss/licenseplate"
+
+footer_content: "Copyright Michael Weiss. Distributed by an <a href=\"https://github.com/MiWeiss/licenseplate/blob/main/LICENSE\">MIT license.</a>"
+
+color_scheme: dark
+
+
+logo: "licenseplate.png"
