@@ -27,7 +27,7 @@ Python E2E selenium tests are in the folder `selenium`: Create a `venv` and run 
 
 ### Next Steps and Roadmap
 Short Term
-- :fire: Strengthen test suite.
+- :fire: Strengthen test suite (more unit, not just E2E).
 - :nail_care: Improve style and appearance of alert bar. **HELP NEEDED :sos:**
 - :ballot_box_with_check: Customizable alert levels, based on user-defined per-permission, per-limitation and per-condition configurations.
 - :blue_book: Docs!

@@ -74,6 +74,8 @@ def clear_ignore_config(wd: WebDriver):
 
 
 class CacheChecker:
+    """A selenium checker, testing for the presence and correctness of cache info in the options."""
+
     def __init__(self, cache_size_overall: int, cache_size_expired: int):
         self.overall: int = cache_size_overall
         self.expired: int = cache_size_expired
@@ -151,7 +153,7 @@ class TestChromeExtensionOnGithub:
                              ],
                              ids=["ignore-repo", "ignore-owner"]
                              )
-    def test_ignore_repo(self, repo_1, repo_2, btn_id):
+    def test_ignore(self, repo_1, repo_2, btn_id):
         """Tests ignoring of repositories and owners."""
         # Setup
         self.driver.get(f"https://github.com/{repo_1}")
@@ -219,6 +221,44 @@ class TestChromeExtensionOnGithub:
             with pytest.raises(TimeoutException):
                 get_btn()
         # Note, as these tests still run unauthenticated, we cannot test the issue filling atm.
+
+    @pytest.mark.parametrize("profile_with_pins, repo, icon_color, text",
+                             [
+                                 (
+                                         "MachineDoingStuffByItself", "MachineDoingStuffByItself",
+                                         "red", "No license"
+                                 ),
+                                 (
+                                         "MachineDoingStuffByItself", "licenseplate",
+                                         "green", "MIT"
+                                 ),
+                                 (
+                                         "MachineDoingStuffByItself", "AGPL-Repo",
+                                         "orange", "AGPL-3.0"
+                                 ),
+                                 (
+                                         "MachineDoingStuffByItself", "strange-license-repo",
+                                         "red", "OTHER"
+                                 ),
+                             ]
+                             )
+    def test_profile_pins(self, profile_with_pins, repo, icon_color, text):
+        # Open profile if not already there (if check to avoid unnecessary page loads)
+        if self.driver.current_url != f"https://github.com/{profile_with_pins}":
+            self.driver.get(f"https://github.com/{profile_with_pins}")
+        pins_title = self.driver.find_element(By.CSS_SELECTOR, f"span[title='{repo}']")
+        assert pins_title is not None, \
+            f"No pin for repository named {repo} found on {profile_with_pins}'s profile"
+        pin = pins_title.find_element_by_xpath("../../..")
+        # Sanity check to make sure correct element is selected
+        #   and that the class (on which logic relies) is set
+        assert "pinned-item-list-item-content" in pin.get_attribute("class").replace(" ", "").split(",")
+        badge = pin.find_element_by_class_name("licenseplate-badge")
+        assert badge is not None, "No licenseplate badge added"
+        assert badge.find_element(By.CSS_SELECTOR, f"svg[stroke='{icon_color}']"), \
+            f"No icon with stroke color {icon_color} found"
+        assert badge.find_element_by_tag_name("span").get_attribute('innerHTML') == text, \
+            f"Licenseplate-badge dos not have text '{text}'"
 
     def test_cache(self):
         # Clear existing cache

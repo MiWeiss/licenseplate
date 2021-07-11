@@ -66,7 +66,7 @@ function addLicenseInfoToPin(pin: Element, alarmReport: AlarmReport) {
     }
     licenseInfo.classList.add("d-inline-block", "mr-3");
     const wrapperSpan = document.createElement("span");
-    wrapperSpan.classList.add("pinned-item-meta");
+    wrapperSpan.classList.add("pinned-item-meta", "licenseplate-badge");
     wrapperSpan.appendChild(createWarnIcon(alarmReport));
     wrapperSpan.appendChild(licenseInfo);
     wrapperSpan.title = `License status by licenseplate. Visit repo to see details.`;
