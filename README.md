@@ -13,7 +13,7 @@ Sooner or later, you will be able to install this from the extension store of yo
 Before that's set up, feel free to build the application from source (`npm run build`) and manually add it to chrome (extensions -> enable developer mode -> load unpacked).
 
 ## Features
-Licenseplate adds an alertbar when browsing any repository, indicating the license state (panic, warn, chill) and additional information, such as the permissions, conditions and limitation of the repositories license. Repos and owners can be excluded from such analysis, thus not spamming views of frequently visited repositories.
+Licenseplate adds an alertbar when browsing any repository, indicating the license state (panic, warn, chill) and additional information, such as the permissions, conditions and limitation of the repositories license. Repos and owners can be excluded from such analysis, avoiding to spam views of frequently visited repositories.
 In addition, licenseplate provides an issue template to request licenses on repositories without license.
 Check the [roadmap](#next-steps-and-roadmap) for the next planned features, amongst which are proper docs :innocent:.
 
@@ -23,7 +23,7 @@ Before you make a major contribution, it's probably best to first discuss it in 
 ⚠️ When implementing a change, please keep the number of API requests to a minimum, and don't include **any** external packages.
 
 Develop using `npm run watch`, build using `npm run build`, test using `npm run test` and get the latest license versions from choosealicense using `npm run gen-licenses`.
-Python E2E selenium tests are in the folder `selenium`: Create a `venv` and run `pip install -r requirements.txt`, which will allow you to execute `pytest .` 
+Python E2E selenium tests are in the folder `selenium`: `cd selenium`, creating a `venv` and runing `pip install -r requirements.txt` will allow you to execute `pytest .` 
 
 ### Next Steps and Roadmap
 Short Term
@@ -40,7 +40,7 @@ Want to work on any of these things? Open an issue to discuss the details...
 
 ### Project Structure
 
-The following are the most relevant folders of this repositories. Folders not listed here are hopefully self-explanatory.
+The following are the most relevant folders in this repository. Folders not listed here are hopefully self-explanatory.
 
 ```
 .
@@ -79,7 +79,7 @@ Similar to the github API, this code and browser extension **does not provide le
 Not only does *licenseplate* rely on the Github API, but its developers are imperfect as well: 
 Errors and faults in *licenseplate* will add to the above mentioned
 imperfection. Thus, never trust the code in this repository, or any extension built from it.
-You should always consult your lawyer before doing anything, ever.
+You should always consult your lawyer before using anyone elses code and assets.
 
 Furthermore; check the [MIT license](https://github.com/MiWeiss/licenseplate/blob/master/LICENSE) of this repository,
 which excludes any liability from the contributors of this repository
