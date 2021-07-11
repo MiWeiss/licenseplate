@@ -5,15 +5,27 @@ permalink: /about/
 nav_order: 10
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
+# licenseplate
 
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
-
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
+Licenseplate is a browser extension helping to quickly recognize github repositories
+which are insufficiently licensed for common use-cases.
+Amongst others functions, it injects potentially useful information about a licenses
+permissions, conditions and limitations directly on a github repository view.
 
 
-[jekyll-organization]: https://github.com/jekyll
+Built by [me](https://mweiss.ch) as a side-project for fun, personal use and to play a bit with new tech, 
+it's available for free for anyone to use. 
+Note that the software and documentation are provided [without any warranty](./../legal).
+
+#### Example?
+<!--- TODO Replace with generated image -->
+![](./../images/no-license-header.PNG)
+
+#### Is it actually useful?
+
+The github license inspector and pages like *choosealicense.com* 
+provide great resources to investigate licenses 
+for any given repository.
+Sometimes however, I am just a bit lazy, 
+and grateful for an early warning thrown at me.
+I think that here, I may not be alone...

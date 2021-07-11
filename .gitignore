@@ -11,3 +11,5 @@ dist.*
 .idea/
 selenium/__pycache__
 selenium/snapshot.crx
+/_site/
+/.jekyll-cache/Jekyll/Cache/
