@@ -29,7 +29,7 @@
     background-color: var(--color-bg-danger)!important;
     border-color: var(--color-border-danger)!important;
     padding: 10px !important;
-    color: white !important;
+    color: var(--color-alert-error-text) !important;
 }
 
 .licpl-warning{!important;
@@ -83,5 +83,12 @@
 .licensplate-lic-template-button {
     background-color: darkred !important;
     margin-right: 5px;
+}
+
+.feather{
+    display: inline-block;
+    overflow: visible!important;
+    vertical-align: text-bottom;
+    padding-right: 2px;
 }
 

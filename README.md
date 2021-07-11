@@ -23,14 +23,13 @@ Before you make a major contribution, it's probably best to first discuss it in 
 ⚠️ When implementing a change, please keep the number of API requests to a minimum, and don't include **any** external packages.
 
 Develop using `npm run watch`, build using `npm run build`, test using `npm run test` and get the latest license versions from choosealicense using `npm run gen-licenses`.
-Run the python E2E selenium tests as follows: `cd selenium`, creating a `venv` and `pip install -r requirements.txt` and then running `python prepare.py` will allow you to execute `pytest .` 
+Python E2E selenium tests are in the folder `selenium`: `cd selenium`, creating a `venv` and runing `pip install -r requirements.txt` will allow you to execute `pytest .` 
 
 ### Next Steps and Roadmap
 Short Term
-- :fire: Strengthen test suite.
+- :fire: Strengthen test suite (more unit, not just E2E).
 - :nail_care: Improve style and appearance of alert bar. **HELP NEEDED :sos:**
 - :ballot_box_with_check: Customizable alert levels, based on user-defined per-permission, per-limitation and per-condition configurations.
-- :rotating_light: Emphasize license info and alert level on github user and organization pages.
 - :blue_book: Docs!
 
 Long Term
@@ -88,6 +87,6 @@ which excludes any liability from the contributors of this repository
 ## Thanks / Credits 
 This repositories relies on the contributions of many other projects, amongst which:
 * [choosealicense.com](https://choosealicense.com) (Information about licenses)
-* [feathericons.com](https://feathericons.com) (trash icon)
+* [feathericons.com](https://feathericons.com) (multiple icons)
 * [chibat/chrome-extension-typescript-starter](https://github.com/chibat/chrome-extension-typescript-starter) (repository template)
 

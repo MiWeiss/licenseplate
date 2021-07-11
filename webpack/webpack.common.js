@@ -9,6 +9,7 @@ module.exports = {
         options: path.join(srcDir, 'options.ts'),
         background: path.join(srcDir, 'background.ts'),
         repoView: path.join(srcDir, 'github', 'repoView.ts'),
+        profileView: path.join(srcDir, 'github', 'profileView.ts'),
         searchView: path.join(srcDir, 'github', 'searchView.ts'),
     },
     output: {
@@ -16,10 +17,7 @@ module.exports = {
         filename: "[name].js",
     },
     optimization: {
-        splitChunks: {
-            name: "vendor",
-            chunks: "initial",
-        },
+        minimize: false
     },
     module: {
         rules: [

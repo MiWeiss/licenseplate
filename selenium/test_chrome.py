@@ -1,4 +1,5 @@
-from time import sleep
+import os
+import platform
 from typing import Optional
 
 import pytest
@@ -14,6 +15,28 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 CACHE = dict()
 WEBDRIVER_INSTALL_PATH = ChromeDriverManager().install()
+
+
+def _build_extension():
+    os.system('npm install')
+    os.system('npm run build')
+
+    if os.path.exists("../dist.crx"):
+        os.remove("../dist.crx")
+    if os.path.exists("../dist.pem"):
+        os.remove("../dist.pem")
+
+    path = os.path.abspath('../dist/')
+    print("Building extension")
+    if platform.system() == "Windows":
+        os.system(f"chrome.exe --pack-extension={path}")
+    elif platform.system() == "Linux":
+        os.system(f'google-chrome --pack-extension={path}')
+    else:
+        raise RuntimeError(f"OS unsupported in by selenium prepare script {platform.platform()}")
+
+
+_build_extension()
 
 
 def webdriver_setup():
@@ -51,6 +74,8 @@ def clear_ignore_config(wd: WebDriver):
 
 
 class CacheChecker:
+    """A selenium checker, testing for the presence and correctness of cache info in the options."""
+
     def __init__(self, cache_size_overall: int, cache_size_expired: int):
         self.overall: int = cache_size_overall
         self.expired: int = cache_size_expired
@@ -128,7 +153,7 @@ class TestChromeExtensionOnGithub:
                              ],
                              ids=["ignore-repo", "ignore-owner"]
                              )
-    def test_ignore_repo(self, repo_1, repo_2, btn_id):
+    def test_ignore(self, repo_1, repo_2, btn_id):
         """Tests ignoring of repositories and owners."""
         # Setup
         self.driver.get(f"https://github.com/{repo_1}")
@@ -159,7 +184,6 @@ class TestChromeExtensionOnGithub:
         self.driver.get(f"https://github.com/{repo_2}")
         with pytest.raises(TimeoutException):
             self._find_alert_bar()
-
 
     @pytest.mark.parametrize("repo_id, exp_btn",
                              [
@@ -197,6 +221,45 @@ class TestChromeExtensionOnGithub:
             with pytest.raises(TimeoutException):
                 get_btn()
         # Note, as these tests still run unauthenticated, we cannot test the issue filling atm.
+
+    @pytest.mark.parametrize("profile_with_pins, repo, icon_color, text",
+                             [
+                                 (
+                                         "MachineDoingStuffByItself", "MachineDoingStuffByItself",
+                                         "red", "No license"
+                                 ),
+                                 (
+                                         "MachineDoingStuffByItself", "licenseplate",
+                                         "green", "MIT"
+                                 ),
+                                 (
+                                         "MachineDoingStuffByItself", "AGPL-Repo",
+                                         "orange", "AGPL-3.0"
+                                 ),
+                                 (
+                                         "MachineDoingStuffByItself", "strange-license-repo",
+                                         "red", "OTHER"
+                                 ),
+                             ]
+                             )
+    def test_profile_pins(self, profile_with_pins, repo, icon_color, text):
+        # Open profile if not already there (if check to avoid unnecessary page loads)
+        if self.driver.current_url != f"https://github.com/{profile_with_pins}":
+            self.driver.get(f"https://github.com/{profile_with_pins}")
+        pins_title = self.driver.find_element(By.CSS_SELECTOR, f"span[title='{repo}']")
+        assert pins_title is not None, \
+            f"No pin for repository named {repo} found on {profile_with_pins}'s profile"
+        pin = pins_title.find_element_by_xpath("../../..")
+        # Sanity check to make sure correct element is selected
+        #   and that the class (on which logic relies) is set
+        assert "pinned-item-list-item-content" in pin.get_attribute("class").replace(" ", "").split(",")
+        badge = WebDriverWait(pin, 3).until(
+            expected_conditions.presence_of_element_located((By.CLASS_NAME, "licenseplate-badge"))
+        )
+        assert badge.find_element(By.CSS_SELECTOR, f"svg[stroke='{icon_color}']"), \
+            f"No icon with stroke color {icon_color} found"
+        assert badge.find_element_by_tag_name("span").get_attribute('innerHTML') == text, \
+            f"Licenseplate-badge dos not have text '{text}'"
 
     def test_cache(self):
         # Clear existing cache

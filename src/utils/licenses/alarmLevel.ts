@@ -25,7 +25,7 @@ export async function getAlarm(licenseKey: string): Promise<AlarmReport> {
 
     const license: License | undefined = licenses.get(licenseKey.toUpperCase());
     if (license) {
-        return new AlarmReport.Builder(license.spdxId, license.url)
+        return new AlarmReport.Builder(license.spdxId, license.title, license.url)
             .reportPermissions(license.permissions)
             .reportConditions(license.conditions)
             .reportLimitations(license.limitations)
