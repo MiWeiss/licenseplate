@@ -296,5 +296,5 @@ async function onIgnoreEvent(id: string, actionElements: HTMLDivElement) {
 //
 
 main().then(() =>
-    console.log("[licenseplate] Alertbar Creation: Exit")
+    console.log("[licenseplate] Alertbar Creation: Exit Main (async tasks may still run)")
 );
