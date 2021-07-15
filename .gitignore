@@ -5,9 +5,11 @@ tmp/
 .temp
 .vscode
 codgen/dist
-selenium/chromedriver.exe
+browser_control/chromedriver.exe
 venv/
 dist.*
 .idea/
-selenium/__pycache__
-selenium/snapshot.crx
+browser_control/__pycache__
+browser_control/snapshot.crx
+/_site/
+/.jekyll-cache/Jekyll/Cache/

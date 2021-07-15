@@ -1,52 +1,17 @@
-import os
-import platform
 from typing import Optional
 
 import pytest
-from selenium import webdriver
+from browser_control.utils import build_extension, webdriver_setup
 from selenium.common.exceptions import TimeoutException
-from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
-from webdriver_manager.chrome import ChromeDriverManager
 
 CACHE = dict()
-WEBDRIVER_INSTALL_PATH = ChromeDriverManager().install()
 
-
-def _build_extension():
-    os.system('npm install')
-    os.system('npm run build')
-
-    if os.path.exists("../dist.crx"):
-        os.remove("../dist.crx")
-    if os.path.exists("../dist.pem"):
-        os.remove("../dist.pem")
-
-    path = os.path.abspath('../dist/')
-    print("Building extension")
-    if platform.system() == "Windows":
-        os.system(f"chrome.exe --pack-extension={path}")
-    elif platform.system() == "Linux":
-        os.system(f'google-chrome --pack-extension={path}')
-    else:
-        raise RuntimeError(f"OS unsupported in by selenium prepare script {platform.platform()}")
-
-
-_build_extension()
-
-
-def webdriver_setup():
-    """Creates a new webriver and installs pre-packed extension."""
-    options = Options()
-    options.add_extension("../dist.crx")
-    return webdriver.Chrome(
-        executable_path=WEBDRIVER_INSTALL_PATH,
-        options=options,
-    )
+build_extension()
 
 
 def navigate_to_options(wd: WebDriver):
