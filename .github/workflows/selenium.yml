@@ -31,11 +31,11 @@ jobs:
           sudo apt-get -y install google-chrome-stable
       - name: Install Python Dependencies
         run: |
-          cd selenium
+          cd browser_control
           python -m pip install --upgrade pip
           pip install -r requirements.txt
       - name: Run Selenium tests
         run: |
-          cd selenium
+          cd browser_control
           sudo apt-get install xvfb
           xvfb-run --auto-servernum pytest .
