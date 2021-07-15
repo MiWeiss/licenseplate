@@ -11,46 +11,19 @@
 # If you need help with YAML syntax, here are some quick references for you: 
 # https://learn-the-web.algonquindesign.ca/topics/markdown-yaml-cheat-sheet/#yaml
 # https://learnxinyminutes.com/docs/yaml/
-#
-# Site settings
-# These are used to personalize your new site. If you look in the HTML files,
-# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
-# You can create any custom variable you would like, and they will be accessible
-# in the templates via {{ site.myvariable }}.
-
 title: licenseplate
 email: code@mweiss.ch
 description: >- # this means to ignore newlines until "baseurl:"
   A browser extension aiming to help you to detect insufficiently
   licensed code on github.
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: /licenseplate # the subpath of your site, e.g. /blog
+url: https://miweiss.github.io # the base hostname & protocol for your site, e.g. http://example.com
 
 # Build settings
-# theme: minima
 remote_theme: pmarsceill/just-the-docs
 plugins:
   - jekyll-feed
   - jekyll-remote-theme
-# Exclude from processing.
-# The following items will not be processed, by default.
-# Any item listed under the `exclude:` key here will be automatically added to
-# the internal "default list".
-#
-# Excluded items can be processed by explicitly listing the directories or
-# their entries' file path in the `include:` list.
-#
-# exclude:
-#   - .sass-cache/
-#   - .jekyll-cache/
-#   - gemfiles/
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules/
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
 
 # Aux links for the upper right navigation
 aux_links:
@@ -60,6 +33,5 @@ aux_links:
 footer_content: "Copyright Michael Weiss. Distributed by an <a href=\"https://github.com/MiWeiss/licenseplate/blob/main/LICENSE\">MIT license.</a>"
 
 color_scheme: dark
-
 
 logo: "licenseplate.png"
