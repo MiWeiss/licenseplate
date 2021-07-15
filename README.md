@@ -9,7 +9,7 @@ A browser extension to help you detect unpermissive licenses.
 ## Documentation for Users
 
 - [About](https://miweiss.github.io/licenseplate/)
-- [Installation](https://miweiss.github.io/licenseplate/)
+- [Installation](https://miweiss.github.io/licenseplate/installation)
 - Features (
 [Repository Alertbar](https://miweiss.github.io/licenseplate/features-gh/repo-view/),
 [Enhanced Pins](https://miweiss.github.io/licenseplate/features-gh/profile-view/),
