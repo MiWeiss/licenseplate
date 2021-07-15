@@ -26,13 +26,9 @@ Develop using `npm run watch`, build using `npm run build`, test using `npm run 
 Python E2E selenium tests are in the folder `selenium`: `cd selenium`, creating a `venv` and runing `pip install -r requirements.txt` will allow you to execute `pytest .` 
 
 ### Next Steps and Roadmap
-Short Term
+A bunch of ideas:
 - :fire: Strengthen test suite (more unit, not just E2E).
-- :nail_care: Improve style and appearance of alert bar. **HELP NEEDED :sos:**
 - :ballot_box_with_check: Customizable alert levels, based on user-defined per-permission, per-limitation and per-condition configurations.
-- :blue_book: Docs!
-
-Long Term
 - :books: Also show licenseplate alerts on popular package indexes (e.g. [pypi.org](https://pypi.org)) and search engines (e.g. [google.com](https://google.com)).
 - :construction_worker: Define remote configs for page-dependent dom-element queries and style info, allowing to quickly react to page changes.
 
@@ -45,7 +41,7 @@ The following are the most relevant folders in this repository. Folders not list
 ```
 .
 ├── public                  # Static resources
-├── selenium                # E2E tests (python). Require chrome webdriver in your path.
+├── browser_control         # E2E tests and automated image generation for docs. Uses python & selenium
 ├── dist                    # The extension (built using `npm run build`) ends up here.
 ├── src                     # Source Files 
 │   ├── __codegen__         # Code for static license info generation (run `npm run gen-licenses`)
@@ -55,34 +51,6 @@ The following are the most relevant folders in this repository. Folders not list
 │   └── utils               # Platform-independent utilities (e.g. caching, ignore-logic)
 └── ...
 ```
-
-## Legal Stuff
-
-Similar to the github API, this code and browser extension **does not provide legal advice**
-(cite taken from [here](https://docs.github.com/en/rest/reference/licenses)):
-
-
-> GitHub is a lot of things, but it’s not a law firm. As such, GitHub does not provide legal advice. 
-> Using the Licenses API or sending us an email about it does not constitute legal advice nor does 
-> it create an attorney-client relationship. If you have any questions about what you can and can't 
-> do with a particular license, you should consult with your own legal counsel before moving forward. 
-> In fact, you should always consult with your own lawyer before making any decisions that might have
-> legal ramifications or that may impact your legal rights.
-> 
-> GitHub created the License API to help users get information about open source licenses and the 
-> projects that use them. We hope it helps, but please keep in mind that we’re not lawyers (at least 
-> not most of us aren't) and that we make mistakes like everyone else. For that reason, GitHub provides 
-> the API on an “as-is” basis and makes no warranties regarding any information or licenses provided 
-> on or through it, and disclaims liability for damages resulting from using the API.
-
-
-Not only does *licenseplate* rely on the Github API, but its developers are imperfect as well: 
-Errors and faults in *licenseplate* will add to the above mentioned
-imperfection. Thus, never trust the code in this repository, or any extension built from it.
-You should always consult your lawyer before using anyone elses code and assets.
-
-Furthermore; check the [MIT license](https://github.com/MiWeiss/licenseplate/blob/master/LICENSE) of this repository,
-which excludes any liability from the contributors of this repository
 
 ## Thanks / Credits 
 This repositories relies on the contributions of many other projects, amongst which:

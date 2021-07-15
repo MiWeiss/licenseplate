@@ -6,17 +6,11 @@ has_children: false
 nav_order: 20
 ---
 
-This is the base Jekyll theme. 
-You can find out more info about customizing your Jekyll theme,
- as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
+## Installation
 
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
-
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
-
-
-[jekyll-organization]: https://github.com/jekyll
+Sooner or later, you will be able to install this from the extension store of your choice on a variety of browsers. 
+Before that's set up, feel free to build the application from source (npm run build)
+ and manually add it to chrome (extensions -> enable developer mode -> load unpacked).
+ 
+Similarly, you should be able to add it to firefox and edge. 
+Safari support is somewhere on my todo list as well :-)

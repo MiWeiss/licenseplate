@@ -6,15 +6,11 @@ permalink: /features-gh/profile-view/
 nav_order: 33
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
+## Enhanced Pins on Github Profiles
 
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
+Pins on user profiles do not by default provide any information about the
+corresponding repositories licenses. 
+Licenseplate fills this gap and indicates - using colored icons - 
+the permissiveness of the identified license.
 
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
-
-
-[jekyll-organization]: https://github.com/jekyll
+![](./../../images/generated/pins-MachineDoingStuffByItself-cropped.png)

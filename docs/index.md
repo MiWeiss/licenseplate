@@ -1,7 +1,7 @@
 ---
 layout: page
 title: About
-permalink: /about/
+permalink: /
 nav_order: 10
 ---
 
@@ -12,16 +12,15 @@ which are insufficiently licensed for common use-cases.
 Amongst others functions, it injects potentially useful information about a licenses
 permissions, conditions and limitations directly on a github repository view.
 
-
 Built by [me](https://mweiss.ch) as a side-project for fun, personal use and to play a bit with new tech, 
 it's available for free for anyone to use. 
 Note that the software and documentation are provided [without any warranty](./../legal).
 
-#### Example?
-<!--- TODO Replace with generated image -->
-![](./../images/no-license-header.PNG)
+### Example
 
-#### Is it actually useful?
+![](./../images/generated/alertbar-nolicense-closed-cropped.png)
+
+### Is it actually useful?
 
 The github license inspector and pages like *choosealicense.com* 
 provide great resources to investigate licenses 
