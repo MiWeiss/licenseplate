@@ -25,7 +25,7 @@ A browser extension to help you detect unpermissive licenses.
 Some high level info is given [here](https://miweiss.github.io/licenseplate/development/).
 
 Then, develop using `npm run watch`, build using `npm run build`, test using `npm run test` and get the latest license versions from choosealicense using `npm run gen-licenses`.
-Python E2E selenium tests are in the folder `selenium`: `cd selenium`, creating a `venv` and runing `pip install -r requirements.txt` will allow you to execute `pytest .` 
+Python E2E selenium tests are in the folder `browser_control`: `cd browser_control`, creating a `venv` and runing `pip install -r requirements.txt` will allow you to execute `pytest .` 
 
 ### Project Structure
 
