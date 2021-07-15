@@ -29,7 +29,7 @@ Python E2E selenium tests are in the folder `selenium`: `cd selenium`, creating 
 A bunch of ideas:
 - :fire: Strengthen test suite (more unit, not just E2E).
 - :ballot_box_with_check: Customizable alert levels, based on user-defined per-permission, per-limitation and per-condition configurations.
-- :books: Also show licenseplate alerts on popular package indexes (e.g. [pypi.org](https://pypi.org)) and search engines (e.g. [google.com](https://google.com)).
+- :books: Also show licenseplate alerts on popular package indexes (e.g. [pypi.org](https://pypi.org)).
 - :construction_worker: Define remote configs for page-dependent dom-element queries and style info, allowing to quickly react to page changes.
 
 Want to work on any of these things? Open an issue to discuss the details...

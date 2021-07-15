@@ -16,7 +16,7 @@ I particularly invite people having a better flair for style
 
 When implementing a change, please make sure that *licenseplate*
  keeps the number of API requests to a minimum, 
- and don't include any external packages.
+ and that it does not rely on any external packages.
 
 ### Roadmap
 The following is an incomplete list of ideas I'd like to get done sooner or later:
