@@ -12,19 +12,33 @@ When browsing any repository on github, *licenseplate* will inject an alertbar o
 According to the permissions, conditions and limitations, the alertbar is colored differently,
 as can be seen in the following examples showing an MIT (very permissive) and a AGPL-3.0 (less permissive) license.
 
+{% include gh-image.html 
+    out_cd="../.."
+    img="alertbar-mit-closed" 
+    alt="Alertbar on repo with MIT license"
+%}
 
-![](./../../images/generated/alertbar-mit-closed-cropped.png)
+<!-- Hack to put some space between the figures -->
+<div style="height:15px"></div>
 
+{% include gh-image.html 
+    out_cd="../.."
+    img="alertbar-agpl-closed" 
+    alt="Alertbar on repo with AGPL-3.0 license"
+%}
 
-![](./../../images/generated/alertbar-agpl-closed-cropped.png)
 
 ### Uncollapse the alertbar
 Clicking on the alertbar will allow you to quickly review the identified license limitations, conditions and 
 missing permissions, grouped into three levels (alert, warning, info), based on the presumed impact
 of the identified potential license problem. 
 
+{% include gh-image.html 
+    out_cd="../.."
+    img="alertbar-agpl-open" 
+    alt="Uncollapsed alertbar on repo with AGPL-3.0 license"
+%}
 
-![](./../../images/generated/alertbar-agpl-open-cropped.png)
 
 ### Licenseplate Actions
 All uncollapsed alertbars provide three actions, easily triggerd by corresponding button clicks.
@@ -54,7 +68,11 @@ In particular, there are three such cases:
 If there's no license file (i.e., no *LICENSE*, *LICENSE.md* or alike), licenseplate splits out an alert,
 as you're typically not allowed to use this repository.
 
-![](./../../images/generated/alertbar-nolicense-closed-cropped.png)
+{% include gh-image.html 
+    out_cd="../.."
+    img="alertbar-nolicense-closed" 
+    alt="Alertbar on repo without license file"
+%}
 
 Note that sometimes license information is only mentioned in the README or the file headers,
 which are not picked up by github (and thus also not by licenseplate).
@@ -65,7 +83,12 @@ Licenseplate will help you with that as well (see [request a license](./../reque
 #### Unknown License
 If a license file was discovered, but it's content could not be mapped to a license,
 an alertbar as follows is shown:
-![](./../../images/generated/alertbar-unknown-closed-cropped.png)
+
+{% include gh-image.html 
+    out_cd="../.."
+    img="alertbar-unknown-closed" 
+    alt="Alertbar on repo with unknown license"
+%}
 
 Often, this is caused by irrelevant deviations from known licenses.
 For example, listing copyright holders on multiple lines (instead of just one)

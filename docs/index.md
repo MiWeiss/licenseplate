@@ -17,8 +17,11 @@ it's available for free for anyone to use.
 Note that the software and documentation are provided [without any warranty](./../legal).
 
 ### Example
-
-![](./../images/generated/alertbar-nolicense-closed-cropped.png)
+{% include gh-image.html 
+    out_cd="."
+    img="alertbar-nolicense-closed" 
+    alt="Alertbar on repo without license file"
+%}
 
 ### Is it actually useful?
 
