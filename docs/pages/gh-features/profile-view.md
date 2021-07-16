@@ -13,4 +13,9 @@ corresponding repositories licenses.
 Licenseplate fills this gap and indicates - using colored icons - 
 the permissiveness of the identified license.
 
-![](./../../images/generated/pins-MachineDoingStuffByItself-cropped.png)
+
+{% include gh-image.html 
+    out_cd="../.."
+    img="pins-MachineDoingStuffByItself" 
+    alt="Enhanced Pins On a Github Profile"
+%}
