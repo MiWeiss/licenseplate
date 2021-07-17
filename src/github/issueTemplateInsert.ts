@@ -102,6 +102,8 @@ function fillInTemplate() {
 
 /**
  * Finds and returns the create-issue title input field
+ *
+ * @returns the title html element
  */
 function getTitleNode(): HTMLInputElement {
   const titleField = Array.from(document.getElementsByTagName("input")).find(
@@ -115,6 +117,8 @@ function getTitleNode(): HTMLInputElement {
 
 /**
  * Finds and returns the create-issue description textbox
+ *
+ * @returns the description area html element
  */
 function getCommentNode(): HTMLTextAreaElement {
   const commentField = Array.from(
@@ -130,6 +134,9 @@ function getCommentNode(): HTMLTextAreaElement {
  * Finds and returns the issue creation tab with a given label
  *
  * @param innerText the label to look for ('write' or 'preview')
+ *
+ * @returns The tab 'header', i.e., the element which, on click, will
+ * open the desired tab.
  */
 function getTab(innerText: string): HTMLButtonElement {
   const writeTab = Array.from(document.getElementsByTagName("button")).find(

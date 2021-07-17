@@ -8,6 +8,13 @@ import {FOUND_NO_LICENSE, FOUND_NO_REPO, FOUND_UNKNOWN_LICENSE,} from "../../git
 const alarmMessages: Rights<string> = alarmMessageJson;
 const alarmConfig: Rights<AlarmLevel> = alarmConfigJson;
 
+/**
+ * AlarmReport is a class containing all required information to show alerts to the users.
+ *
+ * Such information are information about the identfied license key, name, ...,
+ * as well as the restrictions (i.e., missing permissions, conditions and limitations)
+ * with their corresponding alert levels.
+ */
 export class AlarmReport {
     protected constructor(
         readonly licenseKey: string,
@@ -19,6 +26,10 @@ export class AlarmReport {
     ) {
     }
 
+    /**
+     * The overall alarm level.
+     * Computed as the highest of all observed alarms in this report.
+     */
     public alarmLevel(): AlarmLevel {
         if (this.panics.length > 0) {
             return AlarmLevel.PANIC;
@@ -55,16 +66,30 @@ export class AlarmReport {
         []
     );
 
+    /**
+     * Builder class used to create AlarmReports
+     */
     static Builder = class {
         panics: Array<string> = [];
         warnings: Array<string> = [];
         chillRemarks: Array<string> = [];
 
+        /**
+         * AlarmReport-Builder constructor
+         * @param licenseKey spdx-id based license key
+         * @param licenseTitle full name of the license
+         * @param licenseUrl license info url (typically on choosealicense.com, for consistency)
+         */
         constructor(readonly licenseKey: string,
                     readonly licenseTitle: string,
                     readonly licenseUrl?: string) {
         }
 
+        /**
+         * Given permissions, identifies missing permissions and adds them,
+         * with their alarm-levels, to the AlarmReport
+         * @param l license permissions
+         */
         public reportPermissions(l: Permissions<boolean>) {
             if (!l.commercialUse) {
                 this.report(
@@ -99,6 +124,10 @@ export class AlarmReport {
             return this;
         }
 
+        /**
+         * Adds the given conditions to the AlarmReport with their alarm level
+         * @param l license conditions
+         */
         public reportConditions(l: Conditions<boolean>) {
             if (l.discloseSource) {
                 this.report(
@@ -151,6 +180,10 @@ export class AlarmReport {
             return this;
         }
 
+        /**
+         * Adds the given limitations to the AlarmReport with their alarm level
+         * @param l license limitations
+         */
         public reportLimitations(l: Limitations<boolean>) {
             if (l.liability) {
                 this.report(
@@ -199,6 +232,9 @@ export class AlarmReport {
             return this;
         }
 
+        /**
+         * Builds the AlarmReport instance
+         */
         public build(): AlarmReport {
             return new AlarmReport(
                 this.licenseKey,

@@ -12,7 +12,14 @@ import {issueTemplateTask} from "./issueTemplateInsert";
 import {ignore, unIgnore} from "../utils/ignoreUtils";
 import {removeGithubRepoFromCache} from "../utils/cacheUtils";
 
-
+/**
+ * Initiates repository page enrichment.
+ * Resolves the repository key (owner & name), finds the license information
+ * and adds the alertbar to the dom tree.
+ *
+ * If the current page is a 'create issue' page, and the repo has no license,
+ * the page is furthermore enriched with the request-a-license template button.
+ */
 async function main() {
     if (document.getElementById("licenseplate-alertbar")) {
         console.log("[licenseplate] Alertbar already exists. Return. ");
@@ -43,7 +50,13 @@ async function main() {
     }
 }
 
-
+/**
+ * Adds the alarm-level specific class to the alertbar,
+ * leading amongst others to proper coloring.
+ *
+ * @param alertInfo The alarmReport, containing the info about the alarm level
+ * @param alertbar The alertbar as HTMLElement
+ */
 function setAlertLevel(alertInfo: AlarmReport, alertbar: HTMLDivElement) {
     switch (alertInfo.alarmLevel()) {
         case AlarmLevel.PANIC: {
@@ -65,9 +78,13 @@ function setAlertLevel(alertInfo: AlarmReport, alertbar: HTMLDivElement) {
             break;
         }
     }
-
 }
 
+/**
+ * Fills an empty alertbar with content, based on a passed AlarmReport
+ * @param alertInfo the AlarmReport containing the info to be shown on the alertbar
+ * @param alertbar The (empty) html div element to be filled with info.
+ */
 function setAlertBarContent(alertInfo: AlarmReport,
                             alertbar: HTMLDivElement) {
 
@@ -117,7 +134,11 @@ function setAlertBarContent(alertInfo: AlarmReport,
     }
 }
 
-
+/**
+ * Reads the repository owner and repository name from the current url.
+ *
+ * @returns A tuple consisting of two strings, owner and repo
+ */
 function repoIdFromUrl() {
     let splitUrl = window.location.href.split("/");
     let owner = splitUrl[3];
@@ -125,11 +146,17 @@ function repoIdFromUrl() {
     return {owner, repo};
 }
 
-function showDetails(
-    alertbar: HTMLDivElement,
-    alertInfo: AlarmReport,
-    printInfos: boolean
-) {
+/**
+ * Adds an eventlistener to the alertbar, waiting for clicks,
+ * to then uncollapse the alertbar and display more information.
+ * @param alertbar The alertbar to be clicked on
+ * @param alertInfo Contains the (detailed) info to be shown in the uncollapsed alertbar
+ * @param printInfos Iff true, shows all missing permissions, found limitations and found conditions.
+ * This should typically only be true for actual (found and known) licenses, but not if e.g. no license was found.
+ */
+function showDetails(alertbar: HTMLDivElement,
+                     alertInfo: AlarmReport,
+                     printInfos: boolean) {
     alertbar.addEventListener("click", function (e) {
         let details = document.getElementById("licenseplateAlertDetails");
         if (details) {
@@ -159,10 +186,13 @@ function showDetails(
     });
 }
 
-function printDetailedAlertReport(
-    detailsNode: HTMLDivElement,
-    alertInfo: AlarmReport
-) {
+/**
+ * Lists all missing permissions, found limitations and found conditions in a passed HTMLElement
+ * @param detailsNode The element on which the info is to be added
+ * @param alertInfo Contains the information about permissions, limitations and conditions.
+ */
+function printDetailedAlertReport(detailsNode: HTMLDivElement,
+                                  alertInfo: AlarmReport) {
     const detailsTitle = `Potential Problems with ${alertInfo.licenseKey} license`;
     createDetailsTitle(detailsTitle, detailsNode);
 
@@ -178,6 +208,11 @@ function printDetailedAlertReport(
     }
 }
 
+/**
+ * Creates a header element for the 'details' section in the uncollapsed alertbar.
+ * @param title The name of the header
+ * @param detailsNode The node to whose children the title should be added
+ */
 function createDetailsTitle(title: string, detailsNode: HTMLDivElement) {
     const messageNode = document.createElement("div");
     messageNode.classList.add("details-element", "details-title");
@@ -185,6 +220,10 @@ function createDetailsTitle(title: string, detailsNode: HTMLDivElement) {
     detailsNode.appendChild(messageNode);
 }
 
+/**
+ * Creates a button to refresh (i.e., reload ignoring cache) the alertbar
+ * @param actionElements HTMLElement to whose children the button will be added.
+ */
 function createRefreshButton(actionElements: HTMLDivElement) {
     let {owner, repo} = repoIdFromUrl();
     const refreshButton = document.createElement("button");
@@ -201,6 +240,14 @@ function createRefreshButton(actionElements: HTMLDivElement) {
     actionElements.appendChild(refreshButton);
 }
 
+/**
+ * Generic function to create action buttons (e.g. for ignore  actions)
+ * @param actionElements  HTMLElement to whose children the button will be added.
+ * @param id html id attribute of the button
+ * @param innerHTML html innerHTML attribute of the button
+ * @param onClick onclick event of the button
+ * @param title optional title of the button (typically shown by browsers upon hovering over button)
+ */
 function createActionButton(actionElements: HTMLDivElement,
                             id: string,
                             innerHTML: string,
@@ -218,6 +265,12 @@ function createActionButton(actionElements: HTMLDivElement,
     actionElements.appendChild(createIssue);
 }
 
+/**
+ * Creates a button to forward a user to the repositories 'create issue' page
+ * where they're expected to ask for a license.
+ *
+ * @param actionElements HTMLElement to whose children the button will be added.
+ */
 function createIssueButton(actionElements: HTMLDivElement) {
 
     const onclick = (e: MouseEvent) => {
@@ -235,6 +288,12 @@ function createIssueButton(actionElements: HTMLDivElement) {
 
 }
 
+/**
+ * Creates two buttons to ignore owner and repo, i.e., to not resolve any licenses
+ * for repos of the current repos owner, or the current repo, respectively.
+ *
+ * @param actionElements HTMLElement to whose children the button will be added.
+ */
 function createIgnoreButtons(actionElements: HTMLDivElement) {
     let {owner, repo} = repoIdFromUrl();
 
@@ -265,9 +324,17 @@ Can be reverted in extension settings.`
         `Prevents the licenseplate extension to run on repos from '${owner}'.
 Can be reverted in extension settings.`
     );
-
 }
 
+/**
+ * Callback to be executed when a user chooses to ignore a repo or a repo owner.
+ *
+ * Provides the user with an instant option to revert his action
+ * (in case they clicked by mistake).
+ *
+ * @param id the id of the clicked button
+ * @param actionElements the html element which will contain the revert-options
+ */
 async function onIgnoreEvent(id: string, actionElements: HTMLDivElement) {
     await ignore("github", id);
     const confirmationMessage = document.createElement("div");
