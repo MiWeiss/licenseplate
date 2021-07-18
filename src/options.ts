@@ -1,6 +1,12 @@
 import {getIgnoredFromSync, unIgnoreKey} from "./utils/ignoreUtils";
 import {getCacheFromStorage, isStillValid, upsertCache} from "./utils/cacheUtils";
 
+/**
+ * Modifies the options-DOMtree to show a list of all ignore-keys,
+ * with the options to delete them individually.
+ *
+ * Method expected to run on page load.
+ */
 async function showIgnored() {
     const ignored_repos_container = document.getElementById("ignored-repos");
     console.log("1");
@@ -29,7 +35,11 @@ async function showIgnored() {
     }
 }
 
-
+/**
+ * Modifies the options-DOMtree to show information about the cache size.
+ *
+ * Method expected to run on page load.
+ */
 async function displayCacheInfo() {
     const cachePromise = getCacheFromStorage();
 
@@ -52,6 +62,9 @@ async function displayCacheInfo() {
 
 }
 
+/**
+ * Adds the click event to the 'clear cache' button.
+ */
 function addButtonClickEvent() {
     let clearCacheButton = document.getElementById("clear-cache-btn");
     if (clearCacheButton) {
@@ -66,6 +79,12 @@ function addButtonClickEvent() {
 }
 
 
+/**
+ * Deletes a specific entry from the ignore-list and modifies the options-dom accordingly.
+ * @param key The key of the entry to delete.
+ * @param trashIcon The trash icon which was clicked by the user (will be removed from dom).
+ * @param text The ignore-entry description shown to the user (will be crossed out).
+ */
 function deleteIgnoreEntry(
     key: string,
     trashIcon: HTMLImageElement,

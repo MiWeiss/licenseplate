@@ -27,10 +27,14 @@ export const FOUND_IGNORED_REPO = "licenseplate-ignored";
  * For a given repository, resolves the license key.
  *
  * Besides actual license keys, may also return one of the following mock keys:
- * { @link FOUND_IGNORED_REPO }
- * { @link FOUND_NO_LICENSE }
- * { @link FOUND_NO_REPO }
- * { @link FOUND_UNKNOWN_LICENSE }
+ *
+ * {@link FOUND_IGNORED_REPO},
+ *
+ * {@link FOUND_NO_LICENSE},
+ *
+ * {@link FOUND_NO_REPO},
+ *
+ * {@link FOUND_UNKNOWN_LICENSE}.
  *
  * @remarks
  * This method makes multiple requests to local storage, and potentially a request
