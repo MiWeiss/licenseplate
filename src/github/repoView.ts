@@ -226,18 +226,19 @@ function createDetailsTitle(title: string, detailsNode: HTMLDivElement) {
  */
 function createRefreshButton(actionElements: HTMLDivElement) {
     let {owner, repo} = repoIdFromUrl();
-    const refreshButton = document.createElement("button");
-    refreshButton.classList.add("licenseplate-action-button");
-    refreshButton.innerHTML = `Refresh`;
-    refreshButton.title = `Clears this repo from the licenseplate cache and reloads info from github API.`;
-    refreshButton.id = "btn-refresh-repo";
-    refreshButton.onclick = async (e) => {
+    const oncClick = async () => {
         await removeGithubRepoFromCache(owner, repo);
         document.getElementById("licenseplate-alertbar")?.remove();
         await main();
         console.log("[licenseplate] finished regenerating after cache removal");
     };
-    actionElements.appendChild(refreshButton);
+    createActionButton(
+        actionElements,
+        "btn-refresh-repo",
+        `Refresh`,
+        oncClick,
+        `Clears this repo from the licenseplate cache and reloads info from github API.`
+    );
 }
 
 /**
