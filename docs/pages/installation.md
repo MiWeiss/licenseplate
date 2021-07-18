@@ -9,8 +9,20 @@ nav_order: 20
 ## Installation
 
 ### Using a marketplace 
-Sooner or later, you will be able to install this from the extension store of your choice on a variety of browsers. 
-I'm still working on this, so please be patient :-) 
+#### Chrome
+You can install the extension directly through the 
+[chrome marketplace](https://chrome.google.com/webstore/detail/licenseplate/ipjjmoankphonkjgdpgmpkgmjgjeljmd).
+
+#### Edge
+You can also use install it from the [chrome marketplace](https://chrome.google.com/webstore/detail/licenseplate/ipjjmoankphonkjgdpgmpkgmjgjeljmd),
+as long as you accept "third party stores".
+
+Eventually, I'll also upload this to the edge store, but first I'll wait for some feedback.
+
+#### Firefox and Safari
+I'll also upload to those corresponding stores eventually, but first I wait for some feedback on the initial version uploaded
+on the chrome marketplace.. 
+For firefox, you can however very easily already install an unpacked version, as explained below.
 
 ### Installing it yourself
 Using the extensions-developer mode in chrome, firefox or edge, you can add the unpacked licenseplate extension manually (just click on `load unpacked`).
