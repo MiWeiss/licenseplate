@@ -11,6 +11,7 @@ import {AlarmLevel} from "../utils/licenses/models";
 import {issueTemplateTask} from "./issueTemplateInsert";
 import {ignore, unIgnore} from "../utils/ignoreUtils";
 import {removeGithubRepoFromCache} from "../utils/cacheUtils";
+import {INFO_ICON_SVG, PANIC_ICON_SVG, WARN_ICON_SVG} from "../utils/icons";
 
 /**
  * Initiates repository page enrichment.
@@ -194,18 +195,17 @@ function showDetails(alertbar: HTMLDivElement,
 function printDetailedAlertReport(detailsNode: HTMLDivElement,
                                   alertInfo: AlarmReport) {
     if (alertInfo.panics.length > 0) {
-        createDetailsTitle("Panic", detailsNode);
+        createDetailsTitle(`${PANIC_ICON_SVG} Panic ${PANIC_ICON_SVG}`, detailsNode);
         alertInfo.panics.forEach((m, count) => addMessageElement(m, count));
     }
     if (alertInfo.warnings.length > 0) {
-        createDetailsTitle("Warnings", detailsNode);
+        createDetailsTitle(`${WARN_ICON_SVG} Warnings ${WARN_ICON_SVG}`, detailsNode);
         alertInfo.warnings.forEach((m, count) => addMessageElement(m, count));
     }
     if (alertInfo.chillRemarks.length > 0) {
-        createDetailsTitle("Info", detailsNode);
+        createDetailsTitle(`${INFO_ICON_SVG} Info ${INFO_ICON_SVG}`, detailsNode);
         alertInfo.chillRemarks.forEach((m, count) => addMessageElement(m, count));
     }
-
 
     function addMessageElement(message: string, count: number): void {
         const messageNode = document.createElement("div");
