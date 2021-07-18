@@ -1,3 +1,7 @@
+import sys
+
+sys.path.insert(0, "./..")
+
 import base64
 import os
 import shutil
@@ -86,7 +90,7 @@ if __name__ == '__main__':
     utils.build_extension()
     driver = utils.webdriver_setup()
     driver.set_window_size(1050, 1000)
-    
+
     theme = "dark"
     take_screenshots()
     theme = "light"
