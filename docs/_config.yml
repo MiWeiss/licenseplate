@@ -20,7 +20,9 @@ baseurl: /licenseplate # the subpath of your site, e.g. /blog
 url: https://miweiss.github.io # the base hostname & protocol for your site, e.g. http://example.com
 
 # Build settings
-remote_theme: pmarsceill/just-the-docs
+# Note: We're using the unchanged just-the-docs theme, but for security reasons,
+# we load it from a fork controlled by us, instead of from the root repo.
+remote_theme: miweiss/just-the-docs
 plugins:
   - jekyll-feed
   - jekyll-remote-theme
