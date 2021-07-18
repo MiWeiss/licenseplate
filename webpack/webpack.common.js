@@ -5,12 +5,10 @@ const srcDir = path.join(__dirname, "..", "src");
 
 module.exports = {
     entry: {
-        popup: path.join(srcDir, 'popup.ts'),
         options: path.join(srcDir, 'options.ts'),
         background: path.join(srcDir, 'background.ts'),
         repoView: path.join(srcDir, 'github', 'repoView.ts'),
         profileView: path.join(srcDir, 'github', 'profileView.ts'),
-        searchView: path.join(srcDir, 'github', 'searchView.ts'),
     },
     output: {
         path: path.join(__dirname, "../dist"),
