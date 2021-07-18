@@ -18,43 +18,43 @@ jobs:
 
     runs-on: ubuntu-latest
 
-  steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v2
-      with:
-        node-version: '15.x'
-    - name: Set up Python 3.7
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.7
-    - name: Install Chrome (required for crx packaging)
-      run: |
-        wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-        echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' | sudo tee /etc/apt/sources.list.d/google-chrome.list
-        sudo apt-get -y update
-        sudo apt-get -y install google-chrome-stable
-    - name: Install Python Dependencies
-      run: |
-        cd browser_control
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-    - name: Run Selenium tests
-      run: |
-        cd browser_control
-        sudo apt-get install xvfb
-        xvfb-run --auto-servernum python gen_docs_images.py
-    - name: Create Pull Request
-      id: cpr
-      uses: peter-evans/create-pull-request@28fa4848947e0faa7fa50647691d01477589d5e9
-      with:
-        token: ${{ secrets.MACHINE_USER_PAT }}
-        push-to-fork: MachineDoingStuffByItself/licenseplate
-        commit-message: Regenerate Documentation Images
-        committer: MachineDoingStuffByItself <machineaccount@mweiss.com>
-        title: '[Bot] Regenerate Documentation Images'
-        body: |
-          Regenerate Documentation Images
-          - Ran `python gen_docs_images.py`
-          - Pull request created by [create-pull-request][1]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '15.x'
+      - name: Set up Python 3.7
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.7
+      - name: Install Chrome (required for crx packaging)
+        run: |
+          wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+          echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' | sudo tee /etc/apt/sources.list.d/google-chrome.list
+          sudo apt-get -y update
+          sudo apt-get -y install google-chrome-stable
+      - name: Install Python Dependencies
+        run: |
+          cd browser_control
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Run Selenium tests
+        run: |
+          cd browser_control
+          sudo apt-get install xvfb
+          xvfb-run --auto-servernum python gen_docs_images.py
+      - name: Create Pull Request
+        id: cpr
+        uses: peter-evans/create-pull-request@28fa4848947e0faa7fa50647691d01477589d5e9
+        with:
+          token: ${{ secrets.MACHINE_USER_PAT }}
+          push-to-fork: MachineDoingStuffByItself/licenseplate
+          commit-message: Regenerate Documentation Images
+          committer: MachineDoingStuffByItself <machineaccount@mweiss.com>
+          title: '[Bot] Regenerate Documentation Images'
+          body: |
+            Regenerate Documentation Images
+            - Ran `python gen_docs_images.py`
+            - Pull request created by [create-pull-request][1]
 
-          [1]: https://github.com/peter-evans/create-pull-request
+            [1]: https://github.com/peter-evans/create-pull-request
