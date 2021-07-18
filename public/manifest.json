@@ -3,29 +3,37 @@
   "description": "License Hints for Github",
   "version": "0.1.2",
   "manifest_version": 3,
-
   "options_ui": {
     "page": "options.html",
     "open_in_tab": true
   },
-
   "content_scripts": [
-      {
-          "matches": ["https://github.com/*/*"],
-          "css": ["styles.css"],
-          "js": ["repoView.js"]
-      },
-      {
-          "matches": ["https://github.com/*"],
-          "css": ["styles.css"],
-          "js": ["profileView.js"]
-      }
+    {
+      "matches": [
+        "https://github.com/*/*"
+      ],
+      "css": [
+        "styles.css"
+      ],
+      "js": [
+        "repoView.js"
+      ]
+    },
+    {
+      "matches": [
+        "https://github.com/*"
+      ],
+      "css": [
+        "styles.css"
+      ],
+      "js": [
+        "profileView.js"
+      ]
+    }
   ],
-
   "background": {
     "service_worker": "background-wrapper.js"
   },
-
   "permissions": [
     "storage",
     "activeTab",
@@ -34,5 +42,8 @@
   "host_permissions": [
     "https://www.github.com/",
     "https://github.com/"
-  ]
+  ],
+  "icons": {
+    "128": "./icons/icon128.png"
+  }
 }
