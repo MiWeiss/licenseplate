@@ -37,6 +37,7 @@ jobs:
           push-to-fork: MachineDoingStuffByItself/licenseplate
           commit-message: Update report
           committer: MachineDoingStuffByItself <machineaccount@mweiss.com>
+          branch: gen-licenses
           title: '[Bot] Update Licenses from choosealicense.com'
           body: |
             Update licenses

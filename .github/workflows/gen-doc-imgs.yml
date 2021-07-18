@@ -51,6 +51,7 @@ jobs:
           push-to-fork: MachineDoingStuffByItself/licenseplate
           commit-message: Regenerate Documentation Images
           committer: MachineDoingStuffByItself <machineaccount@mweiss.com>
+          branch: gen-doc-imgs
           title: '[Bot] Regenerate Documentation Images'
           body: |
             Regenerate Documentation Images
