@@ -9,8 +9,7 @@ const WARN_ICON_SVG = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" he
 const INFO_ICON_SVG = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"green\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"feather feather-check-square\"><polyline points=\"9 11 12 14 22 4\"></polyline><path d=\"M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11\"></path></svg>";
 
 /**
- * Creates a new svg element in the dom
- * containing the requested icon.
+ * Creates a new svg element in the dom containing the requested icon.
  *
  * based on https://stackoverflow.com/a/35385518/2576703
  */
@@ -34,9 +33,12 @@ function createWarnIcon(alarmReport: AlarmReport): ChildNode {
     return template.content.firstChild;
 }
 
+/**
+ * Initiates profile page enrichment:
+ * Looks for pins and then adds badges to said pins.
+ */
 async function main() {
     const pins = document.getElementsByClassName("pinned-item-list-item-content");
-    console.log(pins);
     if (pins.length === 0) {
         return
     }
@@ -46,16 +48,18 @@ async function main() {
             console.error(`[licenseplate] found no link for pin`);
             continue;
         }
-        console.log("hello");
         const splits = href.split('/');
-        console.log(splits[1], splits[2]);
         findLicense(splits[1], splits[2])
             .then(lic => getAlarm(lic))
             .then(r => addLicenseInfoToPin(pin, r))
-            .then(() => console.log("added")) // TODO delete
     }
 }
 
+/**
+ * Displays information for a given license and alarmlevel on a specific pin
+ * @param pin The pin HTMLElement on which the license info is to be shown
+ * @param alarmReport Contains the information to be shown on the pin
+ */
 function addLicenseInfoToPin(pin: Element, alarmReport: AlarmReport) {
     const lastChild = pin.children[pin.children.length - 1];
     const licenseInfo = document.createElement("span");
@@ -77,9 +81,6 @@ function addLicenseInfoToPin(pin: Element, alarmReport: AlarmReport) {
 //
 // Run Script on Page Load
 //
-
 main().then(() =>
-    console.log("[licenseplate] Profile Parsing: Exit Main (async tasks may still run)")
+    console.log("[licenseplate] Profile Parsing: Exit Main (async tasks may still be running)")
 );
-
-console.log("hello");

@@ -12,7 +12,15 @@ for (let key in licensesJson) {
     licenses.set(licensesJson[key].spdxId.toUpperCase(), licensesJson[key]);
 }
 
-
+/**
+ * Resolves, for a given license key, the corresponding AlarmReport which depends on the settings.
+ * (e.g. definition of whether a specific missing permission leads to panic, warning or info).
+ *
+ * For mock keys (e.g. FOUND_NO_LICENSE), corresponding predefined AlarmReports are returned.
+ *
+ * @param licenseKey The key (spdxId) of the license for which the AlarmReport will be built
+ * @returns A promise for the above described AlarmReport
+ */
 export async function getAlarm(licenseKey: string): Promise<AlarmReport> {
     // Handle preconfigured alarm reports
     if (licenseKey === FOUND_NO_LICENSE) {

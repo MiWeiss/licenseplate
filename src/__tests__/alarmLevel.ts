@@ -2,13 +2,8 @@ import {AlarmLevel} from "../utils/licenses/models";
 import {AlarmReport} from "../utils/licenses/alarmReportBuilder";
 import {getAlarm} from "../utils/licenses/alarmLevel";
 
-async function checkAlarmLevelForLicenseId(
-    licenseKey: string,
-    alarmLevel: AlarmLevel
-) {
-    // let licenseInfoMock = {
-    //   key: licenseKey,
-    // };
+async function checkAlarmLevelForLicenseId(licenseKey: string,
+                                           alarmLevel: AlarmLevel) {
     const alarm: AlarmReport = await getAlarm(licenseKey);
     expect(alarm.alarmLevel()).toBe(alarmLevel);
 }

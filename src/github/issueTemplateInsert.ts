@@ -1,5 +1,9 @@
-import { title } from "process";
-
+/**
+ * The 'main' function of the issue template logic:
+ * Called upon page load, prepares the create-issue page
+ * to provide a functionality to enter a request-a-license
+ * template into the create-issue form.
+ */
 export async function issueTemplateTask(): Promise<string> {
   if (!isNewIssuePage()) {
     return "Not on 'new issue' page";
@@ -13,6 +17,12 @@ export async function issueTemplateTask(): Promise<string> {
   }
 }
 
+/**
+ * Checks if the current page is actually an
+ * issue creation page.
+ *
+ * @return true iff the current page is an issue creation page
+ */
 function isNewIssuePage() {
   return (
     (window.location.href.endsWith("/issues/new") ||
@@ -27,6 +37,10 @@ function findIssueSubmitButton(): HTMLButtonElement | undefined {
   });
 }
 
+/**
+ * Adds a button to the github create-issue form,
+ * used to trigger the request-a-license template insertion.
+ */
 function createInsertTemplateButton() {
   const submitButton = findIssueSubmitButton();
   if (submitButton) {
@@ -44,6 +58,9 @@ function createInsertTemplateButton() {
   }
 }
 
+/**
+ * Markdown template to be inserted into the issue description.
+ */
 const LICENSE_REQUEST_TEMPLATE =
     `It appears that this repository does not have a license, which may disallow anyone to use its content (read about this [here](https://choosealicense.com/no-permission/)). Thus, would you mind adding a 'LICENSE' file to your repository?
 
@@ -55,6 +72,10 @@ Thanks in advance!
 <sub>Issue created using the [licenseplate browser extension](https://github.com/MiWeiss/licenseplate), which relies on the GitHub API to identify licenses. This is not legal advice.</sub>
   `;
 
+/**
+ * Fills in our request-a-license template in the github
+ * create issue form.
+ */
 function fillInTemplate() {
   const titleNode = getTitleNode();
   titleNode.value = "Add a License File";
@@ -79,6 +100,11 @@ function fillInTemplate() {
   titleNode.form?.dispatchEvent(new Event("change"))
 }
 
+/**
+ * Finds and returns the create-issue title input field
+ *
+ * @returns the title html element
+ */
 function getTitleNode(): HTMLInputElement {
   const titleField = Array.from(document.getElementsByTagName("input")).find(
     (i) => i.placeholder === "Title"
@@ -89,6 +115,11 @@ function getTitleNode(): HTMLInputElement {
   return titleField;
 }
 
+/**
+ * Finds and returns the create-issue description textbox
+ *
+ * @returns the description area html element
+ */
 function getCommentNode(): HTMLTextAreaElement {
   const commentField = Array.from(
     document.getElementsByTagName("textarea")
@@ -99,6 +130,14 @@ function getCommentNode(): HTMLTextAreaElement {
   return commentField;
 }
 
+/**
+ * Finds and returns the issue creation tab with a given label
+ *
+ * @param innerText the label to look for ('write' or 'preview')
+ *
+ * @returns The tab 'header', i.e., the element which, on click, will
+ * open the desired tab.
+ */
 function getTab(innerText: string): HTMLButtonElement {
   const writeTab = Array.from(document.getElementsByTagName("button")).find(
     (i) => i.innerText === innerText

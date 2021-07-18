@@ -1,11 +1,49 @@
 import {checkIsIgnored} from "../utils/ignoreUtils"
 import {cacheGithubRepos, getCachedKeyForGithubRepo} from "../utils/cacheUtils";
 
+/**
+ * Mock license key to be used with repos which are not accessible
+ */
 export const FOUND_NO_REPO = "NO-REPO";
+
+/**
+ * Mock license key to be used with repos which don't have a license file
+ */
 export const FOUND_NO_LICENSE = "NO-LICENSE";
-export const FOUND_UNKNOWN_LICENSE = "other"; // Value from github api
+
+/**
+ * License key for unknown licenses.
+ * This value is directly taken from the github requests.
+ */
+export const FOUND_UNKNOWN_LICENSE = "other";
+
+/**
+ * Mock license key to be used for repositories which are configured
+ * as 'ignored' by the extension user.
+ */
 export const FOUND_IGNORED_REPO = "licenseplate-ignored";
 
+/**
+ * For a given repository, resolves the license key.
+ *
+ * Besides actual license keys, may also return one of the following mock keys:
+ *
+ * {@link FOUND_IGNORED_REPO},
+ *
+ * {@link FOUND_NO_LICENSE},
+ *
+ * {@link FOUND_NO_REPO},
+ *
+ * {@link FOUND_UNKNOWN_LICENSE}.
+ *
+ * @remarks
+ * This method makes multiple requests to local storage, and potentially a request
+ * to the github API (if no entry cached)!
+ *
+ * @param owner The owner of the repository to be queried
+ * @param repo The name of the repository to be queried
+ * @returns a promise of a license key.
+ */
 export async function findLicense(owner: string, repo: string): Promise<string> {
     const ignored = checkIsIgnored("github", `${owner}/${repo}`);
     const cached = getCachedKeyForGithubRepo(owner, repo);
@@ -20,22 +58,30 @@ export async function findLicense(owner: string, repo: string): Promise<string> 
         // Note: We don't run this at the same time as checkIsIgnored
         // (even though both are async and take a bit),
         // to avoid needless requests to the github API
-        let key: string = await findKey(owner, repo);
-        // Create task to cache this in 2'
+        let key: string = await findKeyFromAPI(owner, repo);
+        // Create task to cache this *after a delay*
         //      (to avoid congestion due to this low prio task
         //       on early page load)
         setTimeout(() => cacheGithubRepos({
             owner: owner,
             repo: repo,
             lKey: key
-        }).then(() => console.log(`[licenseplate]: cached ${key} for ${owner}/${repo} `)), 2);
+        }).then(() => console.log(`[licenseplate]: cached ${key} for ${owner}/${repo} `)), 500);
         return key
-        // return await getLicenseProperties(key)
     }
-
 }
 
-async function findKey(owner: string, repo: string): Promise<string> {
+/**
+ * Queries the github API to get the license key for a particular, single repo.
+ *
+ * @Remark
+ * Never call this directly. Call {@link findLicense} instead, which will use caching and
+ * owner / repository ignoring.
+ *
+ * @param owner The owner of the repository to be queried
+ * @param repo The name of the repository to be queried
+ */
+async function findKeyFromAPI(owner: string, repo: string): Promise<string> {
     const url = `https://api.github.com/repos/${owner}/${repo}`;
     let repoResponse: Response = await fetch(url);
     if (repoResponse.status === 404) {
@@ -51,7 +97,3 @@ async function findKey(owner: string, repo: string): Promise<string> {
     // Key is `other` if a license file was found, but license not recognized
     return repoInfo.license.key
 }
-
-
-// Example of repo without license: "https://github.com/noameshed/first-android-app"
-// Example of repo with special license: https://github.com/mahmoud/boltons
