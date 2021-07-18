@@ -193,17 +193,24 @@ function showDetails(alertbar: HTMLDivElement,
  */
 function printDetailedAlertReport(detailsNode: HTMLDivElement,
                                   alertInfo: AlarmReport) {
-    const detailsTitle = `Potential Problems with ${alertInfo.licenseKey} license`;
-    createDetailsTitle(detailsTitle, detailsNode);
+    if (alertInfo.panics.length > 0) {
+        createDetailsTitle("Panic", detailsNode);
+        alertInfo.panics.forEach((m, count) => addMessageElement(m, count));
+    }
+    if (alertInfo.warnings.length > 0) {
+        createDetailsTitle("Warnings", detailsNode);
+        alertInfo.warnings.forEach((m, count) => addMessageElement(m, count));
+    }
+    if (alertInfo.chillRemarks.length > 0) {
+        createDetailsTitle("Info", detailsNode);
+        alertInfo.chillRemarks.forEach((m, count) => addMessageElement(m, count));
+    }
 
-    alertInfo.panics.forEach((m) => addMessageElement("ALERT", m));
-    alertInfo.warnings.forEach((m) => addMessageElement("WARNING", m));
-    alertInfo.chillRemarks.forEach((m) => addMessageElement("INFO", m));
 
-    function addMessageElement(level: string, message: string): void {
+    function addMessageElement(message: string, count: number): void {
         const messageNode = document.createElement("div");
         messageNode.classList.add("details-element");
-        messageNode.innerHTML += `[${level}] ${message} <br>`;
+        messageNode.innerHTML += `(${count+1}) ${message} <br>`;
         detailsNode.appendChild(messageNode);
     }
 }
