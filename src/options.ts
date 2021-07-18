@@ -9,9 +9,7 @@ import {getCacheFromStorage, isStillValid, upsertCache} from "./utils/cacheUtils
  */
 async function showIgnored() {
     const ignored_repos_container = document.getElementById("ignored-repos");
-    console.log("1");
     if (ignored_repos_container) {
-        console.log("2 ");
         const allIgnored = await getIgnoredFromSync();
         for (const ignored of allIgnored) {
             console.log(ignored);

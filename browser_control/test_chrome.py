@@ -1,13 +1,15 @@
+from time import sleep
 from typing import Optional
 
 import pytest
-from browser_control.utils import build_extension, webdriver_setup
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
+
+from browser_control.utils import build_extension, webdriver_setup
 
 CACHE = dict()
 
@@ -208,6 +210,7 @@ class TestChromeExtensionOnGithub:
                              ]
                              )
     def test_profile_pins(self, profile_with_pins, repo, icon_color, text):
+        """Verifies that the correct, expected badges are added to profile pins."""
         # Open profile if not already there (if check to avoid unnecessary page loads)
         if self.driver.current_url != f"https://github.com/{profile_with_pins}":
             self.driver.get(f"https://github.com/{profile_with_pins}")
@@ -227,6 +230,7 @@ class TestChromeExtensionOnGithub:
             f"Licenseplate-badge dos not have text '{text}'"
 
     def test_cache(self):
+        """Tests license key caching and cache clearance."""
         # Clear existing cache
         navigate_to_options(self.driver)
         self.driver.find_element_by_id("clear-cache-btn").click()
@@ -234,8 +238,12 @@ class TestChromeExtensionOnGithub:
         # Visit to repos, then check that cache size is two
         self.driver.get("https://github.com/miweiss/licenseplate")
         self._find_alert_bar()
+        # Wait for the caching delay
+        sleep(1.5)
         self.driver.get("https://github.com/testingautomated-usi/uncertainty-wizard")
         self._find_alert_bar()
+        # Wait for the caching delay
+        sleep(1.5)
         navigate_to_options(self.driver)
         WebDriverWait(self.driver, 1).until(CacheChecker(2, 0))
         # Clear cache

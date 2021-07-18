@@ -59,14 +59,14 @@ export async function findLicense(owner: string, repo: string): Promise<string> 
         // (even though both are async and take a bit),
         // to avoid needless requests to the github API
         let key: string = await findKeyFromAPI(owner, repo);
-        // Create task to cache this in 2 sec
+        // Create task to cache this *after a delay*
         //      (to avoid congestion due to this low prio task
         //       on early page load)
         setTimeout(() => cacheGithubRepos({
             owner: owner,
             repo: repo,
             lKey: key
-        }).then(() => console.log(`[licenseplate]: cached ${key} for ${owner}/${repo} `)), 2000);
+        }).then(() => console.log(`[licenseplate]: cached ${key} for ${owner}/${repo} `)), 500);
         return key
     }
 }

@@ -38,11 +38,3 @@ def webdriver_setup():
     )
 
 
-def clear_ignore_config(wd: WebDriver):
-    """Navigates to options and removes all ignore configs."""
-    navigate_to_options(wd)
-    trash_icons = wd.find_elements_by_class_name("classlist-trash-icon")
-    for tri in trash_icons:
-        tri.click()
-    wd.refresh()
-    assert wd.find_elements_by_class_name("no-ignored-repos-message") is not None
