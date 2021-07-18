@@ -8,9 +8,11 @@ nav_order: 20
 
 ## Installation
 
+### Using a marketplace 
 Sooner or later, you will be able to install this from the extension store of your choice on a variety of browsers. 
-Before that's set up, feel free to build the application from source (npm run build)
- and manually add it to chrome (extensions -> enable developer mode -> load unpacked).
- 
-Similarly, you should be able to add it to firefox and edge. 
-Safari support is somewhere on my todo list as well :-)
+I'm still working on this, so please be patient :-) 
+
+### Installing it yourself
+Using the extensions-developer mode in chrome, firefox or edge, you can add the unpacked licenseplate extension manually (just click on `load unpacked`).
+You'll find an unpacked version of licenseplate shipped with the [latest release](https://github.com/MiWeiss/licenseplate/releases), e.g. `v0.2.0-unpacked`, or you can easily build the most recent version by cloning [the sources](https://github.com/MiWeiss/licenseplate) and running `npm run build` (unpacked extension lands in the `dist` folder).
+
