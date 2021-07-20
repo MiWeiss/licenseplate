@@ -20,7 +20,7 @@ as long as you accept "third party stores".
 Eventually, I'll also upload this to the edge store, but first I'll wait for some feedback.
 
 #### Firefox and Safari
-Firefox does not **yet** support manifest-v3 extensions, and safari requires me to work with a mac. 
+Firefox does not **yet** support manifest-v3 extensions (an licenseplate is such an extension), and safari requires a lot of special steps to get towards a publication. 
 I might work around these problems eventually, but it's probably not tomorrow :-)
 
 ### Installing it yourself
