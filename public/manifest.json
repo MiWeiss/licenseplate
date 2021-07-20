@@ -35,9 +35,7 @@
     "service_worker": "background-wrapper.js"
   },
   "permissions": [
-    "storage",
-    "activeTab",
-    "scripting"
+    "storage"
   ],
   "host_permissions": [
     "https://www.github.com/",
