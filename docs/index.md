@@ -14,7 +14,7 @@ permissions, conditions and limitations directly on a github repository view.
 
 Built by [me](https://mweiss.ch) as a side-project for fun, personal use and to play a bit with new tech, 
 it's available for free for anyone to use. 
-Note that the software and documentation are provided [without any warranty](./../legal).
+Note that the software and documentation are provided [without any warranty](./legal).
 
 ### Example
 {% include gh-image.html 
