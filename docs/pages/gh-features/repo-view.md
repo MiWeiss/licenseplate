@@ -102,7 +102,7 @@ you're informed about it.
 Typically, this is not a big issue:
  You may be offline (in which case browing github isn't really fun anyways)
  or the repository your browsing is private.
-In the latter case, often (but not always!) are a copyright holder of the repos content anyways
+In the latter case, you are typically (but not always!) a copyright holder of the repos content anyways
  and may want to [licenseplate-ignore](#ignore-actions) the repo or owner.
 
 <!-- TODO include image -->
