@@ -10,20 +10,18 @@ nav_order: 20
 
 ### Using a marketplace 
 #### Chrome
-You can install the extension directly through the 
-[chrome marketplace](https://chrome.google.com/webstore/detail/licenseplate/ipjjmoankphonkjgdpgmpkgmjgjeljmd).
+Install from the 
+[chrome web store](https://chrome.google.com/webstore/detail/licenseplate/ipjjmoankphonkjgdpgmpkgmjgjeljmd).
 
 #### Edge
-You can also use install it from the [chrome marketplace](https://chrome.google.com/webstore/detail/licenseplate/ipjjmoankphonkjgdpgmpkgmjgjeljmd),
-as long as you accept "third party stores".
-
-Eventually, I'll also upload this to the edge store, but first I'll wait for some feedback.
+Install from
+[microsoft edge add-ons](https://microsoftedge.microsoft.com/addons/detail/gfhcmhbpigcinkiechkibmgmllodaade).
 
 #### Firefox and Safari
-Firefox does not **yet** support manifest-v3 extensions (an licenseplate is such an extension), and safari requires a lot of special steps to get towards a publication. 
-I might work around these problems eventually, but it's probably not tomorrow :-)
+Firefox does not **yet** support manifest-v3 extensions (and licenseplate is such an extension), and safari requires a lot of special steps to get towards a store entry. 
+I might work around these problems eventually, but probably not tomorrow :-)
 
 ### Installing it yourself
-Using the extensions-developer mode in chrome, firefox or edge, you can add the unpacked licenseplate extension manually (just click on `load unpacked`).
+Using the extensions-developer mode in chrome, edge or with some additional work firefox, you can add the unpacked licenseplate extension manually (just click on `load unpacked`).
 You'll find an unpacked version of licenseplate shipped with the [latest release](https://github.com/MiWeiss/licenseplate/releases), e.g. `v0.2.0-unpacked`, or you can easily build the most recent version by cloning [the sources](https://github.com/MiWeiss/licenseplate) and running `npm run build` (unpacked extension lands in the `dist` folder).
 
