@@ -1,10 +1,16 @@
 import {checkIsIgnored} from "../utils/ignoreUtils"
 import {cacheGithubRepos, getCachedKeyForGithubRepo} from "../utils/cacheUtils";
+import {getGithubAuthToken} from "./authUtils";
 
 /**
  * Mock license key to be used with repos which are not accessible
  */
 export const FOUND_NO_REPO = "NO-REPO";
+
+/**
+ * Mock license key to be used with repos where a 403 was given.
+ */
+export const API_LIMIT_REACHED = "API_LIMIT_REACHED";
 
 /**
  * Mock license key to be used with repos which don't have a license file
@@ -47,6 +53,7 @@ export const FOUND_IGNORED_REPO = "licenseplate-ignored";
 export async function findLicense(owner: string, repo: string): Promise<string> {
     const ignored = checkIsIgnored("github", `${owner}/${repo}`);
     const cached = getCachedKeyForGithubRepo(owner, repo);
+    const auth = getGithubAuthToken();
     if (await ignored) {
         return FOUND_IGNORED_REPO
     }
@@ -58,15 +65,18 @@ export async function findLicense(owner: string, repo: string): Promise<string> 
         // Note: We don't run this at the same time as checkIsIgnored
         // (even though both are async and take a bit),
         // to avoid needless requests to the github API
-        let key: string = await findKeyFromAPI(owner, repo);
+        const authToken = await auth;
+        const key: string = await findKeyFromAPI(owner, repo, authToken);
         // Create task to cache this *after a delay*
         //      (to avoid congestion due to this low prio task
         //       on early page load)
-        setTimeout(() => cacheGithubRepos({
-            owner: owner,
-            repo: repo,
-            lKey: key
-        }).then(() => console.log(`[licenseplate]: cached ${key} for ${owner}/${repo} `)), 500);
+        if (key !== API_LIMIT_REACHED){
+            setTimeout(() => cacheGithubRepos({
+                owner: owner,
+                repo: repo,
+                lKey: key
+            }).then(() => console.log(`[licenseplate]: cached ${key} for ${owner}/${repo} `)), 500);
+        }
         return key
     }
 }
@@ -80,12 +90,25 @@ export async function findLicense(owner: string, repo: string): Promise<string> 
  *
  * @param owner The owner of the repository to be queried
  * @param repo The name of the repository to be queried
+ * @param authToken Optional github authentication token
  */
-async function findKeyFromAPI(owner: string, repo: string): Promise<string> {
+async function findKeyFromAPI(owner: string, repo: string, authToken?: string): Promise<string> {
     const url = `https://api.github.com/repos/${owner}/${repo}`;
-    let repoResponse: Response = await fetch(url);
+    let repoResponse: Response;
+    if (authToken){
+        repoResponse = await fetch(url, {
+            headers: new Headers({
+                'Authorization': 'token ' + authToken
+            }),
+        });
+    }else{
+        repoResponse = await fetch(url);
+    }
     if (repoResponse.status === 404) {
         return FOUND_NO_REPO // Most likely a private repo
+    }
+    if (repoResponse.status === 403) {
+        return API_LIMIT_REACHED // Most likely a private repo
     }
     if (!repoResponse.ok) {
         throw Error(`Get request to "${url}" failed with status code ${repoResponse.status}`)

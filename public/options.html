@@ -15,6 +15,26 @@
   <a href="https://github.com/MiWeiss/licenseplate/blob/main/LICENSE"  target="_blank">MIT license</a>,
   comes without any warranty and does not provide legal advice.
 
+  <h3>Github API Token</h3>
+  <div>
+    <p>
+      If you see <i>API_LIMIT_REACHED</i> alerts, you may want to consider adding a github API token.
+      Read more about this in our <a href='https://miweiss.github.io/licenseplate/features-gh/auth/' target='_blank'>docs</a>,
+      and pay special attention to the security considerations mentioned there (the token is stored unencrypted!).
+    </p>
+    <small>To removed a previously added token, override it with a new token or no token (empty input field).</small>
+    <p id="token-state">
+      <!-- Dynamically added by script -->
+    </p>
+    <form id="gh-token-form">
+      <label for="githubTokenInput">Your token:</label>
+      <!-- Token length is 40, we give a bit of slack... -->
+      <input type="text" id="githubTokenInput" name="Your Github Token" size="45"
+             placeholder="e.g. 'ghp_q2t4YbKyzzROeQg...'. Save empty to delete." >
+      <button type="submit" name="submit">Save</button>
+    </form>
+  </div>
+
   <h3>Cached Licenses</h3>
   <div>
 
@@ -43,6 +63,8 @@
     Note that ignored repositories are automatically synced amongst all your devices.
   </div>
   <div id="ignored-repos"></div>
+
+
   <script src="options.js"></script>
 
 
