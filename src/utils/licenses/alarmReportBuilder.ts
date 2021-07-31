@@ -3,7 +3,7 @@ import * as alarmConfigJson from "./alarmLevels.json";
 
 import {AlarmLevel, Conditions, Limitations, Permissions, Rights,} from "./models";
 
-import {FOUND_NO_LICENSE, FOUND_NO_REPO, FOUND_UNKNOWN_LICENSE,} from "../../github/licenseFinder";
+import {API_LIMIT_REACHED, FOUND_NO_LICENSE, FOUND_NO_REPO, FOUND_UNKNOWN_LICENSE,} from "../../github/licenseFinder";
 
 const alarmMessages: Rights<string> = alarmMessageJson;
 const alarmConfig: Rights<AlarmLevel> = alarmConfigJson;
@@ -56,6 +56,19 @@ export class AlarmReport {
         [],
         [],
         ["Could not access repo info. Is this a private repo?"]
+    );
+
+
+    static API_LIMIT_REACHED_ALARM_REPORT = new AlarmReport(
+        API_LIMIT_REACHED,
+        "API limit reached",
+        // No warnings or panic: let's chill if repo not found (it's probably a private repo)
+        ["Could not access repo info - looks like your API limit is reached or your token is invalid. " +
+        "Consider adding an auth token in the extension options. " +
+        "<a href='https://miweiss.github.io/licenseplate/features-gh/auth/' target='_blank'> Read More Here </a>"],
+        [],
+        [],
+        "https://miweiss.github.io/licenseplate/features-gh/auth/"
     );
 
     static FOUND_UNKNOWN_LICENSE_ALARM_REPORT = new AlarmReport(

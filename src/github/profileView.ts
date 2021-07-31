@@ -1,4 +1,4 @@
-import {findLicense} from "./licenseFinder";
+import {API_LIMIT_REACHED, findLicense} from "./licenseFinder";
 import {AlarmReport} from "../utils/licenses/alarmReportBuilder";
 import {getAlarm} from "../utils/licenses/alarmLevel";
 import {AlarmLevel} from "../utils/licenses/models";
@@ -58,6 +58,10 @@ async function main() {
  * @param alarmReport Contains the information to be shown on the pin
  */
 function addLicenseInfoToPin(pin: Element, alarmReport: AlarmReport) {
+    if (alarmReport.licenseKey === API_LIMIT_REACHED){
+        console.log("[licenseplate] API Limit reached - not placing any badges");
+        return
+    }
     const lastChild = pin.children[pin.children.length - 1];
     const licenseInfo = document.createElement("span");
     if (alarmReport.licenseTitle.length > 10) {

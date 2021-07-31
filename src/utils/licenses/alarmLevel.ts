@@ -1,7 +1,7 @@
 import * as licensesJson from "../../__gen__/licenses.json";
 import {License} from "./models";
 import {AlarmReport} from "./alarmReportBuilder";
-import {FOUND_NO_LICENSE, FOUND_NO_REPO, FOUND_UNKNOWN_LICENSE,} from "../../github/licenseFinder";
+import {FOUND_NO_LICENSE, FOUND_NO_REPO, FOUND_UNKNOWN_LICENSE,API_LIMIT_REACHED} from "../../github/licenseFinder";
 
 // TODO There *must* be a better way to cast the json into a map
 const licenses: Map<string, License> = new Map();
@@ -29,6 +29,8 @@ export async function getAlarm(licenseKey: string): Promise<AlarmReport> {
         return AlarmReport.FOUND_NO_REPO_ALARM_REPORT;
     } else if (licenseKey === FOUND_UNKNOWN_LICENSE) {
         return AlarmReport.FOUND_UNKNOWN_LICENSE_ALARM_REPORT;
+    } else if (licenseKey == API_LIMIT_REACHED){
+        return AlarmReport.API_LIMIT_REACHED_ALARM_REPORT;
     }
 
     const license: License | undefined = licenses.get(licenseKey.toUpperCase());
