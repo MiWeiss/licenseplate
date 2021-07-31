@@ -22,7 +22,7 @@ Licenseplate does not collect any information to share it with anyone but the us
 An exception to this are of course requests to the github API, which are required 
 to collect information about repository licenses. 
 
-User-specific data, such as ignored repositories or cached license information,
+User-specific data, such as ignored repositories, cached license information or (optionally) github personal access tokens,
 has to be stored by licenseplate for proper functioning. 
 Such information is partially stored on the users browser local storage (e.g. using `chrome.storage.local`), 
 and partially syncronized amongst users devices (e.g. using `chrome.storage.sync`).
