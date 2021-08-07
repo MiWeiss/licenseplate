@@ -19,12 +19,12 @@ jobs:
       - run: npm ci
       - run: npm run build
       - name: installing zip
-      - run: sudo apt install --yes zip unzip
+        run: sudo apt install --yes zip unzip
       - name: Get the version
         id: get_version
         run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
       - name: zipping artifacts
-      - run: |
+        run: |
           cd dist
           zip -r unpacked_${{ steps.get_version.outputs.VERSION }} ./*
           ls -l
