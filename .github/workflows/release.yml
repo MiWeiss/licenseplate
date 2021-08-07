@@ -1,0 +1,30 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+    branch:
+      - "auto-release"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 15.x
+      - run: npm ci
+      - run: npm run build
+      - name: installing zip
+      - run: sudo apt install --yes zip unzip
+      - name: Get the version
+        id: get_version
+        run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+      - name: zipping artifacts
+      - run: |
+          cd dist
+          zip -r unpacked_${{ steps.get_version.outputs.VERSION }} ./*
+          ls -l
