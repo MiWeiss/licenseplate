@@ -23,5 +23,5 @@ I might work around these problems eventually, but probably not tomorrow :-)
 
 ### Installing it yourself
 Using the extensions-developer mode in chrome, edge or with some additional work firefox, you can add the unpacked licenseplate extension manually (just click on `load unpacked`).
-You'll find an unpacked version of licenseplate shipped with the [latest release](https://github.com/MiWeiss/licenseplate/releases), e.g. `v0.2.0-unpacked`, or you can easily build the most recent version by cloning [the sources](https://github.com/MiWeiss/licenseplate) and running `npm run build` (unpacked extension lands in the `dist` folder).
+You'll find an unpacked version (`unpacked.zip`) shipped with the [latest release](https://github.com/MiWeiss/licenseplate/releases) or you can easily build the most recent version by cloning [the sources](https://github.com/MiWeiss/licenseplate) and running `npm run build` (unpacked extension lands in the `dist` folder).
 
