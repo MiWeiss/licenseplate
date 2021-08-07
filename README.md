@@ -1,12 +1,12 @@
+<p align="center">
+<img width="60%" alt="licenseplate" src="docs/logo/banner_slim.png">
+</p>
+
 <p align="center">  
 A browser extension to help you detect unpermissive licenses.
 </p>
 
-<p align="center">
-<img width="60%" alt="licenseplate" src="docs/logo/banner_L.png">
-</p>
-
-## Documentation for Users
+## Documentation
 
 - [About](https://miweiss.github.io/licenseplate/)
 - [Installation](https://miweiss.github.io/licenseplate/installation)
