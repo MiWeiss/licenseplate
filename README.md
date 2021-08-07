@@ -63,3 +63,6 @@ The following are the most relevant folders in this repository. Folders not list
   There's not many unit tests yet (that's still a big todo 😄), but the few which are there are run on PRs and pushed to `main`.\
   To run them manually, `npm run test` does the trick.
 
+- **Release**
+  Upon tagging a commit, a zip of the dist folder, `unpacked.zip` is added to the corresponding github release.
+
