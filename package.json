@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "@types/chrome": "0.0.154",
-    "@types/jest": "^25.1.4",
+    "@types/jest": "^26.0.24",
     "@types/node": "^15.3.1",
     "copy-webpack-plugin": "^6.1.0",
     "front-matter": "4.0.2",
