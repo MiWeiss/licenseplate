@@ -47,7 +47,6 @@ jobs:
         id: cpr
         uses: peter-evans/create-pull-request@28fa4848947e0faa7fa50647691d01477589d5e9
         with:
-          token: ${{ secrets.MACHINE_USER_PAT }}
           commit-message: Regenerate Documentation Images
           committer: MachineDoingStuffByItself <machineaccount@mweiss.com>
           branch: gen-doc-imgs
