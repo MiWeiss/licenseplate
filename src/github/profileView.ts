@@ -1,4 +1,4 @@
-import {API_LIMIT_REACHED, findLicense} from "./licenseFinder";
+import {API_LIMIT_REACHED, findLicense, FOUND_IGNORED_REPO} from "./licenseFinder";
 import {AlarmReport} from "../utils/licenses/alarmReportBuilder";
 import {getAlarm} from "../utils/licenses/alarmLevel";
 import {AlarmLevel} from "../utils/licenses/models";
@@ -46,9 +46,12 @@ async function main() {
             continue;
         }
         const splits = href.split('/');
-        findLicense(splits[1], splits[2])
-            .then(lic => getAlarm(lic))
-            .then(r => addLicenseInfoToPin(pin, r))
+        const license = await findLicense(splits[1], splits[2]);
+        if (license == FOUND_IGNORED_REPO){
+            continue;
+        }
+        const alarmReport = await getAlarm(license);
+        addLicenseInfoToPin(pin, alarmReport);
     }
 }
 
@@ -59,7 +62,7 @@ async function main() {
  */
 function addLicenseInfoToPin(pin: Element, alarmReport: AlarmReport) {
     if (alarmReport.licenseKey === API_LIMIT_REACHED){
-        console.log("[licenseplate] API Limit reached - not placing any badges");
+        console.log("[licenseplate] API Limit reached - not placing any badges.");
         return
     }
     const lastChild = pin.children[pin.children.length - 1];
