@@ -15,3 +15,4 @@ This project relies on a bunch of great projects, amongst which are
 licenses permissions, conditions and limitations. 
 * Icons from [feathericons.com](https://feathericons.com/).
 * [Just the docs](https://github.com/pmarsceill/just-the-docs) template for this page.
+* Logo from [strideinit](https://www.fiverr.com/strideinit), payed for on fiverr.
