@@ -26,23 +26,25 @@
 
 
 .licpl-panic{
-    background-color: var(--color-bg-danger)!important;
-    border-color: var(--color-border-danger)!important;
+    background-color: var(--color-danger-subtle, var(--color-bg-danger, #da3633))!important;
+    border-color: var(--color-danger-muted, rgba(248,81,73,0.4))!important;
     padding: 10px !important;
-    color: var(--color-alert-error-text) !important;
+    color: var(--color-fg-default, white) !important;
 }
 
 .licpl-warning{!important;
-    background-image: linear-gradient(var(--color-alert-warn-bg),var(--color-alert-warn-bg)) !important;
-    border-color: var(--color-alert-warn-border) !important;
-    color: var(--color-alert-warn-text) !important;
+    --lplace-warn-bg: var(--color-attention-subtle, var(--color-attention-info-bg, rgba(46,160,67,0.15))); ;
+    background-image: linear-gradient(var(--lplace-warn-bg),var(--lplace-warn-bg)) !important;
+    border-color: var(--color-attention-muted, rgba(187,128,9,0.4)) !important;
+    color: var(--color-fg-default, white) !important;
     padding: 10px !important;
 }
 
 .licpl-chill{
-    background-image: linear-gradient(var(--color-alert-info-bg),var(--color-alert-info-bg)) !important;
-    border-color: var(--color-alert-info-border)!important;
-    color: var(--color-alert-info-text) !important;
+    --lplace-chill-bg: var(--color-accent-subtle, var(--color-alert-info-bg, rgba(56,139,253,0.15)));
+    background-image: linear-gradient(var(--lplace-chill-bg),var(--lplace-chill-bg)) !important;
+    border-color: var(--color-accent-muted, rgba(56,139,253,0.4))!important;
+    color: var(--color-fg-default, white) !important;
     padding: 4px 10px;
 }
 
