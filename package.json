@@ -19,7 +19,7 @@
     "url": "https://github.com/miweiss/licenseplate.git"
   },
   "devDependencies": {
-    "@types/chrome": "0.0.154",
+    "@types/chrome": "0.0.159",
     "@types/jest": "^27.0.2",
     "@types/node": "^16.4.13",
     "copy-webpack-plugin": "^9.0.1",
