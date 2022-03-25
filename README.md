@@ -8,7 +8,7 @@ A browser extension to help you detect unpermissive licenses.
 
 <p align="center">  
  <a title="Install through Chrome Web Store" href="https://chrome.google.com/webstore/detail/licenseplate/ipjjmoankphonkjgdpgmpkgmjgjeljmd"><img width="48" alt="Google Chrome icon (September 2014)" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Google_Chrome_icon_%28September_2014%29.svg/512px-Google_Chrome_icon_%28September_2014%29.svg.png"></a>
- <a title="Install through Edge Addons" href="https://microsoftedge.microsoft.com/addons/detail/licenseplate/gfhcmhbpigcinkiechkibmgmllodaade"><img width="48" alt="Microsoft Edge logo (2019)" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Microsoft_Edge_logo_%282019%29.svg/512px-Microsoft_Edge_logo_%282019%29.svg.png"></a>
+ <a title="Install through Edge Addons" href="https://microsoftedge.microsoft.com/addons/detail/licenseplate/gfhcmhbpigcinkiechkibmgmllodaade"><img width="48" alt="Microsoft Edge logo (2019)" src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Microsoft_Edge_logo_%282019%29.png"></a>
 </p>
 
 
