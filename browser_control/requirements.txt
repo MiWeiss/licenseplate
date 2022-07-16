@@ -1,4 +1,4 @@
 selenium==3.141.0
 pytest==6.2.4
 webdriver-manager==3.4.2
-pillow==8.3.2
+pillow==9.0.0
