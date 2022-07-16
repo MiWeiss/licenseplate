@@ -392,6 +392,90 @@
     "url": "https://choosealicense.com/licenses/cecill-2.1"
   },
   {
+    "title": "CERN Open Hardware Licence Version 2 - Permissive",
+    "spdxId": "CERN-OHL-P-2.0",
+    "permissions": {
+      "commercialUse": true,
+      "distribution": true,
+      "modifications": true,
+      "privateUse": true,
+      "patentUse": true
+    },
+    "conditions": {
+      "discloseSource": false,
+      "includeCopyright": true,
+      "includeCopyrightVSource": false,
+      "networkUseDisclosure": false,
+      "sameLicense": false,
+      "sameLicenseVLibrary": false,
+      "sameLicenseVFile": false,
+      "documentChanges": true
+    },
+    "limitations": {
+      "liability": true,
+      "warranty": true,
+      "trademarkUse": false,
+      "patentUse": false
+    },
+    "url": "https://choosealicense.com/licenses/cern-ohl-p-2.0"
+  },
+  {
+    "title": "CERN Open Hardware Licence Version 2 - Strongly Reciprocal",
+    "spdxId": "CERN-OHL-S-2.0",
+    "permissions": {
+      "commercialUse": true,
+      "distribution": true,
+      "modifications": true,
+      "privateUse": true,
+      "patentUse": true
+    },
+    "conditions": {
+      "discloseSource": true,
+      "includeCopyright": true,
+      "includeCopyrightVSource": false,
+      "networkUseDisclosure": false,
+      "sameLicense": true,
+      "sameLicenseVLibrary": false,
+      "sameLicenseVFile": false,
+      "documentChanges": true
+    },
+    "limitations": {
+      "liability": true,
+      "warranty": true,
+      "trademarkUse": false,
+      "patentUse": false
+    },
+    "url": "https://choosealicense.com/licenses/cern-ohl-s-2.0"
+  },
+  {
+    "title": "CERN Open Hardware Licence Version 2 - Weakly Reciprocal",
+    "spdxId": "CERN-OHL-W-2.0",
+    "permissions": {
+      "commercialUse": true,
+      "distribution": true,
+      "modifications": true,
+      "privateUse": true,
+      "patentUse": true
+    },
+    "conditions": {
+      "discloseSource": true,
+      "includeCopyright": true,
+      "includeCopyrightVSource": false,
+      "networkUseDisclosure": false,
+      "sameLicense": false,
+      "sameLicenseVLibrary": true,
+      "sameLicenseVFile": false,
+      "documentChanges": true
+    },
+    "limitations": {
+      "liability": true,
+      "warranty": true,
+      "trademarkUse": false,
+      "patentUse": false
+    },
+    "url": "https://choosealicense.com/licenses/cern-ohl-w-2.0"
+  },
+  {
     "title": "Educational Community License v2.0",
     "spdxId": "ECL-2.0",
     "permissions": {
