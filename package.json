@@ -1,6 +1,6 @@
 {
   "name": "licenseplate",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Browser extension to get early warnings when facing insufficiently licensed code.",
   "main": "index.js",
   "scripts": {
