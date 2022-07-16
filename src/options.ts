@@ -127,7 +127,7 @@ async function testToken() {
             if (rates.rate.limit >= 1000) {
                 updateTokenState(true,
                     `Token in use. Remaining github api rate ${parseInt(rates.rate.remaining)} 
-                    (resets once an hour to ${rates.rate.limit})`);
+                    (resets once an hour to ${parseInt(rates.rate.limit)})`);
             } else {
                 updateTokenState(false, "Invalid token.");
                 upsertGithubAuthToken(null);
