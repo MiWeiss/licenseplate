@@ -377,7 +377,7 @@
       "discloseSource": true,
       "includeCopyright": true,
       "includeCopyrightVSource": false,
-      "networkUseDisclosure": false,
+      "networkUseDisclosure": true,
       "sameLicense": true,
       "sameLicenseVLibrary": false,
       "sameLicenseVFile": false,
@@ -614,6 +614,34 @@
       "patentUse": false
     },
     "url": "https://choosealicense.com/licenses/eupl-1.2"
+  },
+  {
+    "title": "GNU Free Documentation License v1.3",
+    "spdxId": "GFDL-1.3",
+    "permissions": {
+      "commercialUse": true,
+      "distribution": true,
+      "modifications": true,
+      "privateUse": true,
+      "patentUse": false
+    },
+    "conditions": {
+      "discloseSource": true,
+      "includeCopyright": true,
+      "includeCopyrightVSource": false,
+      "networkUseDisclosure": false,
+      "sameLicense": true,
+      "sameLicenseVLibrary": false,
+      "sameLicenseVFile": false,
+      "documentChanges": true
+    },
+    "limitations": {
+      "liability": true,
+      "warranty": true,
+      "trademarkUse": false,
+      "patentUse": false
+    },
+    "url": "https://choosealicense.com/licenses/gfdl-1.3"
   },
   {
     "title": "GNU General Public License v2.0",
