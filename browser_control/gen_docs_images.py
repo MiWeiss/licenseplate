@@ -41,7 +41,7 @@ def pins_screenshot(owner_id: str):
     driver.get(f"https://github.com/{owner_id}")
     set_theme()
     WebDriverWait(driver, 3).until(presence_of_element_located((By.CLASS_NAME, "licenseplate-badge")))
-    pin = driver.find_element_by_class_name("js-pinned-items-reorder-container")
+    pin = driver.find_element(By.CLASS_NAME, "js-pinned-items-reorder-container")
     cropped = Image.open(BytesIO(base64.b64decode(pin.screenshot_as_base64)))
     cropped.save(f"{img_key}-cropped.png", "png")
 
@@ -62,7 +62,7 @@ def alertbar_screenshot(repo_id: str,
 
 def set_theme():
     # Based on https://stackoverflow.com/questions/39434821/how-to-change-element-class-attribute-value-using-selenium
-    e = driver.find_element_by_tag_name('html')
+    e = driver.find_element(By.TAG_NAME, 'html')
     driver.execute_script(f"arguments[0].setAttribute('data-light-theme','{theme}')", e)
     driver.execute_script(f"arguments[0].setAttribute('data-dark-theme','{theme}')", e)
     # Ugly, but gives the github page time to adapt
