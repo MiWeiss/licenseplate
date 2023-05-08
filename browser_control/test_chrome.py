@@ -217,7 +217,7 @@ class TestChromeExtensionOnGithub:
         pins_title = self.driver.find_element(By.CSS_SELECTOR, f"span[title='{repo}']")
         assert pins_title is not None, \
             f"No pin for repository named {repo} found on {profile_with_pins}'s profile"
-        pin = pins_title.find_element(By.XPATH"../../..")
+        pin = pins_title.find_element(By.XPATH, "../../..")
         # Sanity check to make sure correct element is selected
         #   and that the class (on which logic relies) is set
         assert "pinned-item-list-item-content" in pin.get_attribute("class").replace(" ", "").split(",")
