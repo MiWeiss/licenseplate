@@ -20,7 +20,7 @@ def navigate_to_options(wd: WebDriver):
     """Identifies options-id if unknown and navigates to options page."""
     if "extension-id" not in CACHE.keys():
         wd.get("chrome://extensions")
-        wd.find_element_by_tag_name('extensions-manager')
+        wd.find_element(By.TAG_NAME, 'extensions-manager')
         details_button = wd.execute_script("return document.querySelector('extensions-manager')"
                                            ".shadowRoot.querySelector('extensions-item-list')"
                                            ".shadowRoot.querySelector('extensions-item')"
@@ -33,11 +33,11 @@ def navigate_to_options(wd: WebDriver):
 def clear_ignore_config(wd: WebDriver):
     """Navigates to options and removes all ignore configs."""
     navigate_to_options(wd)
-    trash_icons = wd.find_elements_by_class_name("classlist-trash-icon")
+    trash_icons = wd.find_elements(By.CLASS_NAME, "classlist-trash-icon")
     for tri in trash_icons:
         tri.click()
     wd.refresh()
-    assert wd.find_elements_by_class_name("no-ignored-repos-message") is not None
+    assert wd.find_elements(By.CLASS_NAME, "no-ignored-repos-message") is not None
 
 
 class CacheChecker:
@@ -49,9 +49,9 @@ class CacheChecker:
 
     def __call__(self, d: WebDriver) -> bool:
         return (
-                d.find_element_by_id("cache-size").get_attribute('innerHTML') == str(self.overall)
+                d.find_element(By.ID, "cache-size").get_attribute('innerHTML') == str(self.overall)
                 and
-                d.find_element_by_id("expired-cache-size").get_attribute('innerHTML') == str(self.expired)
+                d.find_element(By.ID, "expired-cache-size").get_attribute('innerHTML') == str(self.expired)
         )
 
 
@@ -217,7 +217,7 @@ class TestChromeExtensionOnGithub:
         pins_title = self.driver.find_element(By.CSS_SELECTOR, f"span[title='{repo}']")
         assert pins_title is not None, \
             f"No pin for repository named {repo} found on {profile_with_pins}'s profile"
-        pin = pins_title.find_element_by_xpath("../../..")
+        pin = pins_title.find_element(By.XPATH, "../../..")
         # Sanity check to make sure correct element is selected
         #   and that the class (on which logic relies) is set
         assert "pinned-item-list-item-content" in pin.get_attribute("class").replace(" ", "").split(",")
@@ -226,14 +226,14 @@ class TestChromeExtensionOnGithub:
         )
         assert badge.find_element(By.CSS_SELECTOR, f"svg[stroke='{icon_color}']"), \
             f"No icon with stroke color {icon_color} found"
-        assert badge.find_element_by_tag_name("span").get_attribute('innerHTML') == text, \
+        assert badge.find_element(By.TAG_NAME, "span").get_attribute('innerHTML') == text, \
             f"Licenseplate-badge dos not have text '{text}'"
 
     def test_cache(self):
         """Tests license key caching and cache clearance."""
         # Clear existing cache
         navigate_to_options(self.driver)
-        self.driver.find_element_by_id("clear-cache-btn").click()
+        self.driver.find_element(By.ID, "clear-cache-btn").click()
         WebDriverWait(self.driver, 1).until(CacheChecker(0, 0))
         # Visit to repos, then check that cache size is two
         self.driver.get("https://github.com/miweiss/licenseplate")
@@ -247,5 +247,5 @@ class TestChromeExtensionOnGithub:
         navigate_to_options(self.driver)
         WebDriverWait(self.driver, 1).until(CacheChecker(2, 0))
         # Clear cache
-        self.driver.find_element_by_id("clear-cache-btn").click()
+        self.driver.find_element(By.ID, "clear-cache-btn").click()
         WebDriverWait(self.driver, 1).until(CacheChecker(0, 0))
