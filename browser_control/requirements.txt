@@ -1,4 +1,4 @@
 selenium==4.9.1
 pytest==7.3.1
 webdriver-manager
-pillow==9.5.0
+pillow==10.0.0
