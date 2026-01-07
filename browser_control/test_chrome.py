@@ -22,8 +22,7 @@ def navigate_to_options(wd: WebDriver):
         wd.get("chrome://extensions")
         wd.find_element(By.TAG_NAME, 'extensions-manager')
 
-        # Try to find the extension ID using a more robust approach
-        # Navigate through the shadow DOM more carefully with null checks
+        # Find extension ID by exploring all loaded extensions
         extension_id = wd.execute_script("""
             const manager = document.querySelector('extensions-manager');
             if (!manager || !manager.shadowRoot) return null;
@@ -33,10 +32,24 @@ def navigate_to_options(wd: WebDriver):
 
             const items = itemList.shadowRoot.querySelectorAll('extensions-item');
             for (let item of items) {
-                if (!item || !item.shadowRoot) continue;
-                const nameElement = item.shadowRoot.querySelector('#name');
-                if (nameElement && nameElement.textContent.includes('licenseplate')) {
-                    return item.getAttribute('id');
+                if (!item) continue;
+
+                // Try to get the extension ID from the item's ID attribute
+                const itemId = item.getAttribute('id');
+
+                // Navigate into shadowRoot to find name
+                if (item.shadowRoot) {
+                    // Try multiple possible selectors for the name
+                    let nameElement = item.shadowRoot.querySelector('#name') ||
+                                     item.shadowRoot.querySelector('.name') ||
+                                     item.shadowRoot.querySelector('[id*="name"]');
+
+                    if (nameElement) {
+                        const text = nameElement.textContent || nameElement.innerText;
+                        if (text && text.toLowerCase().includes('licenseplate')) {
+                            return itemId;
+                        }
+                    }
                 }
             }
             return null;
