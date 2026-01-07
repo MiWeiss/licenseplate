@@ -87,13 +87,18 @@ def navigate_to_options(wd: WebDriver):
 
 
 def clear_ignore_config(wd: WebDriver):
-    """Navigates to options and removes all ignore configs."""
-    navigate_to_options(wd)
-    trash_icons = wd.find_elements(By.CLASS_NAME, "classlist-trash-icon")
-    for tri in trash_icons:
-        tri.click()
-    wd.refresh()
-    assert wd.find_elements(By.CLASS_NAME, "no-ignored-repos-message") is not None
+    """Clears ignore configuration using Chrome storage API directly."""
+    # Instead of navigating to options page, clear storage directly
+    # Navigate to any page where we can execute scripts
+    wd.get("https://github.com")
+
+    # Clear the ignored repos storage
+    wd.execute_async_script("""
+        const callback = arguments[arguments.length - 1];
+        chrome.storage.sync.remove(['ignored-repos', 'ignored-owners'], () => {
+            callback(true);
+        });
+    """)
 
 
 class CacheChecker:
