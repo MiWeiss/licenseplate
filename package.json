@@ -8,7 +8,7 @@
     "build": "webpack --config webpack/webpack.prod.js",
     "clean": "rimraf dist",
     "test": "npx jest",
-    "build-test": "npm build & npm test",
+    "build-test": "npm run build && npm test",
     "style": "prettier --write \"src/**/*.{ts}\"",
     "gen-licenses": "rimraf .temp && tsc --outDir .temp/codegen-js ./src/__codegen__/genLicenses.ts && node .temp/codegen-js/__codegen__/genLicenses.js && rimraf .temp"
   },
