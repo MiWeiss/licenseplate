@@ -118,13 +118,19 @@ function setAlertBarContent(alertInfo: AlarmReport,
             Check the repository for license details.`;
         showDetails(alertbar, alertInfo, false);
     } else {
-        const licenseLink = document.createElement("a");
-        licenseLink.href = alertInfo.licenseUrl;
-        licenseLink.target = "_blank";
-        licenseLink.textContent = alertInfo.licenseKey;
-
         leftNode.textContent = "License: ";
-        leftNode.appendChild(licenseLink);
+
+        if (alertInfo.licenseUrl) {
+            const licenseLink = document.createElement("a");
+            licenseLink.href = alertInfo.licenseUrl;
+            licenseLink.target = "_blank";
+            licenseLink.textContent = alertInfo.licenseKey;
+            leftNode.appendChild(licenseLink);
+        } else {
+            const licenseText = document.createElement("span");
+            licenseText.textContent = alertInfo.licenseKey;
+            leftNode.appendChild(licenseText);
+        }
 
         const centerNode = document.createElement("div");
         centerNode.classList.add("alertbar-head-element", "alertbar-head-center");
