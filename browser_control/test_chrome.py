@@ -19,25 +19,86 @@ build_extension()
 def navigate_to_options(wd: WebDriver):
     """Identifies options-id if unknown and navigates to options page."""
     if "extension-id" not in CACHE.keys():
+        # Try to find extension ID by checking all possible extension URLs
+        # Since we know the options page exists at options.html
+        # we can bruteforce check common extension ID formats
+        # Better approach: read from filesystem or parse the extension
+        import os
+        import json
+        import zipfile
+
+        # Read manifest from the .crx file or dist folder
+        manifest_path = "../dist/manifest.json"
+        if os.path.exists(manifest_path):
+            with open(manifest_path, 'r') as f:
+                manifest = json.load(f)
+                # Manifest doesn't contain ID, so we need another approach
+
+        # Alternative: Extract from chrome://extensions page with different method
         wd.get("chrome://extensions")
-        wd.find_element(By.TAG_NAME, 'extensions-manager')
-        details_button = wd.execute_script("return document.querySelector('extensions-manager')"
-                                           ".shadowRoot.querySelector('extensions-item-list')"
-                                           ".shadowRoot.querySelector('extensions-item')"
-                                           ".shadowRoot.getElementById('detailsButton')")
-        details_button.click()
-        CACHE["extension-id"] = wd.current_url.split('=')[1]
+
+        # Enable developer mode to see IDs
+        dev_mode_script = """
+            const manager = document.querySelector('extensions-manager');
+            if (manager && manager.shadowRoot) {
+                const toolbar = manager.shadowRoot.querySelector('extensions-toolbar');
+                if (toolbar && toolbar.shadowRoot) {
+                    const devModeToggle = toolbar.shadowRoot.querySelector('#devMode');
+                    if (devModeToggle && !devModeToggle.checked) {
+                        devModeToggle.click();
+                    }
+                }
+            }
+        """
+        wd.execute_script(dev_mode_script)
+
+        # Wait a moment for UI to update
+        sleep(1)
+
+        # Now try to extract IDs
+        extension_id = wd.execute_script("""
+            const manager = document.querySelector('extensions-manager');
+            if (!manager || !manager.shadowRoot) return null;
+
+            const itemList = manager.shadowRoot.querySelector('extensions-item-list');
+            if (!itemList || !itemList.shadowRoot) return null;
+
+            const items = itemList.shadowRoot.querySelectorAll('extensions-item');
+            for (let item of items) {
+                if (!item) continue;
+                const itemId = item.getAttribute('id');
+
+                if (item.shadowRoot) {
+                    // With dev mode on, look for extension ID displayed
+                    const allText = item.shadowRoot.textContent || '';
+                    if (allText.toLowerCase().includes('licenseplate')) {
+                        return itemId;
+                    }
+                }
+            }
+            return null;
+        """)
+
+        if not extension_id:
+            raise RuntimeError("Could not find licenseplate extension in Chrome extensions")
+
+        CACHE["extension-id"] = extension_id
     wd.get(f"chrome-extension://{CACHE['extension-id']}/options.html")
 
 
 def clear_ignore_config(wd: WebDriver):
-    """Navigates to options and removes all ignore configs."""
-    navigate_to_options(wd)
-    trash_icons = wd.find_elements(By.CLASS_NAME, "classlist-trash-icon")
-    for tri in trash_icons:
-        tri.click()
-    wd.refresh()
-    assert wd.find_elements(By.CLASS_NAME, "no-ignored-repos-message") is not None
+    """Clears ignore configuration using Chrome storage API directly."""
+    # Instead of navigating to options page, clear storage directly
+    # Navigate to any page where we can execute scripts
+    wd.get("https://github.com")
+
+    # Clear the ignored repos storage
+    wd.execute_async_script("""
+        const callback = arguments[arguments.length - 1];
+        chrome.storage.sync.remove(['ignored-repos', 'ignored-owners'], () => {
+            callback(true);
+        });
+    """)
 
 
 class CacheChecker:
