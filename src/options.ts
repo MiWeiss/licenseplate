@@ -149,7 +149,9 @@ function updateTokenState(isOk: boolean, message: string) {
     }
     tokenStateElem.innerHTML = isOk ? OK_ICON_SVG : WARN_ICON_SVG;
     tokenStateElem.innerHTML += "<span></span>";
-    tokenStateElem.innerHTML += message;
+    const messageSpan = document.createElement("span");
+    messageSpan.textContent = message;
+    tokenStateElem.appendChild(messageSpan);
 }
 
 //
