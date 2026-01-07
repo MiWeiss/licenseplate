@@ -118,19 +118,25 @@ function setAlertBarContent(alertInfo: AlarmReport,
             Check the repository for license details.`;
         showDetails(alertbar, alertInfo, false);
     } else {
-        leftNode.innerHTML =
-            `License: 
-              <a href="${alertInfo.licenseUrl}" target="_blank"> 
-              ${alertInfo.licenseKey}</a>`;
+        leftNode.textContent = "License: ";
+
+        if (alertInfo.licenseUrl) {
+            const licenseLink = document.createElement("a");
+            licenseLink.href = alertInfo.licenseUrl;
+            licenseLink.target = "_blank";
+            licenseLink.textContent = alertInfo.licenseKey;
+            leftNode.appendChild(licenseLink);
+        } else {
+            const licenseText = document.createElement("span");
+            licenseText.textContent = alertInfo.licenseKey;
+            leftNode.appendChild(licenseText);
+        }
 
         const centerNode = document.createElement("div");
         centerNode.classList.add("alertbar-head-element", "alertbar-head-center");
         alertbar.insertBefore(centerNode, rightNode);
 
-        centerNode.innerHTML = `
-                  ${alertInfo.panics.length} alerts, 
-                  ${alertInfo.warnings.length} warnings,  
-                  ${alertInfo.chillRemarks.length} infos`;
+        centerNode.textContent = `${alertInfo.panics.length} alerts, ${alertInfo.warnings.length} warnings, ${alertInfo.chillRemarks.length} infos`;
         showDetails(alertbar, alertInfo, true);
     }
 }
@@ -210,7 +216,7 @@ function printDetailedAlertReport(detailsNode: HTMLDivElement,
     function addMessageElement(message: string, count: number): void {
         const messageNode = document.createElement("div");
         messageNode.classList.add("details-element");
-        messageNode.innerHTML += `(${count+1}) ${message} <br>`;
+        messageNode.textContent = `(${count+1}) ${message}`;
         detailsNode.appendChild(messageNode);
     }
 }
@@ -347,7 +353,7 @@ async function onIgnoreEvent(id: string, actionElements: HTMLDivElement) {
     await ignore("github", id);
     const confirmationMessage = document.createElement("div");
     confirmationMessage.classList.add("details-element");
-    confirmationMessage.innerHTML = `licenseplate won't consider '${id}' anymore.`;
+    confirmationMessage.textContent = `licenseplate won't consider '${id}' anymore.`;
     const revertButton = document.createElement("button");
     revertButton.innerText = "revert";
     revertButton.id = "licenseplate-ignore-revert-btn";
