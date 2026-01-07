@@ -21,12 +21,31 @@ def navigate_to_options(wd: WebDriver):
     if "extension-id" not in CACHE.keys():
         wd.get("chrome://extensions")
         wd.find_element(By.TAG_NAME, 'extensions-manager')
-        details_button = wd.execute_script("return document.querySelector('extensions-manager')"
-                                           ".shadowRoot.querySelector('extensions-item-list')"
-                                           ".shadowRoot.querySelector('extensions-item')"
-                                           ".shadowRoot.getElementById('detailsButton')")
-        details_button.click()
-        CACHE["extension-id"] = wd.current_url.split('=')[1]
+
+        # Try to find the extension ID using a more robust approach
+        # Navigate through the shadow DOM more carefully with null checks
+        extension_id = wd.execute_script("""
+            const manager = document.querySelector('extensions-manager');
+            if (!manager || !manager.shadowRoot) return null;
+
+            const itemList = manager.shadowRoot.querySelector('extensions-item-list');
+            if (!itemList || !itemList.shadowRoot) return null;
+
+            const items = itemList.shadowRoot.querySelectorAll('extensions-item');
+            for (let item of items) {
+                if (!item || !item.shadowRoot) continue;
+                const nameElement = item.shadowRoot.querySelector('#name');
+                if (nameElement && nameElement.textContent.includes('licenseplate')) {
+                    return item.getAttribute('id');
+                }
+            }
+            return null;
+        """)
+
+        if not extension_id:
+            raise RuntimeError("Could not find licenseplate extension in Chrome extensions")
+
+        CACHE["extension-id"] = extension_id
     wd.get(f"chrome-extension://{CACHE['extension-id']}/options.html")
 
 
