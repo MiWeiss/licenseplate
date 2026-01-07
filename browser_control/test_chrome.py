@@ -19,22 +19,64 @@ build_extension()
 def navigate_to_options(wd: WebDriver):
     """Identifies options-id if unknown and navigates to options page."""
     if "extension-id" not in CACHE.keys():
-        # Navigate to any page to execute chrome.management API
+        # Try to find extension ID by checking all possible extension URLs
+        # Since we know the options page exists at options.html
+        # we can bruteforce check common extension ID formats
+        # Better approach: read from filesystem or parse the extension
+        import os
+        import json
+        import zipfile
+
+        # Read manifest from the .crx file or dist folder
+        manifest_path = "../dist/manifest.json"
+        if os.path.exists(manifest_path):
+            with open(manifest_path, 'r') as f:
+                manifest = json.load(f)
+                # Manifest doesn't contain ID, so we need another approach
+
+        # Alternative: Extract from chrome://extensions page with different method
         wd.get("chrome://extensions")
 
-        # Use chrome.management API to get all extensions and find licenseplate
-        extension_id = wd.execute_async_script("""
-            const callback = arguments[arguments.length - 1];
-
-            chrome.management.getAll((extensions) => {
-                for (let ext of extensions) {
-                    if (ext.name && ext.name.toLowerCase().includes('licenseplate')) {
-                        callback(ext.id);
-                        return;
+        # Enable developer mode to see IDs
+        dev_mode_script = """
+            const manager = document.querySelector('extensions-manager');
+            if (manager && manager.shadowRoot) {
+                const toolbar = manager.shadowRoot.querySelector('extensions-toolbar');
+                if (toolbar && toolbar.shadowRoot) {
+                    const devModeToggle = toolbar.shadowRoot.querySelector('#devMode');
+                    if (devModeToggle && !devModeToggle.checked) {
+                        devModeToggle.click();
                     }
                 }
-                callback(null);
-            });
+            }
+        """
+        wd.execute_script(dev_mode_script)
+
+        # Wait a moment for UI to update
+        sleep(1)
+
+        # Now try to extract IDs
+        extension_id = wd.execute_script("""
+            const manager = document.querySelector('extensions-manager');
+            if (!manager || !manager.shadowRoot) return null;
+
+            const itemList = manager.shadowRoot.querySelector('extensions-item-list');
+            if (!itemList || !itemList.shadowRoot) return null;
+
+            const items = itemList.shadowRoot.querySelectorAll('extensions-item');
+            for (let item of items) {
+                if (!item) continue;
+                const itemId = item.getAttribute('id');
+
+                if (item.shadowRoot) {
+                    // With dev mode on, look for extension ID displayed
+                    const allText = item.shadowRoot.textContent || '';
+                    if (allText.toLowerCase().includes('licenseplate')) {
+                        return itemId;
+                    }
+                }
+            }
+            return null;
         """)
 
         if not extension_id:
