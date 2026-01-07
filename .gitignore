@@ -1,15 +1,43 @@
+# Node
 npm-debug.log
 node_modules/
+*.log
+
+# Build output
 dist/
 tmp/
 .temp
-.vscode
 codgen/dist
-browser_control/chromedriver.exe
-venv/
 dist.*
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# IDE and editor files
+.vscode
 .idea/
+*.swp
+*.swo
+*~
+
+# Python
+venv/
+__pycache__/
 browser_control/__pycache__
+*.pyc
+*.pyo
+.python-version
+
+# Browser extension
+browser_control/chromedriver.exe
 browser_control/snapshot.crx
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Jekyll
 /_site/
 /.jekyll-cache/Jekyll/Cache/
