@@ -19,40 +19,22 @@ build_extension()
 def navigate_to_options(wd: WebDriver):
     """Identifies options-id if unknown and navigates to options page."""
     if "extension-id" not in CACHE.keys():
+        # Navigate to any page to execute chrome.management API
         wd.get("chrome://extensions")
-        wd.find_element(By.TAG_NAME, 'extensions-manager')
 
-        # Find extension ID by exploring all loaded extensions
-        extension_id = wd.execute_script("""
-            const manager = document.querySelector('extensions-manager');
-            if (!manager || !manager.shadowRoot) return null;
+        # Use chrome.management API to get all extensions and find licenseplate
+        extension_id = wd.execute_async_script("""
+            const callback = arguments[arguments.length - 1];
 
-            const itemList = manager.shadowRoot.querySelector('extensions-item-list');
-            if (!itemList || !itemList.shadowRoot) return null;
-
-            const items = itemList.shadowRoot.querySelectorAll('extensions-item');
-            for (let item of items) {
-                if (!item) continue;
-
-                // Try to get the extension ID from the item's ID attribute
-                const itemId = item.getAttribute('id');
-
-                // Navigate into shadowRoot to find name
-                if (item.shadowRoot) {
-                    // Try multiple possible selectors for the name
-                    let nameElement = item.shadowRoot.querySelector('#name') ||
-                                     item.shadowRoot.querySelector('.name') ||
-                                     item.shadowRoot.querySelector('[id*="name"]');
-
-                    if (nameElement) {
-                        const text = nameElement.textContent || nameElement.innerText;
-                        if (text && text.toLowerCase().includes('licenseplate')) {
-                            return itemId;
-                        }
+            chrome.management.getAll((extensions) => {
+                for (let ext of extensions) {
+                    if (ext.name && ext.name.toLowerCase().includes('licenseplate')) {
+                        callback(ext.id);
+                        return;
                     }
                 }
-            }
-            return null;
+                callback(null);
+            });
         """)
 
         if not extension_id:
