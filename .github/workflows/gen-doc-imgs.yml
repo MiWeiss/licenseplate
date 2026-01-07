@@ -33,6 +33,12 @@ jobs:
           echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' | sudo tee /etc/apt/sources.list.d/google-chrome.list
           sudo apt-get -y update
           sudo apt-get -y install google-chrome-stable
+      - name: Build Extension
+        run: |
+          npm ci --legacy-peer-deps
+          npm run build
+        env:
+          NODE_OPTIONS: --openssl-legacy-provider
       - name: Install Python Dependencies
         run: |
           cd browser_control
