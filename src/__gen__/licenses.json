@@ -140,6 +140,62 @@
     "url": "https://choosealicense.com/licenses/artistic-2.0"
   },
   {
+    "title": "Blue Oak Model License 1.0.0",
+    "spdxId": "BlueOak-1.0.0",
+    "permissions": {
+      "commercialUse": true,
+      "distribution": true,
+      "modifications": true,
+      "privateUse": true,
+      "patentUse": true
+    },
+    "conditions": {
+      "discloseSource": false,
+      "includeCopyright": true,
+      "includeCopyrightVSource": false,
+      "networkUseDisclosure": false,
+      "sameLicense": false,
+      "sameLicenseVLibrary": false,
+      "sameLicenseVFile": false,
+      "documentChanges": false
+    },
+    "limitations": {
+      "liability": true,
+      "warranty": true,
+      "trademarkUse": false,
+      "patentUse": false
+    },
+    "url": "https://choosealicense.com/licenses/blueoak-1.0.0"
+  },
+  {
+    "title": "BSD-2-Clause Plus Patent License",
+    "spdxId": "BSD-2-Clause-Patent",
+    "permissions": {
+      "commercialUse": true,
+      "distribution": true,
+      "modifications": true,
+      "privateUse": true,
+      "patentUse": true
+    },
+    "conditions": {
+      "discloseSource": false,
+      "includeCopyright": true,
+      "includeCopyrightVSource": false,
+      "networkUseDisclosure": false,
+      "sameLicense": false,
+      "sameLicenseVLibrary": false,
+      "sameLicenseVFile": false,
+      "documentChanges": false
+    },
+    "limitations": {
+      "liability": true,
+      "warranty": true,
+      "trademarkUse": false,
+      "patentUse": false
+    },
+    "url": "https://choosealicense.com/licenses/bsd-2-clause-patent"
+  },
+  {
     "title": "BSD 2-Clause \"Simplified\" License",
     "spdxId": "BSD-2-Clause",
     "permissions": {
