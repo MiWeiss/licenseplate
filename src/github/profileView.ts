@@ -3,6 +3,7 @@ import {AlarmReport} from "../utils/licenses/alarmReportBuilder";
 import {getAlarm} from "../utils/licenses/alarmLevel";
 import {AlarmLevel} from "../utils/licenses/models";
 import {INFO_ICON_SVG, OK_ICON_SVG, PANIC_ICON_SVG, WARN_ICON_SVG} from "../utils/icons";
+import {runOnPageChanges} from "../utils/pageChanges";
 
 
 /**
@@ -33,13 +34,14 @@ function createWarnIcon(alarmReport: AlarmReport): ChildNode {
 /**
  * Initiates profile page enrichment:
  * Looks for pins and then adds badges to said pins.
+ *
+ * Runs on every page change, and skips pins which were already handled.
  */
 async function main() {
-    const pins = document.getElementsByClassName("pinned-item-list-item-content");
-    if (pins.length === 0) {
-        return
-    }
-    for (let pin of pins) {
+    const pins = document.querySelectorAll(".pinned-item-list-item-content:not([data-licenseplate])");
+    for (let pin of Array.from(pins)) {
+        // Marked before the lookup, such that concurrent page changes don't handle the pin again
+        pin.setAttribute("data-licenseplate", "");
         const href = pin.getElementsByClassName('repo')[0]?.parentElement?.getAttribute("href");
         if (!href) {
             console.error(`[licenseplate] found no link for pin`);
@@ -83,8 +85,6 @@ function addLicenseInfoToPin(pin: Element, alarmReport: AlarmReport) {
 
 
 //
-// Run Script on Page Load
+// Run Script on Page Load, and on client-side navigation
 //
-main().then(() =>
-    console.log("[licenseplate] Profile Parsing: Exit Main (async tasks may still be running)")
-);
+runOnPageChanges(main);
