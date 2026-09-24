@@ -1,6 +1,7 @@
 import {AlarmReport} from "../utils/licenses/alarmReportBuilder";
 import {getAlarm} from "../utils/licenses/alarmLevel";
 import {
+    API_ERROR,
     findLicense,
     FOUND_IGNORED_REPO,
     FOUND_NO_LICENSE,
@@ -127,6 +128,9 @@ function setAlertBarContent(alertInfo: AlarmReport,
         leftNode.innerHTML =
             `Repository not found through github API. Are you offline or is this a private repository?`;
         showDetails(alertbar, alertInfo, false);
+    } else if (alertInfo.licenseKey === API_ERROR) {
+        leftNode.textContent = "Could not load license information from the github API.";
+        showDetails(alertbar, alertInfo, true);
     } else if (alertInfo.licenseKey === FOUND_UNKNOWN_LICENSE) {
         leftNode.innerHTML =
             `Looks like this repository

@@ -3,7 +3,7 @@ import * as alarmConfigJson from "./alarmLevels.json";
 
 import {AlarmLevel, Conditions, Limitations, Permissions, Rights,} from "./models";
 
-import {API_LIMIT_REACHED, FOUND_NO_LICENSE, FOUND_NO_REPO, FOUND_UNKNOWN_LICENSE,} from "../../github/licenseFinder";
+import {API_ERROR, API_LIMIT_REACHED, FOUND_NO_LICENSE, FOUND_NO_REPO, FOUND_UNKNOWN_LICENSE,} from "../../github/licenseFinder";
 
 const alarmMessages: Rights<string> = alarmMessageJson;
 const alarmConfig: Rights<AlarmLevel> = alarmConfigJson;
@@ -69,6 +69,15 @@ export class AlarmReport {
         [],
         [],
         "https://miweiss.github.io/licenseplate/features-gh/auth/"
+    );
+
+    static API_ERROR_ALARM_REPORT = new AlarmReport(
+        API_ERROR,
+        "API error",
+        [],
+        ["Could not load the license information from the github API. " +
+        "Are you offline? Use the refresh button to try again."],
+        []
     );
 
     static FOUND_UNKNOWN_LICENSE_ALARM_REPORT = new AlarmReport(
