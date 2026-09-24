@@ -9,14 +9,9 @@ nav_order: 34
 ## License Request Issue Template
 
 On repositories where no license file was detected, 
-the 'create issue' page will be extended with a button 
-**[Use License Request Template]**
-to draft an issue asking the repository maintainers 
-to add a license file:
-
-<!-- TODO Once images are taken on logged in users, take this image automatically -->
-![](./../../images/no-license-issue.PNG)
-
-
-Attention: Clicking the *Use Request Template* button will replace whatever's 
-currently in the title and description fields.
+the expanded licenseplate bar contains an
+**[Open Issue]**
+button. It opens the repository's 'create issue' page,
+with title and description pre-filled with a request 
+to the repository maintainers to add a license file.
+You can adapt the draft before submitting it.
