@@ -2,6 +2,7 @@ import {AlarmReport} from "../utils/licenses/alarmReportBuilder";
 import {getAlarm} from "../utils/licenses/alarmLevel";
 import {
     API_ERROR,
+    API_LIMIT_REACHED,
     findLicense,
     FOUND_IGNORED_REPO,
     FOUND_NO_LICENSE,
@@ -128,6 +129,16 @@ function setAlertBarContent(alertInfo: AlarmReport,
         leftNode.innerHTML =
             `Repository not found through github API. Are you offline or is this a private repository?`;
         showDetails(alertbar, alertInfo, false);
+    } else if (alertInfo.licenseKey === API_LIMIT_REACHED) {
+        leftNode.textContent = "Github API limit reached (or invalid auth token). ";
+        if (alertInfo.licenseUrl) {
+            const readMoreLink = document.createElement("a");
+            readMoreLink.href = alertInfo.licenseUrl;
+            readMoreLink.target = "_blank";
+            readMoreLink.textContent = "Read more";
+            leftNode.appendChild(readMoreLink);
+        }
+        showDetails(alertbar, alertInfo, true);
     } else if (alertInfo.licenseKey === API_ERROR) {
         leftNode.textContent = "Could not load license information from the github API.";
         showDetails(alertbar, alertInfo, true);

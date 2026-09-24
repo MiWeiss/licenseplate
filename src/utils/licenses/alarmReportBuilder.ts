@@ -63,9 +63,9 @@ export class AlarmReport {
         API_LIMIT_REACHED,
         "API limit reached",
         // No warnings or panic: let's chill if repo not found (it's probably a private repo)
+        // Plain text: messages are not rendered as html. The link is given as licenseUrl.
         ["Could not access repo info - looks like your API limit is reached or your token is invalid. " +
-        "Consider adding an auth token in the extension options. " +
-        "<a href='https://miweiss.github.io/licenseplate/features-gh/auth/' target='_blank'> Read More Here </a>"],
+        "Consider adding an auth token in the extension options."],
         [],
         [],
         "https://miweiss.github.io/licenseplate/features-gh/auth/"
