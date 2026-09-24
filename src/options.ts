@@ -98,14 +98,20 @@ function deleteIgnoreEntry(
         .catch((reason) => console.error(`Could not un-ignore ${key}: ${reason}`));
 }
 
+/**
+ * Prefixes of github personal access tokens (fine-grained and classic).
+ */
+const TOKEN_PREFIXES = ["github_pat_", "ghp_"];
+
 function ghTokenLogic() {
     document.getElementById("gh-token-form")?.addEventListener("submit", e => {
         e.preventDefault();
-        const token = (document.getElementById("githubTokenInput") as HTMLInputElement).value;
+        const token = (document.getElementById("githubTokenInput") as HTMLInputElement).value.trim();
         if (token == "") {
             upsertGithubAuthToken(null).then(() => testToken())
-        } else if (!token.startsWith("ghp")) {
-            updateTokenState(false, "No changes made (token not accepted). Token must start with 'ghp-'");
+        } else if (!TOKEN_PREFIXES.some(prefix => token.startsWith(prefix))) {
+            updateTokenState(false,
+                "No changes made (token not accepted). Token must start with 'github_pat_' or 'ghp_'.");
         } else {
             upsertGithubAuthToken(token).then(() => testToken())
         }
