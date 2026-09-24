@@ -1,40 +1,34 @@
 import os
-import platform
 
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.remote.webdriver import WebDriver
-from webdriver_manager.chrome import ChromeDriverManager
 
-WEBDRIVER_INSTALL_PATH = ChromeDriverManager().install()
+REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+EXTENSION_PATH = os.path.join(REPO_ROOT, "dist")
 
 
 def build_extension():
     os.system('npm install')
     os.system('npm run build')
 
-    if os.path.exists("../dist.crx"):
-        os.remove("../dist.crx")
-    if os.path.exists("../dist.pem"):
-        os.remove("../dist.pem")
 
-    path = os.path.abspath('../dist/')
-    print("Building extension")
-    if platform.system() == "Windows":
-        os.system(f"chrome.exe --pack-extension={path}")
-    elif platform.system() == "Linux":
-        os.system(f'google-chrome --pack-extension={path}')
-    else:
-        raise RuntimeError(f"OS unsupported in by selenium prepare script {platform.platform()}")
+def webdriver_setup() -> WebDriver:
+    """Creates a new webdriver with the unpacked extension (`dist` folder) loaded.
 
-
-def webdriver_setup():
-    """Creates a new webriver and installs pre-packed extension."""
+    Branded Google Chrome ignores `--load-extension` since version 137,
+    thus `CHROME_BINARY` has to point to a Chrome for Testing or Chromium binary.
+    `CHROMEDRIVER` is optional: If not set, Selenium Manager provides a matching driver.
+    """
+    chrome_binary = os.environ.get("CHROME_BINARY")
+    if not chrome_binary:
+        raise RuntimeError("Set CHROME_BINARY to a Chrome for Testing or Chromium binary "
+                           "(branded Google Chrome does not load unpacked extensions from the command line).")
     options = Options()
-    options.add_extension("../dist.crx")
+    options.binary_location = chrome_binary
+    options.add_argument(f"--load-extension={EXTENSION_PATH}")
     return webdriver.Chrome(
-        executable_path=WEBDRIVER_INSTALL_PATH,
+        service=Service(os.environ.get("CHROMEDRIVER")),
         options=options,
     )
-
-
