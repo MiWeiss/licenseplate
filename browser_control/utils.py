@@ -1,4 +1,5 @@
 import os
+import subprocess
 
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -10,8 +11,8 @@ EXTENSION_PATH = os.path.join(REPO_ROOT, "dist")
 
 
 def build_extension():
-    os.system('npm install')
-    os.system('npm run build')
+    """Builds the extension into the `dist` folder. Expects dependencies to be installed (`npm ci`)."""
+    subprocess.run(["npm", "run", "build"], cwd=REPO_ROOT, check=True)
 
 
 def webdriver_setup() -> WebDriver:

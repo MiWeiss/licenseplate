@@ -59,7 +59,7 @@ The following are the most relevant folders in this repository. Folders not list
   
 - **Documentation Image Capturing**\
   To keep the images in our docs up to date with recent style changes of github.com, they are re-generated once a week, or after a push to `main`, and submitted through a PR.\
-  The script can be run manually by setting up the selenium environment (`cd browser_control`, creating and activating a python `venv` and runing `pip install -r requirements.txt`) and by then running `python gen_docs_images.py`\
+  The script can be run manually by installing the node dependencies (`npm ci`), setting up the selenium environment (`cd browser_control`, creating and activating a python `venv` and runing `pip install -r requirements.txt`) and by then running `python gen_docs_images.py`\
   The selenium scripts need [Chrome for Testing](https://developer.chrome.com/blog/chrome-for-testing) or Chromium, as branded Google Chrome (since v137) does not load unpacked extensions from the command line: Set the environment variable `CHROME_BINARY` to its binary (e.g. after installing it with `npx @puppeteer/browsers install chrome@stable`), and optionally `CHROMEDRIVER` to a matching chromedriver.\
   <sup><sub>Note: Views which require a login, such as the open-issue image, are not yet automatically generated. I have to figure our a way around the 'new device email confirmation' to log into github through selenium.</sub></sup>
 
