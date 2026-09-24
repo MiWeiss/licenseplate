@@ -1,6 +1,21 @@
 const identifier = (platform: string, id: string) => `${platform}/${id}`;
 
 /**
+ * Checks if an ignore key (e.g. "github/miweiss/licenseplate") is covered by an ignore pattern,
+ * i.e., by an equal key or by an owner wildcard (e.g. "github/miweiss/*").
+ *
+ * Case-insensitive, as github owner and repository names are.
+ */
+function matchesPattern(key: string, pattern: string): boolean {
+  const lowerKey = key.toLowerCase();
+  const lowerPattern = pattern.toLowerCase();
+  if (lowerPattern.endsWith("/*")) {
+    return lowerKey.startsWith(lowerPattern.slice(0, -1));
+  }
+  return lowerKey === lowerPattern;
+}
+
+/**
  * Gets the ignore-list from `storage.sync`
  * (which, dependent on the browser, may be synced amongst a users devices).
  *
@@ -83,7 +98,7 @@ export async function ignore(platform: string, id: string) {
     // Remove less general, existing patterns.
     for (let i = ignoreRecords.length-1; i >= 0; i--){
       const existingRecord = ignoreRecords[i];
-      if (existingRecord.match(key)){
+      if (matchesPattern(existingRecord, key)){
         ignoreRecords.splice(i, 1)
       }
     }
@@ -116,7 +131,7 @@ export async function checkIsIgnored(
   }
   const key = identifier(platform, id);
   for (const ignoredPattern of ignoreRecords) {
-    if (key.match(ignoredPattern)) {
+    if (matchesPattern(key, ignoredPattern)) {
       return true;
     }
   }
