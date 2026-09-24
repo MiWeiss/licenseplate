@@ -4,6 +4,7 @@ import {getAlarm} from "../utils/licenses/alarmLevel";
 import {AlarmLevel} from "../utils/licenses/models";
 import {INFO_ICON_SVG, OK_ICON_SVG, PANIC_ICON_SVG, WARN_ICON_SVG} from "../utils/icons";
 import {runOnPageChanges} from "../utils/pageChanges";
+import {repoIdFromPath} from "./repoId";
 
 
 /**
@@ -47,8 +48,8 @@ async function main() {
             console.error(`[licenseplate] found no link for pin`);
             continue;
         }
-        const splits = href.split('/');
-        const license = await findLicense(splits[1], splits[2]);
+        const {owner, repo} = repoIdFromPath(href);
+        const license = await findLicense(owner, repo);
         if (license == FOUND_IGNORED_REPO){
             continue;
         }

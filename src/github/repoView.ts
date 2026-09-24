@@ -15,6 +15,7 @@ import {ignore, unIgnore} from "../utils/ignoreUtils";
 import {removeGithubRepoFromCache} from "../utils/cacheUtils";
 import {INFO_ICON_SVG, PANIC_ICON_SVG, WARN_ICON_SVG} from "../utils/icons";
 import {runOnPageChanges} from "../utils/pageChanges";
+import {repoIdFromPath} from "./repoId";
 
 /**
  * The last license lookup (`alertInfo` is null for ignored repos),
@@ -178,10 +179,7 @@ function setAlertBarContent(alertInfo: AlarmReport,
  * @returns A tuple consisting of two strings, owner and repo
  */
 function repoIdFromUrl() {
-    let splitUrl = window.location.href.split("/");
-    let owner = splitUrl[3];
-    let repo = splitUrl[4];
-    return {owner, repo};
+    return repoIdFromPath(window.location.pathname);
 }
 
 /**
