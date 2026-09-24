@@ -22,3 +22,19 @@ test("alarm-messages", async () => {
     expect(lgplAlarm.warnings.length).toBe(2);
     expect(lgplAlarm.chillRemarks.length).toBe(4);
 });
+
+test("mock-alarm-messages-are-plain-text", () => {
+    // Messages are rendered as text, not as html
+    const reports = [
+        AlarmReport.FOUND_NO_LICENSE_ALARM_REPORT,
+        AlarmReport.FOUND_NO_REPO_ALARM_REPORT,
+        AlarmReport.API_LIMIT_REACHED_ALARM_REPORT,
+        AlarmReport.API_ERROR_ALARM_REPORT,
+        AlarmReport.FOUND_UNKNOWN_LICENSE_ALARM_REPORT,
+    ];
+    for (const report of reports) {
+        for (const message of [...report.panics, ...report.warnings, ...report.chillRemarks]) {
+            expect(message).not.toMatch(/<[a-z]/i);
+        }
+    }
+});
