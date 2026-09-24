@@ -8,9 +8,16 @@ import {getGithubAuthToken} from "./authUtils";
 export const FOUND_NO_REPO = "NO-REPO";
 
 /**
- * Mock license key to be used with repos where a 403 was given.
+ * Mock license key to be used with repos where a 401, 403 or 429 was given
+ * (i.e., the API rate limit is exceeded or the auth token is invalid).
  */
 export const API_LIMIT_REACHED = "API_LIMIT_REACHED";
+
+/**
+ * Mock license key to be used if the github API could not be reached,
+ * or answered with an unexpected error.
+ */
+export const API_ERROR = "API_ERROR";
 
 /**
  * Mock license key to be used with repos which don't have a license file
@@ -70,7 +77,7 @@ export async function findLicense(owner: string, repo: string): Promise<string> 
         // Create task to cache this *after a delay*
         //      (to avoid congestion due to this low prio task
         //       on early page load)
-        if (key !== API_LIMIT_REACHED){
+        if (key !== API_LIMIT_REACHED && key !== API_ERROR) {
             setTimeout(() => cacheGithubRepos({
                 owner: owner,
                 repo: repo,
@@ -85,35 +92,44 @@ export async function findLicense(owner: string, repo: string): Promise<string> 
  * Queries the github API to get the license key for a particular, single repo.
  *
  * @Remark
- * Never call this directly. Call {@link findLicense} instead, which will use caching and
- * owner / repository ignoring.
+ * Never call this directly (exported for tests only). Call {@link findLicense} instead,
+ * which will use caching and owner / repository ignoring.
  *
  * @param owner The owner of the repository to be queried
  * @param repo The name of the repository to be queried
  * @param authToken Optional github authentication token
  */
-async function findKeyFromAPI(owner: string, repo: string, authToken?: string): Promise<string> {
+export async function findKeyFromAPI(owner: string, repo: string, authToken?: string): Promise<string> {
     const url = `https://api.github.com/repos/${owner}/${repo}`;
     let repoResponse: Response;
-    if (authToken){
-        repoResponse = await fetch(url, {
-            headers: new Headers({
-                'Authorization': 'token ' + authToken
-            }),
-        });
-    }else{
-        repoResponse = await fetch(url);
+    let repoInfo;
+    try {
+        if (authToken) {
+            repoResponse = await fetch(url, {
+                headers: new Headers({
+                    'Authorization': 'token ' + authToken
+                }),
+            });
+        } else {
+            repoResponse = await fetch(url);
+        }
+        if (repoResponse.status === 404) {
+            return FOUND_NO_REPO // Most likely a private repo
+        }
+        const status = repoResponse.status;
+        if (status === 401 || status === 403 || status === 429) {
+            return API_LIMIT_REACHED // Rate limit exceeded, or invalid (e.g. expired) token
+        }
+        if (!repoResponse.ok) {
+            console.error(`[licenseplate] Get request to "${url}" failed with status code ${repoResponse.status}`);
+            return API_ERROR
+        }
+        repoInfo = await repoResponse.json();
+    } catch (e) {
+        // E.g. offline
+        console.error(`[licenseplate] Get request to "${url}" failed: ${e}`);
+        return API_ERROR
     }
-    if (repoResponse.status === 404) {
-        return FOUND_NO_REPO // Most likely a private repo
-    }
-    if (repoResponse.status === 403) {
-        return API_LIMIT_REACHED // Most likely a private repo
-    }
-    if (!repoResponse.ok) {
-        throw Error(`Get request to "${url}" failed with status code ${repoResponse.status}`)
-    }
-    let repoInfo = await repoResponse.json();
     if (!repoInfo.license) {
         return FOUND_NO_LICENSE
     }
