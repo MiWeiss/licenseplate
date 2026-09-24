@@ -8,7 +8,7 @@ import {
     FOUND_UNKNOWN_LICENSE,
 } from "./licenseFinder";
 import {AlarmLevel} from "../utils/licenses/models";
-import {issueTemplateTask} from "./issueTemplateInsert";
+import {licenseRequestIssueUrl} from "./licenseRequestIssue";
 import {ignore, unIgnore} from "../utils/ignoreUtils";
 import {removeGithubRepoFromCache} from "../utils/cacheUtils";
 import {INFO_ICON_SVG, PANIC_ICON_SVG, WARN_ICON_SVG} from "../utils/icons";
@@ -17,9 +17,6 @@ import {INFO_ICON_SVG, PANIC_ICON_SVG, WARN_ICON_SVG} from "../utils/icons";
  * Initiates repository page enrichment.
  * Resolves the repository key (owner & name), finds the license information
  * and adds the alertbar to the dom tree.
- *
- * If the current page is a 'create issue' page, and the repo has no license,
- * the page is furthermore enriched with the request-a-license template button.
  */
 async function main() {
     if (document.getElementById("licenseplate-alertbar")) {
@@ -104,9 +101,6 @@ function setAlertBarContent(alertInfo: AlarmReport,
         <a href="https://choosealicense.com/no-permission/" target="_blank">
         Read more</a>`;
         showDetails(alertbar, alertInfo, false);
-        issueTemplateTask().then((m) =>
-            console.log(`[licenseplate] Exit Issue Template Setup: ${m}`)
-        );
     } else if (alertInfo.licenseKey === FOUND_NO_REPO) {
         leftNode.innerHTML =
             `Repository not found through github API. Are you offline or is this a private repository?`;
@@ -280,8 +274,8 @@ function createActionButton(actionElements: HTMLDivElement,
 }
 
 /**
- * Creates a button to forward a user to the repositories 'create issue' page
- * where they're expected to ask for a license.
+ * Creates a button to forward a user to the repositories 'create issue' page,
+ * pre-filled with an issue asking for a license.
  *
  * @param actionElements HTMLElement to whose children the button will be added.
  */
@@ -290,7 +284,7 @@ function createIssueButton(actionElements: HTMLDivElement) {
     const onclick = (e: MouseEvent) => {
         e.stopPropagation();
         const {owner, repo} = repoIdFromUrl();
-        (window.location.href = `https://github.com/${owner}/${repo}/issues/new`);
+        window.location.href = licenseRequestIssueUrl(owner, repo);
     };
 
     createActionButton(
