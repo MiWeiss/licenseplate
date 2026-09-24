@@ -12,40 +12,62 @@ import {licenseRequestIssueUrl} from "./licenseRequestIssue";
 import {ignore, unIgnore} from "../utils/ignoreUtils";
 import {removeGithubRepoFromCache} from "../utils/cacheUtils";
 import {INFO_ICON_SVG, PANIC_ICON_SVG, WARN_ICON_SVG} from "../utils/icons";
+import {runOnPageChanges} from "../utils/pageChanges";
+
+/**
+ * The last license lookup (`alertInfo` is null for ignored repos),
+ * reused while navigating within the same repository.
+ */
+let lastLookup: { repoId: string, alertInfo: AlarmReport | null } | undefined;
 
 /**
  * Initiates repository page enrichment.
  * Resolves the repository key (owner & name), finds the license information
  * and adds the alertbar to the dom tree.
+ *
+ * Runs on every page change, and returns early if the alertbar for the current
+ * repository is already shown (or if the current page is no repository page).
  */
 async function main() {
-    if (document.getElementById("licenseplate-alertbar")) {
-        console.log("[licenseplate] Alertbar already exists. Return. ");
+    const repoContainer = document.getElementById("js-repo-pjax-container");
+    if (!repoContainer) {
         return;
     }
-    let repoContainer = document.getElementById("js-repo-pjax-container");
-    if (repoContainer) {
-        const {owner, repo} = repoIdFromUrl();
-
-        const licenseKey = await findLicense(owner, repo);
-        if (licenseKey === FOUND_IGNORED_REPO) {
-            console.log("Licenseplate abort: Ignored repo");
-            return;
-        }
-        const alertInfo = await getAlarm(licenseKey);
-
-        const alertbar = document.createElement("div");
-        alertbar.classList.add(
-            ..."alertbar d-flex mb-3 px-3 px-md-4 px-lg-5".split(" ")
-        );
-        alertbar.setAttribute("id", "licenseplate-alertbar");
-
-
-        setAlertBarContent(alertInfo, alertbar);
-
-        setAlertLevel(alertInfo, alertbar);
-        repoContainer?.parentNode?.insertBefore(alertbar, repoContainer);
+    const {owner, repo} = repoIdFromUrl();
+    const repoId = `${owner}/${repo}`;
+    const existingAlertbar = document.getElementById("licenseplate-alertbar");
+    if (existingAlertbar?.dataset.repoId === repoId) {
+        return;
     }
+    existingAlertbar?.remove();
+
+    let lookup = lastLookup;
+    if (lookup?.repoId !== repoId) {
+        // Remembered before the lookup completes, such that a failing lookup
+        // is not repeated on every page change within this repository.
+        lookup = lastLookup = {repoId, alertInfo: null};
+        const licenseKey = await findLicense(owner, repo);
+        if (licenseKey !== FOUND_IGNORED_REPO) {
+            lookup.alertInfo = await getAlarm(licenseKey);
+        }
+    }
+    const alertInfo = lookup.alertInfo;
+    if (!alertInfo) {
+        console.log("Licenseplate abort: Ignored repo");
+        return;
+    }
+
+    const alertbar = document.createElement("div");
+    alertbar.classList.add(
+        ..."alertbar d-flex mb-3 px-3 px-md-4 px-lg-5".split(" ")
+    );
+    alertbar.setAttribute("id", "licenseplate-alertbar");
+    alertbar.dataset.repoId = repoId;
+
+    setAlertBarContent(alertInfo, alertbar);
+
+    setAlertLevel(alertInfo, alertbar);
+    repoContainer.parentNode?.insertBefore(alertbar, repoContainer);
 }
 
 /**
@@ -235,9 +257,9 @@ function createRefreshButton(actionElements: HTMLDivElement) {
     let {owner, repo} = repoIdFromUrl();
     const oncClick = async () => {
         await removeGithubRepoFromCache(owner, repo);
+        lastLookup = undefined;
         document.getElementById("licenseplate-alertbar")?.remove();
-        await main();
-        console.log("[licenseplate] finished regenerating after cache removal");
+        rerunMain();
     };
     createActionButton(
         actionElements,
@@ -345,6 +367,8 @@ Can be reverted in extension settings.`
  */
 async function onIgnoreEvent(id: string, actionElements: HTMLDivElement) {
     await ignore("github", id);
+    // The alertbar stays until the next page change, which then does a new lookup
+    lastLookup = undefined;
     const confirmationMessage = document.createElement("div");
     confirmationMessage.classList.add("details-element");
     confirmationMessage.textContent = `licenseplate won't consider '${id}' anymore.`;
@@ -354,6 +378,7 @@ async function onIgnoreEvent(id: string, actionElements: HTMLDivElement) {
     revertButton.onclick = (e) => {
         e.stopPropagation();
         unIgnore("github", id).then((e) => {
+            lastLookup = undefined;
             revertButton.remove();
             confirmationMessage.remove();
             actionElements.hidden = false;
@@ -367,9 +392,7 @@ async function onIgnoreEvent(id: string, actionElements: HTMLDivElement) {
 }
 
 //
-// Run Script on Page Load
+// Run Script on Page Load, and on client-side navigation
 //
 
-main().then(() =>
-    console.log("[licenseplate] Alertbar Creation: Exit Main (async tasks may still run)")
-);
+const rerunMain = runOnPageChanges(main);

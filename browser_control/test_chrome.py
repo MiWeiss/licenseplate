@@ -231,6 +231,23 @@ class TestChromeExtensionOnGithub:
         assert badge.find_element(By.TAG_NAME, "span").get_attribute('innerHTML') == text, \
             f"Licenseplate-badge dos not have text '{text}'"
 
+    def test_client_side_navigation(self):
+        """Ensures the alertbar is updated when github navigates without a full page load."""
+        self.driver.get("https://github.com/testingautomated-usi/uncertainty-wizard")
+        assert "licpl-chill" in self._find_alert_bar().get_attribute("class")
+        # Simulates Turbo Drive: fetch the next page, push its url and swap the <body>
+        self.driver.execute_async_script("""
+            const [path, done] = arguments;
+            fetch(path).then(r => r.text()).then(html => {
+                const doc = new DOMParser().parseFromString(html, 'text/html');
+                history.pushState({}, '', path);
+                document.body.replaceWith(document.adoptNode(doc.body));
+                done();
+            });""", "/MiWeiss/fake-license-repo")
+        WebDriverWait(self.driver, 5).until(
+            lambda d: "licpl-panic" in d.find_element(By.ID, "licenseplate-alertbar").get_attribute("class")
+        )
+
     def test_cache(self):
         """Tests license key caching and cache clearance."""
         # Clear existing cache
