@@ -214,13 +214,15 @@ class TestChromeExtensionOnGithub:
         # Open profile if not already there (if check to avoid unnecessary page loads)
         if self.driver.current_url != f"https://github.com/{profile_with_pins}":
             self.driver.get(f"https://github.com/{profile_with_pins}")
-        pins_title = self.driver.find_element(By.CSS_SELECTOR, f"span[title='{repo}']")
-        assert pins_title is not None, \
+        # Select the pin by the class on which the extension logic relies, and by its repo link
+        pins = self.driver.find_elements(
+            By.XPATH,
+            f"//div[contains(@class, 'pinned-item-list-item-content')]"
+            f"[.//a[@href='/{profile_with_pins}/{repo}']]"
+        )
+        assert len(pins) == 1, \
             f"No pin for repository named {repo} found on {profile_with_pins}'s profile"
-        pin = pins_title.find_element(By.XPATH, "../../..")
-        # Sanity check to make sure correct element is selected
-        #   and that the class (on which logic relies) is set
-        assert "pinned-item-list-item-content" in pin.get_attribute("class").replace(" ", "").split(",")
+        pin = pins[0]
         badge = WebDriverWait(pin, 3).until(
             expected_conditions.presence_of_element_located((By.CLASS_NAME, "licenseplate-badge"))
         )
