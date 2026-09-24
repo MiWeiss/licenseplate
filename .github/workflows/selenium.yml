@@ -37,10 +37,8 @@ jobs:
           install-dependencies: true
       - name: Build Extension
         run: |
-          npm ci --legacy-peer-deps
+          npm ci
           npm run build
-        env:
-          NODE_OPTIONS: --openssl-legacy-provider
       - name: Install Python Dependencies
         run: |
           cd browser_control
