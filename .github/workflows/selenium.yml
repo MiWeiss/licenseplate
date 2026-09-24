@@ -10,6 +10,7 @@ on:
     branches: [ main ]
   schedule:
     - cron: 0 0 * * * # At the end of every day
+  workflow_dispatch: # Run manually from the Actions tab (any branch)
 
 jobs:
   build:
