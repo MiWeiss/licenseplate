@@ -23,6 +23,8 @@ Given a github
 [*personal access token*](https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token)
 (`chrome://extensions` -> Licenseplate -> Options), 
 licenseplate can make up to 5000 API requests per hour.
+Both fine-grained tokens (starting with `github_pat_`) and classic tokens (starting with `ghp_`) are supported.
+We recommend a fine-grained token with read-only access to *public repositories* and no additional permissions.
 
 Warning - Read the following carefully
 {: .label .label-red }
